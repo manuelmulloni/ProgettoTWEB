@@ -26,7 +26,7 @@
     <nav class="mobile-menu">
         <ul>
             <li><a href="#">Login</a></li>
-            <li><a href="#">Registrazione</a></li>
+            <li><a href="#" id="openRegisterModal">Registrazione</a></li> <!-- cambiato per modal-->
         </ul>
     </nav>
 </header>
@@ -59,6 +59,14 @@
     </div>
 </footer>
 
+<!-- Modal di registrazione -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+</div>
 
 <script src="../public/assets/javascript/script.js"></script>
 
