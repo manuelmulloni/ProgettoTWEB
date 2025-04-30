@@ -19,9 +19,7 @@ $prestazioni = [['nome' => 'Visita oculistica', 'descrizione' => 'Visita per la 
 </head>
 
 <body>
-    <header>
-        <a href="#" class="logo">Oculistica</a>
-    </header>
+    @include("layouts/_header")
     <main class = "main">
 
         <h1>Specialisti</h1>

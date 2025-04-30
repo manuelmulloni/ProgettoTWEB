@@ -19,12 +19,13 @@ $prestazioni = [['nome' => 'Visita dermatologica', 'descrizione' => 'Visita per 
 </head>
 
 <body>
-    <header>
-        <a href="#" class="logo">Dermatologia</a>
-    </header>
+    @include("layouts/_header")
+
     <main class = "main">
 
-        <h1>Specialisti</h1>
+        <h1>Dermatologia</h1>
+
+        <h2>Specialisti</h2>
         <ul>
             @foreach ($specialisti as $specialista)
                 <li>{{ $specialista['nome'] . ' ' . $specialista['cognome'] }}</li>
@@ -32,7 +33,7 @@ $prestazioni = [['nome' => 'Visita dermatologica', 'descrizione' => 'Visita per 
         </ul>
 
 
-        <h1>Prestazioni</h1>
+        <h2>Prestazioni</h2>
         <ul>
             @foreach ($prestazioni as $prestazione)
                 <li>{{ $prestazione['nome'] . ': ' . $prestazione['descrizione'] }}</li>
@@ -40,6 +41,8 @@ $prestazioni = [['nome' => 'Visita dermatologica', 'descrizione' => 'Visita per 
         </ul>
 
     </main>
+
+    @include("layouts/_footer")
 </body>
 
 </html>
