@@ -60,6 +60,7 @@
     </div>
 </footer>
 
+
 <script src="../public/assets/javascript/script.js"></script>
 
 </body>
