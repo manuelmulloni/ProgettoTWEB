@@ -24,4 +24,11 @@ nav{
     text-decoration: none;
 }
 
+footer{
+    display: flex; /* Usa flexbox per allineare le colonne */
+    justify-content: space-between; /* Spinge le colonne ai lati */
+    align-items: center; /* Centra verticalmente */
+    padding: 20px;
+    background-color: #f0f0f0; /* Sfondo semplice */
+}
 

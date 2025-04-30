@@ -16,7 +16,6 @@
 
     <div class ="container">
         <a href="{{route('dipartimenti')}}"> Dipartimenti</a>
-
     </div>
 
     <!-- Icona Hamburger (sempre visibile) -->
@@ -35,10 +34,31 @@
 
 <!-- Contenuto della pagina (esempio) -->
 <main class = "main">
-    <h1>Contenuto Principale</h1>
-    <p>Questo è il contenuto della pagina. Il menu ad hamburger è sempre visibile nell'header.</p>
-    <div class ="container"></div> <!-- Placeholder -->
+    <h1>Informazioni principali</h1>
+    <p>Il poliambulatorio Salus si occupa di</p>
+    <h1>Recapiti</h1>
+    <p>Telefono: 123456789</p>
+    <p>Email:salus@salus.com</p>
+    <h1>Posizione</h1>
+    <p>Vediamo</p>
 </main>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2023 Poliambulatorio Salus. Tutti i diritti riservati.</p>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Termini di Servizio</a></li>
+            <li><a href="#">Contatti</a></li>
+        </ul>
+    </div>
+
+    <div class="footer-content">
+       <h1>Info Sito</h1>
+        <p>Per prenotare al sito è necessario compilare il form di registrazione che si trova nella toggle-bar.</p>
+    </div>
+</footer>
 
 <script src="../public/assets/javascript/script.js"></script>
 

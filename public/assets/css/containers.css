@@ -1,6 +1,22 @@
 
 /* CSS main */
-main {margin: 50px 10%;}
+main.main { /*main.main altrimenti c e conflitto con la classe main di base*/
+    padding: 20px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 20px; /* spazio verticale tra tutti i figli (h1, p, ecc.) */
+}
+
+main h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+main p {
+    margin: 0;
+    font-size: 18px;
+}
 
 .container {
     max-width: 1200px;
@@ -103,4 +119,11 @@ main {margin: 50px 10%;}
     margin: 0;
     display: flex;
     gap: 20px; /* spazio tra gli elementi */
+}
+
+.footer-content {
+    padding: 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+    margin-top: auto; /* Spinge il footer in basso */
 }

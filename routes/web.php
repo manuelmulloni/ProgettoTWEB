@@ -11,3 +11,7 @@ Route::get('/dipartimenti', function () {
     return view('dipartimenti');
 })->name('dipartimenti');
 
+Route::get('/cardiologia', function () {
+    return view('cardiologia');
+})->name('cardiologia');
+
