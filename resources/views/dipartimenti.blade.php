@@ -23,7 +23,7 @@ session_start();
             <h1>Dipartimenti</h1>
             <p>Il nostro poliambulatorio offre una vasta gamma di dipartimenti per soddisfare le tue esigenze sanitarie.</p>
             <ul>
-                <li><a href="">Cardiologia</a></li>
+                <li><a href="{{route('cardiologia')}}">Cardiologia</a></li>
                 <li><a href="">Dermatologia</a></li>
                 <li><a href="">Oculistica</a></li>
                 <li><a href="">Ortopedia</a></li>
