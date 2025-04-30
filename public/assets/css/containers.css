@@ -1,0 +1,106 @@
+
+/* CSS main */
+main {margin: 50px 10%;}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #333;
+}
+
+.container a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.container a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Stili dell'icona Hamburger (sempre visibile) */
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    width: 45px;
+    height: 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 30px;
+    /* Nessuna animazione o trasformazione */
+}
+
+/* Stili del Menu Mobile (inizialmente nascosto) */
+.mobile-menu {
+    display: none; /* Nascosto di default */
+    position: absolute;
+    top: 100%; /* Posiziona sotto l'header */
+    right: 0;
+    width: 10%;
+    background-color: #fff; /* Sfondo del menu */
+    border: 1px solid #ccc;
+    /* Nessuna ombra, opacità o transizione */
+}
+
+/* Stile per mostrare il menu */
+.mobile-menu.is-open {
+    display: block; /* Mostra il menu quando ha la classe 'is-open' */
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 10px 0; /* Padding interno */
+    margin: 0;
+    text-align: center;
+}
+
+.mobile-menu li {
+    margin-bottom: 10px; /* Spazio tra i link */
+}
+
+.mobile-menu li:last-child {
+    margin-bottom: 0;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1em;
+    padding: 8px 20px;
+    display: block;
+    /* Nessuna transizione o stile hover complesso */
+}
+
+.mobile-menu a:hover {
+    color: #000; /* Semplice cambio colore al hover */
+}
+
+.container a:last-child {
+    margin-right: 0; /* Rimuove il margine dall'ultimo link */
+}
+
+.container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px; /* spazio tra gli elementi */
+}

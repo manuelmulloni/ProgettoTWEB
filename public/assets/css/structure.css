@@ -1,0 +1,27 @@
+/*Proprietà in comune con tutti*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* CSS Header */
+header {
+    background-color: #f0f0f0; /* Sfondo semplice */
+    padding: 10px 20px;
+    display: flex; /* Usa flexbox per allineare logo e bottone */
+    justify-content: space-between; /* Spinge logo e bottone ai lati */
+    align-items: center; /* Centra verticalmente */
+    position: relative; /* Per posizionare il menu mobile */
+}
+
+/* CSS Navigation Bar (navbar) */
+nav{
+    display: flex;
+    align-items: center; /* gli elementi contenuti saranno allineati verticalmente al centro */
+    text-decoration: none;
+}
+
+
