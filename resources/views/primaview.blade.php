@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -33,7 +32,7 @@
 </header>
 
 <!-- Contenuto della pagina (esempio) -->
-<main class = "main">
+<main>
     <h1>Informazioni principali</h1>
     <p>Il poliambulatorio Salus si occupa di</p>
     <h1>Recapiti</h1>

@@ -15,3 +15,7 @@ Route::get('/cardiologia', function () {
     return view('cardiologia');
 })->name('cardiologia');
 
+Route::get('/registrazione', function (){
+    return view('registrazione');
+})->name('registrazione');
+

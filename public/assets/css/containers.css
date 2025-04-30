@@ -1,6 +1,6 @@
 
 /* CSS main */
-main.main { /*main.main altrimenti c e conflitto con la classe main di base*/
+main { /*main.main altrimenti c e conflitto con la classe main di base*/
     padding: 20px;
     display: flex;
     flex: 1;
