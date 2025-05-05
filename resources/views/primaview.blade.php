@@ -10,26 +10,7 @@
 </head>
 <body>
 
-<header>
-    <a href="#" class="logo">Sito Minimal</a> <!-- Logo/Nome sito -->
-
-    <div class ="container">
-        <a href="{{route('dipartimenti')}}"> Dipartimenti</a>
-    </div>
-
-    <!-- Icona Hamburger (sempre visibile) -->
-    <button class="hamburger-icon" aria-label="Apri menu" aria-expanded="false">
-        ≡
-    </button>
-
-    <!-- Menu -->
-    <nav class="mobile-menu">
-        <ul>
-            <li><a href="#" id="openLoginModal">Login</a></li>
-            <li><a href="#" id="openRegisterModal">Registrazione</a></li> <!-- cambiato per modal, non so se servono i href-->
-        </ul>
-    </nav>
-</header>
+@include("layouts/_header")
 
 <!-- Contenuto della pagina (esempio) -->
 <main>
@@ -43,10 +24,6 @@
 </main>
 
 @include("layouts/_footer")
-
-
-
-
 
 <!-- Modal di registrazione -->
 <div id="myModal" class="modal">

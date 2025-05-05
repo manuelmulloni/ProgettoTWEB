@@ -9,10 +9,7 @@
     <link rel="stylesheet" href="../public/assets/css/structure.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Dipartimenti</div>
-    </header>
-
+    @include("layouts/_header")
     <main>
 
         <div class="container">

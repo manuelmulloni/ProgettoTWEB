@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="../public/assets/css/containers.css">
     <link rel="stylesheet" href="../public/assets/css/structure.css">
 </head>
+
 <body>
-<header>
-    <a href="#" class="logo">Cardiologia</a> <!-- Logo/Nome sito -->
-</header>
+@include("layouts/_header")
 <main class = "main">
     <h1>Specialisti</h1>
     <a href="#">Lista dei nostri specialisti</a>
