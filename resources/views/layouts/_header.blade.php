@@ -1,5 +1,5 @@
 <header>
-    <a href="#" class="logo">Sito Minimal</a> <!-- Logo/Nome sito -->
+    <a href="{{route('primaview')}}" class="logo">Sito Minimal</a> <!-- Logo/Nome sito -->
 
     <div class ="container">
         <a href="{{route('dipartimenti')}}"> Dipartimenti</a>
