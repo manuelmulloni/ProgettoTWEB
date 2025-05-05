@@ -15,6 +15,7 @@ header {
     justify-content: space-between; /* Spinge logo e bottone ai lati */
     align-items: center; /* Centra verticalmente */
     position: relative; /* Per posizionare il menu mobile */
+    width: 100%;
 }
 
 /* CSS Navigation Bar (navbar) */
@@ -30,6 +31,7 @@ footer{
     align-items: center; /* Centra verticalmente */
     padding: 20px;
     background-color: #f0f0f0; /* Sfondo semplice */
+    width: 100%;
 }
 
 /* The Modal (background) */
