@@ -25,28 +25,6 @@
 
 @include("layouts/_footer")
 
-<!-- Modal di registrazione -->
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Registrazione</h2>
-        <form id="registrationForm">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Registrati</button>
-        </form>
-    </div>
-</div>
-
-
-
 <!--   Script -->
 <script src="../public/assets/javascript/script.js"></script>
 
