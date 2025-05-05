@@ -13,10 +13,8 @@
     <!-- Menu -->
     <nav class="mobile-menu">
         <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#" id="openRegisterModal">Registrazione</a></li> <!-- cambiato per modal-->
+            <li><a href="{{route('login')}}">Login</a></li>
+            <li><a href="{{route('registrazione')}}">Registrazione</a></li>
         </ul>
     </nav>
 </header>
-
-<script src="assets/javascript/script.js"></script>

@@ -23,7 +23,10 @@ Route::get('/oculistica', function () {
     return view('oculistica');
 })->name('oculistica');
 
-Route::get('/registrazione', function (){
-    return view('registrazione');
-})->name('registrazione');
+Route::get('/login', function (){
+    return view('auth/login');
+})->name('login');
 
+Route::get('registrazione', function (){
+    return view('auth/registrazione');
+})->name('registrazione');

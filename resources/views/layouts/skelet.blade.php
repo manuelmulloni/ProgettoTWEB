@@ -8,7 +8,7 @@
     <link rel="stylesheet" type= "text/css" href="{{ asset('assets/css/containers.css') }}">
     <link rel="stylesheet" type= "text/css" href="{{ asset('assets/css/structure.css') }}">
     <!--   Script -->
-    <script src="{{ asset('assets/javascript/script.js') }}"></script></head>
+</head>
 
 
 <body>
@@ -33,5 +33,6 @@
 
 </body>
 
+<script src="{{ asset('assets/javascript/script.js') }}"></script>
 
 </html>
