@@ -14,7 +14,7 @@
             <button type="submit">Registrati</button>
         </form>
         <div class="login-footer">
-            <p>Hai già un account? <a href="/login">Accedi</a></p>
+            <p>Hai già un account? <a href="{{route('login')}}">Accedi</a></p>
         </div>
     </div>
 @endsection

@@ -9,7 +9,7 @@
             <button type="submit">Login</button>
         </form>
         <div class="login-footer">
-            <p>Non hai un account? <a href="/register">Registrati</a></p>
+            <p>Non hai un account? <a href="{{route('registrazione')}}">Registrati</a></p>
         </div>
     </div>
 
