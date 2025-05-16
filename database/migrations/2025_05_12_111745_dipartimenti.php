@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('dipartimenti', function (Blueprint $table) {
+            $table->string('nome',20);
+            $table->string('descrizione',100);
+        });
         //
     }
 
@@ -19,6 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('dipartimenti');
         //
     }
 };

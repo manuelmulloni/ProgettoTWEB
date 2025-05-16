@@ -11,6 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Scema::create('prenotazioni', function (Blueprint $table) {
+            // Primary key auto-incrementale della tabella.
+            $table->increments('id');
+            $table->string('usernameCliente', 20); // foreign key -> punta a Clienti(username)
+            $table->time('oraInizio');
+            $table->date('giorno');
+            $table->string('nomePrestazione', 70); // foreign key -> punta a Prestazioni(nome)
+        });
         //
     }
 
@@ -19,6 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('prenotazioni');
         //
     }
 };
