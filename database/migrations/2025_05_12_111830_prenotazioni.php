@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Scema::create('prenotazioni', function (Blueprint $table) {
             // Primary key auto-incrementale della tabella.
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('usernameCliente', 20); // foreign key -> punta a Clienti(username)
             $table->time('oraInizio');
             $table->date('giorno');
