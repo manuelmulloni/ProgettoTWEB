@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Scema::create('prenotazioni', function (Blueprint $table) {
+        Schema::create('prenotazioni', function (Blueprint $table) {
             // Primary key auto-incrementale della tabella.
             $table->bigIncrements('id');
             $table->string('usernameCliente', 20); // foreign key -> punta a Clienti(username)
