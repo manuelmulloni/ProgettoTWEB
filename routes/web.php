@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PrestazioneController;
 
 Route::get('/', function () {
     return view('primaview');
@@ -12,6 +13,8 @@ Route::get('/dipartimenti', function () {
 })->name('dipartimenti');
 
 require __DIR__ . '/dipartimenti.php';
+
+Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
 
 Route::get('/login', function (){
     return view('auth/login');
