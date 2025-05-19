@@ -14,12 +14,23 @@ return new class extends Migration
         Schema::create('prenotazioni', function (Blueprint $table) {
             // Primary key auto-incrementale della tabella.
             $table->bigIncrements('id');
-            $table->string('usernameCliente', 20); // foreign key -> punta a Clienti(username)
+            $table->string('usernameCliente', 20);
+            $table->foreign('usernameCliente')
+                ->references('username')
+                ->on('utenti')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            // foreign key -> punta a Clienti(username)
             $table->time('oraInizio');
             $table->date('giorno');
-            $table->string('nomePrestazione', 70); // foreign key -> punta a Prestazioni(nome)
+            $table->string('nomePrestazione', 70);
+            $table->foreign('nomePrestazione')
+                ->references('nome')
+                ->on('prestazioni')
+                ->onDelete('cascade');
+            // foreign key -> punta a Prestazioni(nome)
+            //$table->string('nomeDipartimento', 20); // foreign key -> punta a Dipartimenti(nome)
         });
-        //
     }
 
     /**

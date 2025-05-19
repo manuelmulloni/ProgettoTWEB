@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('prestazioni', function (Blueprint $table) {
 
-                $table->bigIncrements('id');
-                $table->string('nome', 70);
+                $table->bigIncrements('id'); // Primary key auto-incrementata della tabella.
+                $table->string('nome', 70); // Nome della prestazione.
                 $table->text('descrizione');
                 $table->string('prescrizioni', 100);
         });
