@@ -21,9 +21,10 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             // foreign key -> punta a Clienti(username)
-            $table->time('oraInizioPrestazione');
-            $table->time('oraFinePrestazione');
-            $table->date('giornoprestazioni');
+            $table->date('data'); // data assegnata dallo staff
+            $table->time('ora_inizio');
+            $table->time('orafine'); // calcolata = ora_inizio + 1h
+            $table->string('durata')->default('01:00:00');
             $table->string('nomePrestazione', 70);
             $table->foreign('nomePrestazione')
                 ->references('nome')
