@@ -16,7 +16,6 @@ return new class extends Migration
                 $table->bigIncrements('id');
                 $table->string('nome', 70);
                 $table->text('descrizione');
-                $table->string('prescrizioni', 100);
         });
         //
     }

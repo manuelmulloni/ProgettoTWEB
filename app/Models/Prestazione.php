@@ -8,11 +8,9 @@ class Prestazione extends Model
     public $table = "prestazioni";
     public $timestamps = false;
     protected $fillable = [
-        'idPrestazione',
-        'nomePrestazione',
-        'costoPrestazione',
-        'durataPrestazione',
-        'idDipartimento'
+        'id',
+        'nome',
+        'descrizione',
     ];
 
 
