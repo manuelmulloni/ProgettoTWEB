@@ -17,6 +17,11 @@ return new class extends Migration
                 $table->string('nome', 70); // Nome della prestazione.
                 $table->text('descrizione');
                 $table->string('prescrizioni', 100);
+                $table->string('nomeDipartimento', 20);
+                $table->foreign('nomeDipartimeento')
+                    ->references('dipartimenti')
+                    ->on('nome')
+                    ->onDelete('cascade');// Tipologia della prestazione.
         });
         //
     }

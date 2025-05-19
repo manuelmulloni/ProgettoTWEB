@@ -114,6 +114,15 @@ class UserController extends Controller
         }
     }
 
+    // Funzione per vedere prestazioni (admin)
+    public function getPrestazioni(Request $request){
+
+        $query = $request->input('query');
+        $prestazioni = Prestazione::where('nome', 'LIKE', '%' .$query. '%')->get();
+        return view('admin/gestionePrestazioni', ['Prestazioni'=>$prestazioni]);
+
+
+    }
 
 
 
