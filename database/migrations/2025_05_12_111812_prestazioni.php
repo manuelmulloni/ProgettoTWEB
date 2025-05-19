@@ -16,7 +16,6 @@ return new class extends Migration
                 $table->bigIncrements('id'); // Primary key auto-incrementata della tabella.
                 $table->string('nome', 70); // Nome della prestazione.
                 $table->text('descrizione');
-                $table->string('prescrizioni', 100);
         });
         //
     }
