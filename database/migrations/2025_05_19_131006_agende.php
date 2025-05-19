@@ -16,9 +16,9 @@ return new class extends Migration
         $table->id(); // Chiave primaria autoincrementale
 
         // Prestazione a cui si riferisce l'agenda
-        $table->string('nomePrestazione', 70);
-        $table->foreign('nomePrestazione')
-            ->references('nome')
+        $table->string('idPrestazione', 70);
+        $table->foreign('idPrestazione')
+            ->references('id')
             ->on('prestazioni')
             ->onDelete('cascade');
 

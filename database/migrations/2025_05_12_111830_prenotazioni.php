@@ -23,11 +23,10 @@ return new class extends Migration
             // foreign key -> punta a Clienti(username)
             $table->date('data'); // data assegnata dallo staff
             $table->time('ora_inizio');
-            $table->time('orafine'); // calcolata = ora_inizio + 1h
             $table->string('durata')->default('01:00:00');
-            $table->string('nomePrestazione', 70);
-            $table->foreign('nomePrestazione')
-                ->references('nome')
+            $table->string('idPrestazione', 70);
+            $table->foreign('idPrestazione')
+                ->references('id')
                 ->on('prestazioni')
                 ->onDelete('cascade');
             // foreign key -> punta a Prestazioni(nome)
