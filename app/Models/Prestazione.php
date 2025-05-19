@@ -7,8 +7,8 @@ class Prestazione extends Model
 {
     public $table = "prestazioni";
     public $timestamps = false;
+    protected $guarded = ['id'];
     protected $fillable = [
-        'id',
         'nome',
         'descrizione',
     ];

@@ -15,7 +15,8 @@ Route::get('/dipartimenti', function () {
 require __DIR__ . '/dipartimenti.php';
 
 Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
-Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazione.edit');
+Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_prestazione"])->name('prestazione.edit');
+Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->name('prestazione.edit');
 Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');
 Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->name('prestazione.create');
 
