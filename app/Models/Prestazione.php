@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 class Prestazione extends Model
 {
     public $table = "prestazioni";
+
+    protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'idPrestazione',
-        'nomePrestazione',
-        'costoPrestazione',
-        'durataPrestazione',
-        'idDipartimento'
+        'nome',
+        'descrizione',
+        'prescrizioni',
     ];
 
 
