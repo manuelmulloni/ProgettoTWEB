@@ -9,6 +9,8 @@ $prestazioni = [['nome' => 'Radiografia', 'descrizione' => 'Esame radiografico p
 @section('content')
         <h1>Specialisti</h1>
         <ul>
+            {{-- Loop attraverso gli specialisti e mostra il nome e cognome da modificare con i dati database --}}
+
             @foreach ($specialisti as $specialista)
                 <li>{{ $specialista['nome'] . ' ' . $specialista['cognome'] }}</li>
             @endforeach

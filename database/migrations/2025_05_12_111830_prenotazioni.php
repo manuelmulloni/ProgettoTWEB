@@ -21,11 +21,12 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             // foreign key -> punta a Clienti(username)
-            $table->time('oraInizio');
-            $table->date('giorno');
-            $table->string('nomePrestazione', 70);
-            $table->foreign('nomePrestazione')
-                ->references('nome')
+            $table->date('data'); // data assegnata dallo staff
+            $table->time('ora_inizio');
+            $table->string('durata')->default('01:00:00');
+            $table->string('idPrestazione', 70);
+            $table->foreign('idPrestazione')
+                ->references('id')
                 ->on('prestazioni')
                 ->onDelete('cascade');
             // foreign key -> punta a Prestazioni(nome)

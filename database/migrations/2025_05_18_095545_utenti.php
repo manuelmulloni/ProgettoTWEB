@@ -20,9 +20,9 @@ return new class extends Migration
             $table->date('eta')->nullable();
             $table->integer('livello');
             $table->string('telefono', 10)->nullable();
-            $table->string('dipartimento', 20)->nullable();
-            $table->foreign('dipartimento')
-                ->references('nome')
+            $table->string('idDipartimento', 20)->nullable();
+            $table->foreign('idDipartimento')
+                ->references('id')
                 ->on('dipartimenti')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

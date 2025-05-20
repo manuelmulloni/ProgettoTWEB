@@ -29,13 +29,23 @@ class User extends Authenticatable
 
 
 
-    protected $fillable = [  // da completare
-        'name',
-        'email',
-        'password',
+    protected $fillable = [
         'username',
-
+        'password',
+        'nome',
+        'cognome',
+        'eta',
+        'livello',
+        'telefono',
+        'dipartimento',
     ];
+
+    // Relazione con il dipartimento
+    public function dipartimentoRelazione()
+    {
+        return $this->belongsTo(Dipartimento::class, 'dipartimento', 'nome');
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
