@@ -13,7 +13,13 @@ class Prestazione extends Model
         'nome',
         'descrizione',
         'prescrizioni',
+        'idDipartimento',
     ];
+
+    public function dipartimento()
+    {
+        return $this->belongsTo(Dipartimento::class, 'idDipartimento', 'id');
+    }
 
 
 
