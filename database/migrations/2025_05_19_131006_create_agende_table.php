@@ -19,7 +19,7 @@ return new class extends Migration
                 ->constrained('prestazioni')
                 ->onDelete('cascade');
 
-            $table->string('giorno_settimana', 10);
+            $table->date('data');
             $table->time('orario_inizio');
             $table->time('orario_fine')->default('09:00:00');
 
