@@ -16,7 +16,7 @@ return new class extends Migration
         $table->id(); // Chiave primaria autoincrementale
 
         // Prestazione a cui si riferisce l'agenda
-        $table->string('idPrestazione', 70);
+        $table->bigInteger('idPrestazione');
         $table->foreign('idPrestazione')
             ->references('id')
             ->on('prestazioni')

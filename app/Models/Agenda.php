@@ -1,27 +1,29 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
 
-class Agenda
+class Agenda extends Model
 {
-    public $table = "agenda";
+    public $table = "agende";
 
     protected $primaryKey = 'id';
-    public $incrementing = false; // non ho un id da incrementare
+    public $incrementing = true;
     public $timestamps = false; // non ho i timestamp
     protected $fillable = [
-        'username',
-        'giorno',
-        'oraInizio',
-        'oraFine',
-        'nomePrestazione',
+        'giorno_settimana',
+        'orario_inizio',
+        'orario_fine',
+        'idPrestazione',
     ];
 
     // Relazione con Prestazione
     public function prestazione()
     {
-        return $this->belongsTo(Prestazione::class, 'nomePrestazione', 'nome');
+        return $this->belongsTo(Prestazione::class, 'idPrestazione', 'id');
     }
+
+
 
 
 }

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('prestazioni', function (Blueprint $table) {
 
                 $table->bigIncrements('id'); // Primary key auto-incrementata della tabella.
-                $table->string('nome', 70)->unique(); // Nome della prestazione.
+                $table->string('nome', 70); // Nome della prestazione.
                 $table->text('descrizione');
                 $table->string('prescrizioni', 100);
-                $table->bigInteger('idDipartimento', 20);
+                $table->bigInteger('idDipartimento')->nullable();
                 $table->foreign('idDipartimento')
                     ->references('id')
                     ->on('dipartimenti')

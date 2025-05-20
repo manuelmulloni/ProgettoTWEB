@@ -58,5 +58,26 @@ class DatabaseSeeder extends Seeder
             'idDipartimento' => 3,
             ]
         ]);
+
+        DB::table("agende")->insert([
+            [
+            'giorno_settimana' => 'Lunedì',
+            'orario_inizio' => '09:00:00',
+            'orario_fine' => '10:00:00',
+            'idPrestazione' => 1,
+            ],
+            [
+            'giorno_settimana' => 'Martedì',
+            'orario_inizio' => '10:00:00',
+            'orario_fine' => '11:00:00',
+            'idPrestazione' => 2,
+            ],
+            [
+            'giorno_settimana' => 'Mercoledì',
+            'orario_inizio' => '11:00:00',
+            'orario_fine' => '12:00:00',
+            'idPrestazione' => 3,
+            ]
+        ]);
     }
 }
