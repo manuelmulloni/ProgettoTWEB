@@ -3,6 +3,15 @@
 
     <div class ="container">
         <a href="{{route('dipartimenti')}}"> Dipartimenti</a>
+        @can('isUser')
+            <a href="{{route('hubUtente')}}">Area Utente</a>
+        @endcan
+        @can('isStaff')
+            <a href="{{route('area_staff')}}">Area Staff</a>
+        @endcan
+        @can('isAdmin')
+            <a href="{{route('area_admin')}}">Area Admin</a>
+        @endcan
     </div>
 
     @if (Auth::check())
@@ -10,9 +19,7 @@
             <span class="username">{{ Auth::user()->username }}</span>
             <a href="{{ route('logout') }}" class="logout-button">Logout</a>
         </div>
-    @endif
-
-
+    @else
     <!-- Icona Hamburger (sempre visibile) -->
     <button class="hamburger-icon" aria-label="Apri menu" aria-expanded="false">
         ≡
@@ -25,4 +32,5 @@
             <li><a href="{{route('register')}}">Registrazione</a></li>
         </ul>
     </nav>
+    @endif
 </header>

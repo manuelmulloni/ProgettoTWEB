@@ -28,7 +28,6 @@ class User extends Authenticatable
      */
 
 
-
     protected $fillable = [
         'username',
         'password',
@@ -70,8 +69,20 @@ class User extends Authenticatable
         ];
     }
 
-
+    public function isAdmin(): bool
+    {
+        return $this->livello == 4;
 
     }
 
+    public function isStaff(): bool
+    {
+        return $this->livello == 3;
+    }
 
+    public function isCliente(): bool
+    {
+        return $this->livello == 2;
+    }
+
+}
