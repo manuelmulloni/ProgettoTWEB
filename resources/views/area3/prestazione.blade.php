@@ -60,6 +60,25 @@
             margin-top: 20px;
             width: 30%;
         }
+
+        .text-area-style {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .select-style {
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .form-description {
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
     </style>
 
 
@@ -71,18 +90,20 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Nome</th>
                         <th>Descrizione</th>
+                        <th>Dipartimento</th>
+                        <th>Prescrizioni</th>
                         <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($prestazioni as $prestazione)
                         <tr>
-                            <td>{{ $prestazione->id }}</td>
                             <td>{{ $prestazione->nome }}</td>
                             <td>{{ $prestazione->descrizione }}</td>
+                            <td>{{ $prestazione->dipartimento->nome }}</td>
+                            <td>{{ $prestazione->prescrizioni }}</td>
                             <td>
                             <button class="edit-button button-style">
                                 <a href="{{ route('prestazione.edit', $prestazione->id) }}">Modifica</a>

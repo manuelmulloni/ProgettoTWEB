@@ -24,6 +24,8 @@ class NewPrestazioneRequest extends FormRequest
         return [
             'nome' => 'required|string|max:70',
             'descrizione' => 'required|string',
+            'prescrizioni' => 'required|string|max:100',
+            'idDipartimento' => 'required|integer|exists:dipartimenti,id',
         ];
     }
 }

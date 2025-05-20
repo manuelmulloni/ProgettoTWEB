@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Prestazione;
+use App\Models\Dipartimento;
 
 use Illuminate\Support\Facades\Log;
 
@@ -15,6 +17,7 @@ class PrestazioneController extends Controller
         Log::debug("Starting show_prestazioni method");
         return view('area3.prestazione_create', [
             'prestazioni' => Prestazione::all(),
+            'dipartimenti' => Dipartimento::all(),
         ]);
     }
 
@@ -48,6 +51,7 @@ class PrestazioneController extends Controller
                 'id' => $id, // Incluso nell'url, ma laravel da errore se non lo passo
                 'prestazioni' => Prestazione::all(),
                 'prestazione' => $prestazione,
+                'dipartimenti' => Dipartimento::all(),
             ]);
         } else {
             return redirect()->back()->with('error', 'Prestazione non trovata.');
