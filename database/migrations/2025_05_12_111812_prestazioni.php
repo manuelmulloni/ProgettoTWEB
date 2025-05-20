@@ -20,7 +20,7 @@ return new class extends Migration
                 $table->string('idDipartimento', 20);
                 $table->foreign('idDipartimento')
                     ->references('id')
-                    ->on('nome')
+                    ->on('dipartimenti')
                     ->onDelete('cascade');// Tipologia della prestazione.
         });
         //
