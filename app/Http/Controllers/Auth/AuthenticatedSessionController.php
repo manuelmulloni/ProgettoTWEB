@@ -28,15 +28,14 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('primaview', absolute: false));
 
-        /*$request->session()->regenerate();
+        $request->session()->regenerate();
 
         $user = Auth::user();
 
-         //Redirect personalizzato con isAdmin()
+        //Redirect personalizzato con isAdmin()
         if ($user->isAdmin()) {
-            return redirect()->intended('/admin');
+            return redirect()->intended('/area_admin');
         }
 
         //Redirect personalizzato con isStaff()
@@ -48,8 +47,8 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended('/cliente');
         }
 
-       return redirect()->intended(RouteServiceProvider::HOME);
-        */
+        return redirect()->intended(RouteServiceProvider::HOME);
+
     }
 
     /**

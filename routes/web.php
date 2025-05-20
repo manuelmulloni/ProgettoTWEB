@@ -56,6 +56,6 @@ Route::get('/registrazione', function (){
     return view('auth/registrazione');
 })->name('registrazione');
 
-Route::get('/hubUtenti', function () {
-    return view('hubUtenti');
-})->name('hubUtenti');
+Route::middleware(['auth', 'is_admin'])->get('/admin', function() {
+    return view('area_admin');
+})->name('admin');

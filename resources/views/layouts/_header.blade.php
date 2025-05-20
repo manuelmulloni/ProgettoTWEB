@@ -10,7 +10,7 @@
             <a href="{{route('area_staff')}}">Area Staff</a>
         @endcan
         @can('isAdmin')
-            <a href="{{route('area_admin')}}">Area Admin</a>
+            <a href="{{route('admin')}}">Area Admin</a>
         @endcan
     </div>
 
