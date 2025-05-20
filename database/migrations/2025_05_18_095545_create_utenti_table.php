@@ -6,35 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('utenti' ,function (Blueprint $table)
-        {
-            $table->string('username', 20)->primary(); // Chiave primaria della tabella.
+        Schema::create('utenti', function (Blueprint $table) {
+            $table->string('username', 20)->primary();
             $table->string('password', 255);
             $table->string('nome', 20);
             $table->string('cognome', 20);
             $table->date('eta')->nullable();
             $table->integer('livello');
             $table->string('telefono', 10)->nullable();
-            $table->string('idDipartimento', 20)->nullable();
-            $table->foreign('idDipartimento')
-                ->references('id')
-                ->on('dipartimenti')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+
+            $table->foreignId('idDipartimento')
+                ->nullable()
+                ->constrained('dipartimenti') // Assumendo che la tabella si chiami 'dipartimenti'
+                ->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('utenti');
-
     }
 };

@@ -6,40 +6,32 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('prenotazioni', function (Blueprint $table) {
-            // Primary key auto-incrementale della tabella.
             $table->bigIncrements('id');
+
             $table->string('usernameCliente', 20);
             $table->foreign('usernameCliente')
                 ->references('username')
                 ->on('utenti')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            // foreign key -> punta a Clienti(username)
-            $table->date('data'); // data assegnata dallo staff
+
+            $table->date('data');
             $table->time('ora_inizio');
-            $table->string('durata')->default('01:00:00');
-            $table->string('idPrestazione', 70);
-            $table->foreign('idPrestazione')
-                ->references('id')
-                ->on('prestazioni')
+            $table->time('durata')->default('01:00:00');
+
+            $table->foreignId('idPrestazione')
+                ->constrained('prestazioni')
                 ->onDelete('cascade');
-            // foreign key -> punta a Prestazioni(nome)
-            //$table->string('nomeDipartimento', 20); // foreign key -> punta a Dipartimenti(nome)
+
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('prenotazioni');
-        //
     }
 };
