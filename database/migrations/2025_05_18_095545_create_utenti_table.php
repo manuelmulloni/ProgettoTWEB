@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('utenti', function (Blueprint $table) {
             $table->string('username', 20)->primary();
             $table->string('password', 255);
-            $table->string('nome', 20);
-            $table->string('cognome', 20);
+            $table->string('nome', 20)->nullable();
+            $table->string('cognome', 20)->nullable();
             $table->date('eta')->nullable();
-            $table->integer('livello');
+            $table->integer('livello')->default(1);
             $table->string('telefono', 10)->nullable();
 
             $table->foreignId('idDipartimento')

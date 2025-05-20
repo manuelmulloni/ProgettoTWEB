@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->string('nome', 70)->unique(); // Nome della prestazione.
                 $table->text('descrizione');
                 $table->string('prescrizioni', 100);
-                $table->bigInteger('idDipartimento', 20);
+                $table->bigInteger('idDipartimento');
                 $table->foreign('idDipartimento')
                     ->references('id')
                     ->on('dipartimenti')
