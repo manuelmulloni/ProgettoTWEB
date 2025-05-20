@@ -37,13 +37,13 @@ class User extends Authenticatable
         'eta',
         'livello',
         'telefono',
-        'dipartimento',
+        'idDipartimento',
     ];
 
     // Relazione con il dipartimento
     public function dipartimentoRelazione()
     {
-        return $this->belongsTo(Dipartimento::class, 'dipartimento', 'nome');
+        return $this->belongsTo(Dipartimento::class, 'idDipartimento', 'id');
     }
 
 

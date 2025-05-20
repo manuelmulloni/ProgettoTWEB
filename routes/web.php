@@ -35,6 +35,10 @@ Route::get('/login', function (){
     return view('auth/login');
 })->name('login');
 
-Route::get('registrazione', function (){
+Route::get('/registrazione', function (){
     return view('auth/registrazione');
 })->name('registrazione');
+
+Route::get('/hubUtenti', function () {
+    return view('hubUtenti');
+})->name('hubUtenti');

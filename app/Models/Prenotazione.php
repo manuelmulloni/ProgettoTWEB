@@ -13,10 +13,13 @@ class Prenotazione extends Model
 
     // Campi che si possono assegnare in massa
     protected $fillable = [
+
         'usernameCliente',
+        'data',
         'oraInizio',
-        'giorno',
-        'nomePrestazione',
+        'durata',
+        'idPrestazione',
+
     ];
 
     // Relazione con Utente (cliente)
@@ -28,6 +31,8 @@ class Prenotazione extends Model
     // Relazione con Prestazione
     public function prestazione()
     {
-        return $this->belongsTo(Prestazione::class, 'nomePrestazione', 'nome');
+        return $this->belongsTo(Prestazione::class, 'idPrestazione', 'id');
+
     }
+
 }

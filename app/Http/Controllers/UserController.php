@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dipartimento;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Agenda;
+use App\Models\Prestazione;
 
 
 
@@ -118,11 +120,105 @@ class UserController extends Controller
     public function getPrestazioni(Request $request){
 
         $query = $request->input('query');
-        $prestazioni = Prestazione::where('nome', 'LIKE', '%' .$query. '%')->get();
-        return view('admin/gestionePrestazioni', ['Prestazioni'=>$prestazioni]);
-
-
+        $dipartimento = $request->input('dipartimento');
+        $prestazioni = Prestazione::where('dipartimento', 'LIKE', '%' .$dipartimento. '%')->get();
+        return view('admin/getPrestazioni', ['Prestazioni'=>$prestazioni]); // da aggiungere la view
     }
+
+    // Funzione per creare prestazioni (admin)
+    public function createPrestazioni(Request $request)
+    {
+        $prestazione = new Prestazione();
+        $prestazione->nome = $request->input('nome');
+        $prestazione->descrizione = $request->input('descrizione');
+        $prestazione->dipartimento = $request->input('dipartimento');
+        $prestazione->save();
+
+        return response()->json(['message' => 'Prestazione created successfully.']);
+    }
+
+    // Funzione per modificare prestazioni (admin)
+    public function updatePrestazioni(Request $request, $id)
+    {
+        $prestazione = Prestazione::find($id);
+
+        if ($prestazione) {
+            $prestazione->nome = $request->input('nome');
+            $prestazione->descrizione = $request->input('descrizione');
+            $prestazione->dipartimento = $request->input('dipartimento');
+            $prestazione->save();
+
+            return response()->json(['message' => 'Prestazione updated successfully.']);
+        } else {
+            return response()->json(['message' => 'Prestazione not found.'], 404);
+        }
+    }
+
+    // Funzione per cancellare prestazioni (admin)
+    public function deletePrestazioni(Request $request, $id)
+    {
+        $prestazione = Prestazione::find($id);
+
+        if ($prestazione) {
+            $prestazione->delete();
+            return response()->json(['message' => 'Prestazione deleted successfully.']);
+        } else {
+            return response()->json(['message' => 'Prestazione not found.'], 404);
+        }
+    }
+
+    // Funzione per vedere le agende (admin)
+    public function getAgende()
+    {
+        $agende = Agenda::all();
+        return view('admin/getAgende', ['Agende'=>$agende]); // da aggiungere la view
+    }
+
+    // Funzione per creare una prestazione che poi formerà agenda (admin)
+    public function createAgenda(Request $request)
+    {
+        $agenda = new Agenda();
+        $agenda->data = $request->input('data');
+        $agenda->ora_inizio = $request->input('ora_inizio');
+        $agenda->ora_fine = $request->input('ora_fine');
+        $agenda->dipartimento = $request->input('dipartimento');
+        $agenda->prestazione = $request->input('prestazione');
+        $agenda->save();
+
+        return response()->json(['message' => 'Agenda created successfully.']);
+    }
+
+    // Funzione per modificare una prestazione che poi formerà agenda (admin)
+    public function updateAgenda(Request $request, $id)
+    {
+        $agenda = Agenda::find($id);
+
+        if ($agenda) {
+            $agenda->data = $request->input('data');
+            $agenda->ora_inizio = $request->input('ora_inizio');
+            $agenda->ora_fine = $request->input('ora_fine');
+            $agenda->dipartimento = $request->input('dipartimento');
+            $agenda->prestazione = $request->input('prestazione');
+            $agenda->save();
+
+            return response()->json(['message' => 'Agenda updated successfully.']);
+        } else {
+            return response()->json(['message' => 'Agenda not found.'], 404);
+        }
+    }
+    // Funzione per cancellare una prestazione che poi formerà agenda (admin)
+    public function deleteAgenda(Request $request, $id)
+    {
+        $agenda = Agenda::find($id);
+
+        if ($agenda) {
+            $agenda->delete();
+            return response()->json(['message' => 'Agenda deleted successfully.']);
+        } else {
+            return response()->json(['message' => 'Agenda not found.'], 404);
+        }
+    }
+
 
 
 
