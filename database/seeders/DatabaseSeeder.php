@@ -23,19 +23,39 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);*/
 
+        DB::table("dipartimenti")->insert([
+            [
+            'nome' => 'Cardiologia',
+            'descrizione' => 'Cardiologia',
+            ],
+            [
+            'nome' => 'Oculistica',
+            'descrizione' => 'Oculistica',
+            ],
+            [
+            'nome' => 'Ortopedia',
+            'descrizione' => 'Ortopedia',
+            ]
+        ]);
 
         DB::table("prestazioni")->insert([
             [
-            'nome' => 'Visita',
-            'descrizione' => 'Visita',
+            'nome' => 'Visita cardiologica',
+            'descrizione' => 'Visita cardiologica',
+            'prescrizioni' => 'Visita cardiologica',
+            'idDipartimento' => 1,
             ],
             [
-            'nome' => 'Analisi del sangue',
-            'descrizione' => 'Analisi del sangue',
+            'nome' => 'Visita oculistica',
+            'descrizione' => 'Visita oculistica',
+            'prescrizioni' => 'Visita oculistica',
+            'idDipartimento' => 2,
             ],
             [
-            'nome' => 'Radiografia',
-            'descrizione' => 'Radiografia',
+            'nome' => 'Visita ortopedica',
+            'descrizione' => 'Visita ortopedica',
+            'prescrizioni' => 'Visita ortopedica',
+            'idDipartimento' => 3,
             ]
         ]);
     }
