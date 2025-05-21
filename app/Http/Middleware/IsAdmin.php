@@ -16,7 +16,7 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         logger('IsAdmin middleware triggered');
-        $user = auth()->user();
+        $user = $request->user();
         logger('User:', [$user]);
 
         if ($user && $user->isAdmin()) {
