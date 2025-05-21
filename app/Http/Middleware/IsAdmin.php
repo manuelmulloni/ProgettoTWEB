@@ -15,10 +15,16 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
+        logger('IsAdmin middleware triggered');
+        $user = auth()->user();
+        logger('User:', [$user]);
+
+        if ($user && $user->isAdmin()) {
+            logger('User is admin, proceeding to next middleware');
             return $next($request);
+
         }
 
-        abort(403, 'Access denied'); // oppure redirect a una pagina diversa
+        return redirect('/login');
     }
 }

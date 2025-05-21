@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PrestazioneController;
 use App\Http\Controllers\DipartimentoController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Middleware\IsAdmin;
+
 
 /* --------------- BREEZE */
 
@@ -48,14 +51,16 @@ Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_pr
 Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->name('prestazione.create');
 
 
-Route::get('/login', function (){
-    return view('auth/login');
-})->name('login');
+
 
 Route::get('/registrazione', function (){
     return view('auth/registrazione');
 })->name('registrazione');
 
-Route::middleware(['auth', 'is_admin'])->get('/admin', function() {
-    return view('area_admin');
-})->name('admin');
+
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
+
+Route::get('/admin', function () {
+    return view('admin.area_admin');
+})->middleware( ['isAdmin', 'auth'])->name('admin');
+

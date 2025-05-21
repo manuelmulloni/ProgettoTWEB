@@ -24,18 +24,27 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        logger('Step 1: Avvio autenticazione');
+
         $request->authenticate();
+        logger('Step 2: Autenticazione riuscita');
 
         $request->session()->regenerate();
-
-
-        $request->session()->regenerate();
+        logger('Step 3: Sessione rigenerata');
 
         $user = Auth::user();
 
-        //Redirect personalizzato con isAdmin()
+        if (!$user) {
+            logger('Step 4: Nessun utente autenticato trovato');
+            abort(401, 'Utente non autenticato');
+        }
+
+        logger('Step 4: Utente autenticato: ' . $user->username);
+        logger('Step 5: Livello utente: ' . $user->livello);
+
         if ($user->isAdmin()) {
-            return redirect()->intended('/area_admin');
+            logger('Step 6: Utente è admin - redirect a /admin');
+            return redirect()->route('admin');
         }
 
         //Redirect personalizzato con isStaff()
