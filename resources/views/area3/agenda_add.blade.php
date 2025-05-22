@@ -105,12 +105,12 @@
 
         <div class="form-group">
             {{ html()->label('Ora Inizio')->for('orario_inizio') }}
-            {{ html()->time('orario_inizio', "09:00", "24")->class('')->required() }}
+            {{ html()->time('orario_inizio')->class('')->attribute("step", "60")->required() }}
         </div>
 
         <div class="form-group">
             {{ html()->label('Ora fine')->for('orario_fine') }}
-            {{ html()->time('orario_fine', "18:00", "18:01")->class('')->required() }}
+            {{ html()->time('orario_fine')->class('')->attribute("step", "60")->required() }}
         </div>
 
         {{ html()->submit('Aggiungi Prestazione')->class('submit-button button-style') }}

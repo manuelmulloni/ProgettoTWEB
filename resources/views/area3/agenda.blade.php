@@ -96,7 +96,7 @@
                     @include('area3.agenda_day', ['day' => $day])
                 @endif
             @endforeach
-            
         @endif
+        @yield('form')
     </div>
 @endsection
