@@ -117,24 +117,27 @@ class UserController extends Controller
     }
 
     // Funzione per vedere prestazioni (admin)
-    public function getPrestazioni(Request $request){
-
+    public function getPrestazioni(Request $request)
+    {
         $query = $request->input('query');
         $dipartimento = $request->input('dipartimento');
-        $prestazioni = Prestazione::where('dipartimento', 'LIKE', '%' .$dipartimento. '%')->get();
-        return view('admin/getPrestazioni', ['Prestazioni'=>$prestazioni]); // da aggiungere la view
-    }
 
+        $prestazioni = Prestazione::where('idDipartimento', 'LIKE', '%' . $dipartimento . '%')
+            ->paginate(10); // Aggiunta la paginazione
+
+        return view('admin.getPrestazioni', ['prestazioni' => $prestazioni]);
+    }
     // Funzione per creare prestazioni (admin)
     public function createPrestazioni(Request $request)
     {
         $prestazione = new Prestazione();
         $prestazione->nome = $request->input('nome');
         $prestazione->descrizione = $request->input('descrizione');
-        $prestazione->dipartimento = $request->input('dipartimento');
+        $prestazione->prescrizioni = $request->input('prescrizioni');
+        $prestazione->idDipartimento = $request->input('dipartimento');
         $prestazione->save();
 
-        return response()->json(['message' => 'Prestazione created successfully.']);
+        return redirect()->route('getPrestazioni');
     }
 
     // Funzione per modificare prestazioni (admin)
@@ -145,11 +148,12 @@ class UserController extends Controller
         if ($prestazione) {
             $prestazione->nome = $request->input('nome');
             $prestazione->descrizione = $request->input('descrizione');
-            $prestazione->dipartimento = $request->input('dipartimento');
+            $prestazione->prescrizioni = $request->input('prescrizioni');
+            $prestazione->idDipartimento = $request->input('dipartimento');
             $prestazione->save();
 
-            return response()->json(['message' => 'Prestazione updated successfully.']);
-        } else {
+            return redirect()->route('getPrestazioni');        }
+        else {
             return response()->json(['message' => 'Prestazione not found.'], 404);
         }
     }

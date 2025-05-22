@@ -7,7 +7,7 @@
     </div>
 
     <div class="container">
-        <a href = # class = "button" > Modifica</a>
+        <a href = " {{route('getPrestazioni')}}" class = "button" > Prestazioni</a>
     </div>
 
     <div class="container">

@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 /* --------------- PROGETTO */
 
@@ -45,5 +46,5 @@ Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazio
 
 Route::get('/admin', function () {
     return view('admin.area_admin');
-})->middleware( ['isAdmin', 'auth'])->name('admin');
+})->name('admin');
 
