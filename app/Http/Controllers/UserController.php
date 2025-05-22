@@ -7,12 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Agenda;
 use App\Models\Prestazione;
+use Illuminate\Support\Facades\Hash;
 
 
 
 class UserController extends Controller
 {
 
+
+    public function getDipartimenti (Request $request)
+    {
+        $query = $request->input('query');
+        $dipartimenti = Dipartimento::all(); // Aggiunta la paginazione
+             // Aggiunta la paginazione
+
+        return view('admin.getDipartimenti', ['dipartimenti' => $dipartimenti]);
+
+    }
     // Funzione creazione dipartimento (admin)
 
     public function createDepartment(Request $request)
@@ -22,8 +33,7 @@ class UserController extends Controller
         $dipartimento->descrizione = $request->input('description');
         $dipartimento->save();
 
-        return response()->json(['message' => 'Department created successfully.']); // bisognerà mettere view
-
+        return redirect()->route('getDipartimenti');
     }
 
     // Funzione per modificare dipartimento (admin)
@@ -36,7 +46,7 @@ class UserController extends Controller
             $dipartimento->descrizione = $request->input('description');
             $dipartimento->save();
 
-            return response()->json(['message' => 'Department updated successfully.']);
+            return redirect()->route('getDipartimenti');
         } else {
             return response()->json(['message' => 'Department not found.'], 404);
         }
@@ -49,7 +59,7 @@ class UserController extends Controller
 
         if ($dipartimento) {
             $dipartimento->delete();
-            return response()->json(['message' => 'Department deleted successfully.']);
+            return redirect()->route('getDipartimenti');
         } else {
             return response()->json(['message' => 'Department not found.'], 404);
         }
@@ -57,9 +67,13 @@ class UserController extends Controller
     }
 
     // Funzione per vedere i dipendenti (admin)
-    public function getStaff(){
+    public function getStaff(Request $request){
 
-        return User::where('livello', '=', 3)->get();
+        $query = $request->input('query');
+        $utenti = User::all()->where('livello', '=', 3);
+        return view('admin.getStaff', ['utenti' => $utenti]);
+
+
 
     }
     // Funzione per creare i membri dello staff (admin)
@@ -74,7 +88,7 @@ class UserController extends Controller
         $staff->password = Hash::make($request->input('password'));
         $staff->livello = 3; // Livello per lo staff
         $staff->save();
-        return response()->json(['message' => 'Staff created successfully.']);
+        return redirect()->route('getStaff');
     }
 
     // Funzione per modificare un membro dello staff (admin)
@@ -96,7 +110,7 @@ class UserController extends Controller
 
             $staff->save();
 
-            return response()->json(['message' => 'Staff updated successfully.']);
+            return redirect()->route('getStaff');
         } else {
             return response()->json(['message' => 'Staff not found.'], 404);
         }
@@ -110,7 +124,7 @@ class UserController extends Controller
 
         if ($staff) {
             $staff->delete();
-            return response()->json(['message' => 'Staff deleted successfully.']);
+            return redirect()->route('getStaff');
         } else {
             return response()->json(['message' => 'Staff not found.'], 404);
         }

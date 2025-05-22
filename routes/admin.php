@@ -18,3 +18,16 @@ Route::delete('/getPrestazioni/{id}', [UserController::class, 'deletePrestazioni
 
 Route::get('/getPrestazioni/create', [UserController::class, 'createPrestazioni'])->name('prestazioni.create');
 Route::post('/getPrestazioni', [UserController::class, 'createPrestazioni'])->name('prestazioni.create');
+
+
+Route::get('/getDipartimenti', [UserController::class, 'getDipartimenti'])
+    ->name('getDipartimenti');
+Route::get('/getDipartimenti/{id}', [UserController::class, 'updateDepartment'])->name('dipartimenti.update');
+Route::put('/getDipartimenti/{id}', [UserController::class, 'updateDepartment'])->name('dipartimenti.update');
+Route::delete('/getDipartimenti/{id}', [UserController::class, 'deleteDepartment'])->name('dipartimenti.destroy');
+Route::get('/getDipartimenti/create', [UserController::class, 'createDepartment'])->name('dipartimenti.create');
+Route::post('/getDipartimenti', [UserController::class, 'createDepartment'])->name('dipartimenti.create');
+
+
+Route::get('/getStaff', [UserController::class, 'getStaff'])
+    ->name('getStaff');

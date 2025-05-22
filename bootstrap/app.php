@@ -15,7 +15,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'auth' => Authenticate::class,
             'isAdmin' => IsAdmin::class,
         ]);
         // https://laravel.com/docs/12.x/authentication#redirecting-authenticated-users
