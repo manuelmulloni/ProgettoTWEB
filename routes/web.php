@@ -43,14 +43,6 @@ Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prest
 Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');
 Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->name('prestazione.create');
 
-
-Route::get('/registrazione', function (){
-    return view('auth/registrazione');
-})->name('registrazione');
-
-
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
-
 Route::get('/admin', function () {
     return view('admin.area_admin');
 })->middleware( ['isAdmin', 'auth'])->name('admin');
