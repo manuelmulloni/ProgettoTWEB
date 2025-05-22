@@ -19,7 +19,6 @@ require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 // })->name('dipSpec');   da vedere il funzionamento, crea una view dinamica del dipartimento specifico
 
 Route::get('/agenda', [AgendaController::class, 'show_agenda'])->name('agenda');
-Route::get('/agenda/new', [AgendaController::class, 'view_create_agenda_element'])->name('agenda.create');
 Route::post('/agenda/new', [AgendaController::class, 'create_agenda_element'])->name('agenda.create');
 Route::get('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])->name('agenda.delete');
 

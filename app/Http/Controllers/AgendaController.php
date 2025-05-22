@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Agenda;
 use App\Models\Prestazione;
 use App\Models\Dipartimento;
+use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\NewAgendaElementRequest;
 
@@ -34,7 +35,7 @@ class AgendaController extends Controller
         ];
 
         // Passa gli appuntamenti alla vista
-        return view('area3.agenda')->with('agenda_days', $agende_days);
+        return view('area3.agenda_add')->with('agenda_days', $agende_days)->with('prestazioni', Prestazione::all());
     }
 
     public function delete_agenda_element($id)
@@ -51,21 +52,31 @@ class AgendaController extends Controller
         }
     }
 
-    public function view_create_agenda_element()
-    {
-        // Recupera tutte le prestazioni
-        $prestazioni = Prestazione::all();
-
-        // Passa le prestazioni alla vista
-        return view('area3.agenda_add')->with('prestazioni', $prestazioni);
-    }
-
     public function create_agenda_element(NewAgendaElementRequest $request)
     {
+        Log::debug("Starting create_agenda_element method");
+        Log::debug("Request data: ", $request->all());
         // Crea un nuovo elemento dell'agenda
         $agenda = new Agenda();
+        Log::debug("New Agenda instance created");
         $agenda->fill($request->validated());
+        Log::debug("Agenda instance filled with validated data");
+        Log::debug("Agenda data: ", $agenda->toArray());
+
+        // Manual fix -> day number to day name
+        $mapping = [
+            0 => 'Lunedì',
+            1 => 'Martedì',
+            2 => 'Mercoledì',
+            3 => 'Giovedì',
+            4 => 'Venerdì',
+            5 => 'Sabato',
+            6 => 'Domenica',
+        ];
+        $agenda->giorno_settimana = $mapping[$request->giorno_settimana];
+
         $agenda->save();
+        Log::debug("Agenda instance saved to database");
 
         return redirect()->back()->with('success', 'Elemento dell\'agenda creato con successo.');
     }
