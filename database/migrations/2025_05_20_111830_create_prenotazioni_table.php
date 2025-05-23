@@ -17,11 +17,9 @@ return new class extends Migration
                 ->on('utenti')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->date('data');
-            $table->time('ora_inizio');
-            $table->time('durata')->default('01:00:00');
-
+            
+            $table->date('dataEsclusa');
+            
             $table->foreignId('idPrestazione')
                 ->constrained('prestazioni')
                 ->onDelete('cascade');
