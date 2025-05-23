@@ -3,11 +3,11 @@
 
 @section('content')
     <div class="container">
-        <a href = " {{route('getPrestazioni')}}" class = "button" > Prestazioni</a>
+        <a href = " {{route('prestazioni')}}" class = "button" > Prestazioni</a>
     </div>
 
     <div class="container">
-        <a href = "{{route('getDipartimenti')}}" class = "button" > Dipartimenti</a>
+        <a href = "{{route('dipartimenti')}}" class = "button" > Dipartimenti</a>
     </div>
     <div class="container">
         <a href = "{{route('getStaff')}}" class = "button" > Staff</a>

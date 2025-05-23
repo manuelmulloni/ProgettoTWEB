@@ -105,18 +105,22 @@
                             <td>{{ $prestazione->dipartimento->nome }}</td>
                             <td>{{ $prestazione->prescrizioni }}</td>
                             <td>
-                            <button class="edit-button button-style">
-                                <a href="{{ route('prestazione.edit', $prestazione->id) }}">Modifica</a>
-                            </button>
-                            <button class="delete-button button-style">
-                                <a href="{{ route('prestazione.delete', $prestazione->id) }}">Elimina</a>
-                            </button>
+                                @if(auth()->user() && auth()->user()->livello === 4)
+                                    <button class="edit-button button-style">
+                                        <a href="{{ route('prestazione.edit', $prestazione->id) }}">Modifica</a>
+                                    </button>
+                                    <button class="delete-button button-style">
+                                        <a href="{{ route('prestazione.delete', $prestazione->id) }}">Elimina</a>
+                                    </button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         @endif
-        @yield('form')
+        @if(auth()->user() && auth()->user()->livello === 4)
+            @yield('form')
+        @endif
     </div>
 @endsection

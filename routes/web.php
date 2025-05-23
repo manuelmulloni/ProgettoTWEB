@@ -30,15 +30,19 @@ Route::get('/', function () {
 }) ->name('primaview');
 
 
-Route::get('/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
-    ->name('dipartimenti'); // mostra tutti i dipartimenti dinamicamente
+//Route::get('/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
+    //->name('dipartimenti'); // mostra tutti i dipartimenti dinamicamente
+//Qeusta rotta non serve più, ora è in admin.php, fare in modo che utentie staff vedano solo i dipartimenti ma non possano cambiare niente
 
 require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 
 //Route::get('/dipartimenti/show', [DipartimentoController::class, 'getDipendentiDipartimento']){
 // })->name('dipSpec');   da vedere il funzionamento, crea una view dinamica del dipartimento specifico
 
-Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
+//Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
+//questa rotta non serve più, ora è in admin.php
+
+
 Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_prestazione"])->name('prestazione.edit');
 Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->name('prestazione.edit');
 Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');
