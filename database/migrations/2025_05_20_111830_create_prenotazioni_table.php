@@ -11,15 +11,15 @@ return new class extends Migration
         Schema::create('prenotazioni', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('usernameCliente', 20);
-            $table->foreign('usernameCliente')
+            $table->string('usernamePaziente', 20);
+            $table->foreign('usernamePaziente')
                 ->references('username')
                 ->on('utenti')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            
+
             $table->date('dataEsclusa');
-            
+
             $table->foreignId('idPrestazione')
                 ->constrained('prestazioni')
                 ->onDelete('cascade');

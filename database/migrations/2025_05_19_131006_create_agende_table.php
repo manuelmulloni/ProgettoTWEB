@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('usarnamePaziente', 20)->nullable();
             $table->foreign('usarnamePaziente')
-                  ->references('usarname')
+                  ->references('username')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->timestamp();

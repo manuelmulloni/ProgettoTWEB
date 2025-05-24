@@ -16,9 +16,9 @@ return new class extends Migration
             $table->foreignId('idDipartimento')
                 ->constrained('dipartimenti') // attenzione al nome della tabella di riferimento
                 ->onDelete('cascade');
-            $table->string('usarnameMedico',20);
-            $table->foreign('usarnameMedico')
-                ->references('usarname')
+            $table->string('usernameMedico',20);
+            $table->foreign('usernameMedico')
+                ->references('username')
                 ->on('utenti')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
