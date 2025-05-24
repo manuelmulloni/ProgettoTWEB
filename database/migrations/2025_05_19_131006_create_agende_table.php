@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('usernamePaziente', 20)->nullable();
             $table->foreign('usernamePaziente')
                 ->references('username')
-                ->on('users') // Sostituisci con la tabella corretta
+                ->on('utenti') // Sostituisci con la tabella corretta
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
