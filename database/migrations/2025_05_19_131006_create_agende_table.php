@@ -22,9 +22,10 @@ return new class extends Migration
             $table->date('data');
             $table->time('orario_inizio');
 
-            $table->string('usarnamePaziente', 20)->nullable();
-            $table->foreign('usarnamePaziente')
+            $table->string('usernamePaziente', 20)->nullable();
+            $table->foreign('usernamePaziente')
                   ->references('username')
+                  ->on('utenti')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->timestamp();
