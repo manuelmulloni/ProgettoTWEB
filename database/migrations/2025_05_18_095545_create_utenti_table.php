@@ -16,11 +16,6 @@ return new class extends Migration
             $table->date('eta')->nullable();
             $table->integer('livello')->default(1);
             $table->string('telefono', 10)->nullable();
-
-            $table->foreignId('idDipartimento')
-                ->nullable()
-                ->constrained('dipartimenti') // Assumendo che la tabella si chiami 'dipartimenti'
-                ->onDelete('cascade');
         });
     }
 
