@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('agende', function (Blueprint $table) {
-            $table->bigIncrements('id');// Chiave primaria
+            $table->bigIncrements('id'); // Chiave primaria
 
-            // Collega a 'prestazioni.id'
+            // Foreign key per prestazione
             $table->foreignId('idPrestazione')
                 ->constrained('prestazioni')
                 ->onDelete('cascade');
@@ -22,14 +22,17 @@ return new class extends Migration
             $table->date('data');
             $table->time('orario_inizio');
 
+            // Foreign key per utente/paziente
             $table->string('usernamePaziente', 20)->nullable();
             $table->foreign('usernamePaziente')
-                  ->references('username')
-                  ->on('utenti')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
-            $table->timestamp();
+                ->references('username')
+                ->on('users') // Sostituisci con la tabella corretta
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->timestamps(); // created_at, updated_at
         });
+
     }
 
     /**
