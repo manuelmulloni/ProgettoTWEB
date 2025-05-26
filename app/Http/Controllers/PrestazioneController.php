@@ -55,7 +55,7 @@ class PrestazioneController extends Controller
             if ($user->livello != 4) {
                 $prestazione = Prestazione::find($id);
                 if ($prestazione) {
-                    return view('areaPrestazioni.prestazione_edit', [
+                    return view('areaPrestazioni.prestazione_edit', [ // View non aggiornata
                         'id' => $id, // Incluso nell'url, ma laravel da errore se non lo passo
                         'prestazioni' => Prestazione::all(),
                         'prestazione' => $prestazione,
