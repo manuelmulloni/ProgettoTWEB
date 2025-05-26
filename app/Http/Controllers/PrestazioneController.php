@@ -17,7 +17,7 @@ class PrestazioneController extends Controller
     {
         Log::debug("Starting show_prestazioni method");
         return view('admin.prestazione_create', [
-            'prestazioni' => Prestazione::all(),
+            'prestazioni' => Prestazione::paginate(10), // Pagina con 10 prestazioni per volta
             'dipartimenti' => Dipartimento::all(),
         ]);
     }
