@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -10,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -31,15 +31,24 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         Log::debug("Starting method store in RegisteredUserController");
+
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed'],
+            'username' => ['required', 'string', 'max:20', 'unique:utenti,username'],
+            'nome' => ['required', 'string', 'max:20'],
+            'cognome' => ['required', 'string', 'max:20'],
+            'dataNascita' => ['required', 'date'],
+            'telefono' => ['required', 'string', 'max:10'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         Log::debug("Validation passed, creating user");
 
         $user = User::create([
-            'username' => $request->name,
+            'username' => $request->username,
+            'nome' => $request->nome,
+            'cognome' => $request->cognome,
+            'dataNascita' => $request->dataNascita,
+            'telefono' => $request->telefono,
             'password' => Hash::make($request->password),
         ]);
 

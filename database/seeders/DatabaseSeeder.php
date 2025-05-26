@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('admin'),
                 'nome' => 'Mario',
                 'cognome' => 'Rossi',
-                'eta' => '1990-01-01',
+                'dataNascita' => '1990-01-01',
                 'livello' => 4,
                 'telefono' => '1234567890',
             ],
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'password' => bcrypt('medico1'),
                 'nome' => 'Mario',
                 'cognome' => 'Rossi',
-                'eta' => '1990-01-01',
+                'dataNascita' => '1990-01-01',
                 'livello' => 3,
                 'telefono' => '1234567890',
             ]
