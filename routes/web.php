@@ -47,6 +47,8 @@ Route::get('/agenda/new', [AgendaController::class, 'create_agenda_element'])->n
 Route::post('/agenda/new', [AgendaController::class, 'create_agenda_element'])->name('agenda.create');
 Route::get('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])->name('agenda.delete');
 
+Route::get('/agenda/{id}', [AgendaController::class, 'show_agenda_element'])->name('agenda.show');
+
 Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_prestazione"])->name('prestazione.edit');
 Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->name('prestazione.edit');
 Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');

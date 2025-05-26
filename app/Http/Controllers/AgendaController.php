@@ -29,6 +29,18 @@ class AgendaController extends Controller
         return view('areaPrestazioni.agenda_add')->with('prestazioni', Prestazione::all())->with('agendaElements', $agendaElements)->with('showDate', $date);
     }
 
+    public function show_agenda_element($id)
+    {
+        // Trova l'elemento dell'agenda specifico
+        $agendaElement = Agenda::find($id);
+
+        if ($agendaElement) {
+            return view('areaPrestazioni.agenda_element')->with('agendaElement', $agendaElement);
+        } else {
+            return redirect()->back()->with('error', 'Elemento dell\'agenda non trovato.');
+        }
+    }
+
     public function delete_agenda_element($id)
     {
         // Trova l'elemento dell'agenda da eliminare
