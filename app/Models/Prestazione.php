@@ -14,11 +14,17 @@ class Prestazione extends Model
         'descrizione',
         'prescrizioni',
         'idDipartimento',
+        'usernameMedico',
     ];
 
     public function dipartimento()
     {
         return $this->belongsTo(Dipartimento::class, 'idDipartimento', 'id');
+    }
+    
+    public function medico()
+    {
+        return $this->belongsTo(User::class, 'usernameMedico', 'username');
     }
 
 

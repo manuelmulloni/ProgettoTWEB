@@ -10,7 +10,6 @@ class DipartimentoController extends Controller
         public function getDipartimenti(){
             $data = Dipartimento::all();
             return view('/dipartimenti', ['List'=>$data]);
-
         }
 
     public function getDipendentiDipartimento($nome)

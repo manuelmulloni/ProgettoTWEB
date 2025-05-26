@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -28,7 +29,6 @@ class User extends Authenticatable
      */
 
 
-
     protected $fillable = [
         'username',
         'password',
@@ -37,14 +37,11 @@ class User extends Authenticatable
         'eta',
         'livello',
         'telefono',
-        'dipartimento',
     ];
 
     // Relazione con il dipartimento
-    public function dipartimentoRelazione()
-    {
-        return $this->belongsTo(Dipartimento::class, 'dipartimento', 'nome');
-    }
+
+
 
 
     /**
@@ -70,8 +67,19 @@ class User extends Authenticatable
         ];
     }
 
-
+    public function isAdmin(): bool
+    {
+        return $this->livello == 4;
 
     }
 
+    public function isStaff(): bool
+    {
+        return $this->livello == 3;
+    }
 
+    public function isCliente(): bool
+    {
+        return $this->livello == 2;
+    }
+}

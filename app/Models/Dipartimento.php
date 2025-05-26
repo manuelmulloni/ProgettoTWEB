@@ -8,10 +8,13 @@ class Dipartimento extends Model
 {
 
     public $table = "dipartimenti";
+
+    protected $primaryKey = 'id';
+
     public $timestamps = false;
     protected $fillable = [
-        'idDipartimento',
-        'nomeDipartimento'
+        'nome',
+        'descrizione',
     ];
 }
 

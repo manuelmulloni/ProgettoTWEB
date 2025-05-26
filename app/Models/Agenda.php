@@ -3,24 +3,32 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Agenda extends Model
 {
     public $table = "agende";
 
+
+
     protected $primaryKey = 'id';
-    public $incrementing = true;
-    public $timestamps = false; // non ho i timestamp
+
+    public $timestamps = true; // ho i timestamp
     protected $fillable = [
-        'giorno_settimana',
+        'data',
         'orario_inizio',
-        'orario_fine',
         'idPrestazione',
+        'idPrenotazione',
     ];
 
     // Relazione con Prestazione
     public function prestazione()
     {
         return $this->belongsTo(Prestazione::class, 'idPrestazione', 'id');
+    }
+
+    public function prenotazione()
+    {
+        return $this->belongsTo(Prenotazione::class, 'idPrenotazione', 'id');
     }
 
 
