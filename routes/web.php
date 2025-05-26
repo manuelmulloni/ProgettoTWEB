@@ -36,8 +36,8 @@ Route::get('/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
 
 require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 
-//Route::get('/dipartimenti/show', [DipartimentoController::class, 'getDipendentiDipartimento']){
-// })->name('dipSpec');   da vedere il funzionamento, crea una view dinamica del dipartimento specifico
+Route::get('/dipartimenti/show', [DipartimentoController::class, 'getDipendentiDipartimento'])
+    ->name('dipSpec');  // da vedere il funzionamento, crea una view dinamica del dipartimento specifico
 
 //Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
 //questa rotta non serve più, ora è in admin.php
@@ -54,5 +54,10 @@ Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazio
 
 Route::get('/admin', function () {
     return view('admin.area_admin');
-})->name('admin')->middleware(IsAdmin::class);
+})->middleware(['auth', 'isAdmin'])->name('admin');
+
+
+Route::get('/staff', function () {
+    return view('staff.area_staff');
+})->middleware(['auth', 'isStaff'])->name('staff');
 

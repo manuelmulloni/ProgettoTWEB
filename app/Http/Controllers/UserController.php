@@ -16,7 +16,6 @@ class UserController extends Controller
 
 
 
-
     // Funzione per vedere i dipendenti (admin)
     public function getStaff(Request $request){
 
