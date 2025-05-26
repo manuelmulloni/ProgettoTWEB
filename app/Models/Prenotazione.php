@@ -15,9 +15,7 @@ class Prenotazione extends Model
     protected $fillable = [
 
         'usernameCliente',
-        'data',
-        'oraInizio',
-        'durata',
+        'dataEsclusa',
         'idPrestazione',
 
     ];
