@@ -2,21 +2,40 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- Username -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
-        <!--
+        <!-- Nome -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-label for="nome" :value="__('Nome')" />
+            <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autocomplete="nome" />
+            <x-input-error :messages="$errors->get('nome')" class="mt-2" />
         </div>
-        -->
+
+        <!-- Cognome -->
+        <div class="mt-4">
+            <x-input-label for="cognome" :value="__('Cognome')" />
+            <x-text-input id="cognome" class="block mt-1 w-full" type="text" name="cognome" :value="old('cognome')" required autocomplete="cognome" />
+            <x-input-error :messages="$errors->get('cognome')" class="mt-2" />
+        </div>
+
+        <!-- Data di Nascita -->
+        <div class="mt-4">
+            <x-input-label for="dataNascita" :value="__('Data di Nascita')" />
+            <x-text-input id="dataNascita" class="block mt-1 w-full" type="date" name="dataNascita" :value="old('dataNascita')" required />
+            <x-input-error :messages="$errors->get('dataNascita')" class="mt-2" />
+        </div>
+
+        <!-- Telefono -->
+        <div class="mt-4">
+            <x-input-label for="telefono" :value="__('Telefono')" />
+            <x-text-input id="telefono" class="block mt-1 w-full" type="tel" name="telefono" :value="old('telefono')" required />
+            <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+        </div>
 
         <!-- Password -->
         <div class="mt-4">
