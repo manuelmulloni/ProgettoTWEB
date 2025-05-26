@@ -34,7 +34,7 @@ class User extends Authenticatable
         'password',
         'nome',
         'cognome',
-        'eta',
+        'dataNascita',
         'livello',
         'telefono',
     ];

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('password', 255);
             $table->string('nome', 20)->nullable();
             $table->string('cognome', 20)->nullable();
-            $table->date('eta')->nullable();
+            $table->date('dataNascita')->nullable();
             $table->integer('livello')->default(1);
             $table->string('telefono', 10)->nullable();
         });
