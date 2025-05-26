@@ -10,7 +10,7 @@ class DipartimentoController extends Controller
         public function getDipartimenti(){
             $data = Dipartimento::all();
             if (auth()->check() && auth()->user()->livello == 4) {
-                return view('dipartimentiAdmin', ['List' => $data]);
+                return view('dipartimenti', ['List' => $data]); // da rivedere
             }
             else
             {

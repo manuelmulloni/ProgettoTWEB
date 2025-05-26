@@ -73,6 +73,7 @@ class User extends Authenticatable
 
     }
 
+
     public function isStaff(): bool
     {
         return $this->livello == 3;

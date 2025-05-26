@@ -7,7 +7,7 @@
             <a href="{{route('hubUtente')}}">Area Utente</a>
         @endcan
         @can('isStaff')
-            <a href="{{route('area_staff')}}">Area Staff</a>
+            <a href="{{route('staff')}}">Area Staff</a>
         @endcan
         @can('isAdmin')
             <a href="{{route('admin')}}">Area Admin</a>
