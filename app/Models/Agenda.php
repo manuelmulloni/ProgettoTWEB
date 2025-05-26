@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agenda extends Model
 {
-    public $table = "agenda";
+    public $table = "agende";
 
 
 
     protected $primaryKey = 'id';
 
-    public $timestamps = false; // non ho i timestamp
+    public $timestamps = true; // ho i timestamp
     protected $fillable = [
         'data',
         'orario_inizio',
         'idPrestazione',
-        'usernamePaziente',
+        'idPrenotazione',
     ];
 
     // Relazione con Prestazione
@@ -25,10 +25,10 @@ class Agenda extends Model
     {
         return $this->belongsTo(Prestazione::class, 'idPrestazione', 'id');
     }
-    
-    public function paziente()
+
+    public function prenotazione()
     {
-        return $this->belongsTo(User::class, 'usernamePaziente', 'username');
+        return $this->belongsTo(Prenotazione::class, 'idPrenotazione', 'id');
     }
 
 
