@@ -1,8 +1,8 @@
-@extends('area3.agenda')
+@extends('areaPrestazioni.agenda')
 
 @section('form')
-    <h3>Aggiungi prestazione in agenda</h3>
-    <div class="content">
+    <div class="content" style="width: 50%; align-self: left;">
+        <h3>Aggiungi prestazione in agenda</h3>
         {{ html()->form('POST')->route('agenda.create')->class('form-style')->open() }}
 
         <h3 class="form-description">Aggiunta Prestazione in Agenda</h3>

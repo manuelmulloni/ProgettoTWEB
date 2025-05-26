@@ -13,29 +13,20 @@ use App\Http\Requests\NewAgendaElementRequest;
 
 class AgendaController extends Controller
 {
-    public function show_agenda()
-    {
-        // Recupera tutti gli appuntamenti dalla tabella "agenda"
-        $appuntamenti_lunedi = Agenda::where('giorno_settimana', '=', 'Lunedì')->get();
-        $appuntamenti_martedi = Agenda::where('giorno_settimana', '=', 'Martedì')->get();
-        $appuntamenti_mercoledi = Agenda::where('giorno_settimana', '=', 'Mercoledì')->get();
-        $appuntamenti_giovedi = Agenda::where('giorno_settimana', '=', 'Giovedì')->get();
-        $appuntamenti_venerdi = Agenda::where('giorno_settimana', '=', 'Venerdì')->get();
-        $appuntamenti_sabato = Agenda::where('giorno_settimana', '=', 'Sabato')->get();
-        $appuntamenti_domenica = Agenda::where('giorno_settimana', '=', 'Domenica')->get();
-
-        $agende_days = [
-            'Lunedi' => $appuntamenti_lunedi,
-            'Martedi' => $appuntamenti_martedi,
-            'Mercoledi' => $appuntamenti_mercoledi,
-            'Giovedi' => $appuntamenti_giovedi,
-            'Venerdi' => $appuntamenti_venerdi,
-            'Sabato' => $appuntamenti_sabato,
-            'Domenica' => $appuntamenti_domenica,
-        ];
-
-        // Passa gli appuntamenti alla vista
-        return view('area3.agenda_add')->with('agenda_days', $agende_days)->with('prestazioni', Prestazione::all());
+    public function show_agenda(Request $request)
+    {   
+        Log::debug("Starting show_agenda method");
+        // Recupera gli elementi dell'agenda di oggi
+        
+        if ($request->has('date')) {
+            $date = $request->input('date');
+        } else {
+            $date = date('Y-m-d'); // Imposta la data di oggi se non è fornita
+        }
+        
+        $agendaElements = Agenda::where('data', $date)->get();
+        Log::debug("Agenda elements for today: ", $agendaElements->toArray());
+        return view('areaPrestazioni.agenda_add')->with('prestazioni', Prestazione::all())->with('agendaElements', $agendaElements)->with('showDate', $date);
     }
 
     public function delete_agenda_element($id)

@@ -1,7 +1,6 @@
 @extends('layouts/skelet')
 
 @section('content')
-
     <!-- Temporary Style. TODO: MOVE TO CSS -->
     <style>
         .content {
@@ -16,7 +15,8 @@
             border-collapse: collapse;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: center;
             border-bottom: 1px solid #ddd;
@@ -38,7 +38,7 @@
             cursor: pointer;
             align-items: center;
             vertical-align: middle
-            /* font-size: 16px; */
+                /* font-size: 16px; */
         }
 
         .edit-button {
@@ -86,17 +86,45 @@
     </style>
 
 
-    <h1>Prestazioni</h1>
+    <h1>Agenda</h1>
     <div class="content">
-        @if (count($agenda_days) == 0)
-            <p>L'agenda è vuota.</p>
-        @else
-            @foreach ($agenda_days as $day)
-                @if (count($day) > 0)
-                    @include('area3.agenda_day', ['day' => $day])
-                @endif
-            @endforeach
-        @endif
-        @yield('form')
+        <p id="agenda-date"> Agenda del giorno: {{ $showDate }}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Prestazione</th>
+                    <th>Giorno</th>
+                    <th>Ora</th>
+                    <th>Prenotato</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody id="agendaTableBody">
+                @foreach ($agendaElements as $element)
+                    <tr class="agenda-day">
+                        <td>{{ $element->prestazione->nome }}</td>
+                        <td>{{ $element->data }}</td>
+                        <td>{{ $element->orario_inizio }}</td>
+                        <td>{{ $element->prenotazione ? 'Sì' : 'No' }}</td>
+                        <td>
+                            <button class="button-style edit-button">
+                                <a href="{{ route('agenda.edit', $element->id) }}">Modifica</a>
+                            </button>
+                            <button class="button-style delete-button">
+                                <a href="{{ route('agenda.delete', $element->id) }}">Elimina</a>
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="operations" style="display: flex; justify-content: space-between; margin-top: 20px;">
+            @yield('form')
+            <div class="">
+                <label for="datePicker" class="form-label">Seleziona Data:</label>
+                <input type="date" id="datePicker" class="form-control" value="{{ $showDate }}"
+                    onchange="document.location.href='{{ route('agenda') }}?date=' + this.value">
+            </div>
+        </div>
     </div>
 @endsection

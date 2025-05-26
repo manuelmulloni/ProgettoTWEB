@@ -25,82 +25,106 @@ class DatabaseSeeder extends Seeder
 
         DB::table("utenti")->insert([
             [
-            'username' => 'admin',
-            'password' => bcrypt('admin'),
-            'nome' => 'Mario',
-            'cognome' => 'Rossi',
-            'eta' => '1990-01-01',
-            'livello' => 4,
-            'telefono' => '1234567890',
+                'username' => 'admin',
+                'password' => bcrypt('admin'),
+                'nome' => 'Mario',
+                'cognome' => 'Rossi',
+                'eta' => '1990-01-01',
+                'livello' => 4,
+                'telefono' => '1234567890',
             ],
             [
-            'username' => 'medico1',
-            'password' => bcrypt('medico1'),
-            'nome' => 'Mario',
-            'cognome' => 'Rossi',
-            'eta' => '1990-01-01',
-            'livello' => 3,
-            'telefono' => '1234567890',
+                'username' => 'medico1',
+                'password' => bcrypt('medico1'),
+                'nome' => 'Mario',
+                'cognome' => 'Rossi',
+                'eta' => '1990-01-01',
+                'livello' => 3,
+                'telefono' => '1234567890',
             ]
-            ]);
+        ]);
 
         DB::table("dipartimenti")->insert([
             [
-            'nome' => 'Cardiologia',
-            'descrizione' => 'Cardiologia',
+                'nome' => 'Cardiologia',
+                'descrizione' => 'Cardiologia',
             ],
             [
-            'nome' => 'Oculistica',
-            'descrizione' => 'Oculistica',
+                'nome' => 'Oculistica',
+                'descrizione' => 'Oculistica',
             ],
             [
-            'nome' => 'Ortopedia',
-            'descrizione' => 'Ortopedia',
+                'nome' => 'Ortopedia',
+                'descrizione' => 'Ortopedia',
             ]
         ]);
 
         DB::table("prestazioni")->insert([
             [
-            'nome' => 'Visita cardiologica',
-            'descrizione' => 'Visita cardiologica',
-            'prescrizioni' => 'Visita cardiologica',
-            'idDipartimento' => 1,
-            'usernameMedico' => 'medico1',
+                'nome' => 'Visita cardiologica',
+                'descrizione' => 'Visita cardiologica',
+                'prescrizioni' => 'Visita cardiologica',
+                'idDipartimento' => 1,
+                'usernameMedico' => 'medico1',
             ],
             [
-            'nome' => 'Visita oculistica',
-            'descrizione' => 'Visita oculistica',
-            'prescrizioni' => 'Visita oculistica',
-            'idDipartimento' => 2,
-            'usernameMedico' => 'medico1',
+                'nome' => 'Visita oculistica',
+                'descrizione' => 'Visita oculistica',
+                'prescrizioni' => 'Visita oculistica',
+                'idDipartimento' => 2,
+                'usernameMedico' => 'medico1',
             ],
             [
-            'nome' => 'Visita ortopedica',
-            'descrizione' => 'Visita ortopedica',
-            'prescrizioni' => 'Visita ortopedica',
-            'idDipartimento' => 3,
-             'usernameMedico' => 'medico1',
+                'nome' => 'Visita ortopedica',
+                'descrizione' => 'Visita ortopedica',
+                'prescrizioni' => 'Visita ortopedica',
+                'idDipartimento' => 3,
+                'usernameMedico' => 'medico1',
+            ]
+        ]);
+
+        DB::table("prenotazioni")->insert([
+            [
+                'usernamePaziente' => 'admin',
+                'dataEsclusa' => '2024-01-22',
+                'idPrestazione' => 1,
+            ],
+            [
+                'usernamePaziente' => 'admin',
+                'dataEsclusa' => '2024-01-23',
+                'idPrestazione' => 2,
+            ],
+            [
+                'usernamePaziente' => 'admin',
+                'dataEsclusa' => '2024-01-24',
+                'idPrestazione' => 3,
             ]
         ]);
 
         DB::table("agende")->insert([
             [
-            'giorno_settimana' => 'Lunedì',
-            'orario_inizio' => '09:00:00',
-            'orario_fine' => '10:00:00',
-            'idPrestazione' => 1,
+                'data' => '2024-01-22',
+                'orario_inizio' => '09:00:00',
+                'idPrestazione' => 1,
+                'idPrenotazione' => 1,
             ],
             [
-            'giorno_settimana' => 'Martedì',
-            'orario_inizio' => '10:00:00',
-            'orario_fine' => '11:00:00',
-            'idPrestazione' => 2,
+                'data' => '2024-01-22',
+                'orario_inizio' => '10:00:00',
+                'idPrestazione' => 1,
+                'idPrenotazione' => null,
             ],
             [
-            'giorno_settimana' => 'Mercoledì',
-            'orario_inizio' => '11:00:00',
-            'orario_fine' => '12:00:00',
-            'idPrestazione' => 3,
+                'data' => '2024-01-23',
+                'orario_inizio' => '10:00:00',
+                'idPrestazione' => 2,
+                'idPrenotazione' => null,
+            ],
+            [
+                'data' => '2024-01-24',
+                'orario_inizio' => '11:00:00',
+                'idPrestazione' => 3,
+                'idPrenotazione' => null,
             ]
         ]);
     }
