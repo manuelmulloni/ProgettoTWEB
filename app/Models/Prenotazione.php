@@ -9,12 +9,12 @@ class Prenotazione extends Model
     protected $primaryKey = 'id';
 
     // Se vuoi, puoi mettere $timestamps a false se non hai created_at e updated_at
-    public $timestamps = false;
+    public $timestamps = true;
 
     // Campi che si possono assegnare in massa
     protected $fillable = [
 
-        'usernameCliente',
+        'usernamePaziente',
         'dataEsclusa',
         'idPrestazione',
 
@@ -23,7 +23,7 @@ class Prenotazione extends Model
     // Relazione con Utente (cliente)
     public function cliente()
     {
-        return $this->belongsTo(User::class, 'usernameCliente', 'username');
+        return $this->belongsTo(User::class, 'usernamePaziente', 'username');
     }
 
     // Relazione con Prestazione
