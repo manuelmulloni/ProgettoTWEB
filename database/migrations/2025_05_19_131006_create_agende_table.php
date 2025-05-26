@@ -22,13 +22,11 @@ return new class extends Migration
             $table->date('data');
             $table->time('orario_inizio');
 
-            // Foreign key per utente/paziente
-            $table->string('usernamePaziente', 20)->nullable();
-            $table->foreign('usernamePaziente')
-                ->references('username')
-                ->on('utenti') // Sostituisci con la tabella corretta
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            // Foreign key per la prenotazione
+            $table->foreignId('idPrenotazione')
+                ->nullable() // Può essere null se non c'è una prenotazione
+                ->constrained('prenotazioni')
+                ->onDelete('set null'); // Imposta a null se la prenotazione viene eliminata
 
             $table->timestamps(); // created_at, updated_at
         });

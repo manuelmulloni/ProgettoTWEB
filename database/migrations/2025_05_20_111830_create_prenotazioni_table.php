@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('prenotazioni', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
 
             $table->string('usernamePaziente', 20);
             $table->foreign('usernamePaziente')
