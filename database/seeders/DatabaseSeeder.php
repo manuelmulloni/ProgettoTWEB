@@ -32,7 +32,17 @@ class DatabaseSeeder extends Seeder
             'eta' => '1990-01-01',
             'livello' => 4,
             'telefono' => '1234567890',
-            ]]);
+            ],
+            [
+            'username' => 'medico1',
+            'password' => bcrypt('medico1'),
+            'nome' => 'Mario',
+            'cognome' => 'Rossi',
+            'eta' => '1990-01-01',
+            'livello' => 3,
+            'telefono' => '1234567890',
+            ]
+            ]);
 
         DB::table("dipartimenti")->insert([
             [
@@ -55,18 +65,21 @@ class DatabaseSeeder extends Seeder
             'descrizione' => 'Visita cardiologica',
             'prescrizioni' => 'Visita cardiologica',
             'idDipartimento' => 1,
+            'usernameMedico' => 'medico1',
             ],
             [
             'nome' => 'Visita oculistica',
             'descrizione' => 'Visita oculistica',
             'prescrizioni' => 'Visita oculistica',
             'idDipartimento' => 2,
+            'usernameMedico' => 'medico1',
             ],
             [
             'nome' => 'Visita ortopedica',
             'descrizione' => 'Visita ortopedica',
             'prescrizioni' => 'Visita ortopedica',
             'idDipartimento' => 3,
+             'usernameMedico' => 'medico1',
             ]
         ]);
     }
