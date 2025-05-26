@@ -9,8 +9,15 @@ class DipartimentoController extends Controller
 
         public function getDipartimenti(){
             $data = Dipartimento::all();
-            return view('/dipartimenti', ['List'=>$data]);
+            if (auth()->check() && auth()->user()->livello == 4) {
+                return view('dipartimentiAdmin', ['List' => $data]);
+            }
+            else
+            {
+                return view('dipartimenti', ['List' => $data]);
+            }
         }
+
 
     public function getDipendentiDipartimento($nome)
     {

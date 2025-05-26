@@ -7,7 +7,7 @@
     </div>
 
     <div class="container">
-        <a href = "{{route('dipartimenti')}}" class = "button" > Dipartimenti</a>
+        <a href = "{{route('dipartimentiAdmin')}}" class = "button" > Dipartimenti</a>
     </div>
     <div class="container">
         <a href = "{{route('getStaff')}}" class = "button" > Staff</a>

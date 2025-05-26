@@ -13,6 +13,6 @@ Route::get('/admin/prestazioni', [PrestazioneController::class, 'show_prestazion
 Route::get('/admin/getStaff', [UserController::class, 'getStaff'])->name('getStaff');
 
 Route::get('/admin/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
-    ->name('dipartimenti'); // mostra tutti i dipartimenti dinamicamente
+    ->name('dipartimentiAdmin'); // mostra tutti i dipartimenti dinamicamente
 
 

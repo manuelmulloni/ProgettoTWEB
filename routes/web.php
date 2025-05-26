@@ -31,9 +31,8 @@ Route::get('/', function () {
 }) ->name('primaview');
 
 
-//Route::get('/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
-    //->name('dipartimenti'); // mostra tutti i dipartimenti dinamicamente
-//Qeusta rotta non serve più, ora è in admin.php, fare in modo che utentie staff vedano solo i dipartimenti ma non possano cambiare niente
+Route::get('/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
+    ->name('dipartimenti'); // mostra tutti i dipartimenti dinamicamente
 
 require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 
