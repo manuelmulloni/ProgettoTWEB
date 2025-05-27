@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('nome', 20)->nullable();
             $table->string('cognome', 20)->nullable();
             $table->date('dataNascita')->nullable();
+            $table->string('indirizzo')->nullable();
             $table->integer('livello')->default(1);
             $table->string('telefono', 10)->nullable();
         });

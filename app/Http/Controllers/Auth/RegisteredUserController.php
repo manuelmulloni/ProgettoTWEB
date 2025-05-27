@@ -38,6 +38,7 @@ class RegisteredUserController extends Controller
             'cognome' => ['required', 'string', 'max:20'],
             'dataNascita' => ['required', 'date'],
             'telefono' => ['required', 'string', 'max:10'],
+            'indirizzo' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -49,6 +50,7 @@ class RegisteredUserController extends Controller
             'cognome' => $request->cognome,
             'dataNascita' => $request->dataNascita,
             'telefono' => $request->telefono,
+            'indirizzo' => $request->indirizzo,
             'password' => Hash::make($request->password),
         ]);
 

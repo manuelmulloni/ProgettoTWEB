@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
                 'dataNascita' => '1985-05-15',
                 'livello' => 2,
                 'telefono' => '9876543210',
+                'indirizzo' => 'Via Roma 10, Milano',
             ],
             [
                 'username' => 'staffstaff',
@@ -41,6 +42,7 @@ class DatabaseSeeder extends Seeder
                 'dataNascita' => '1980-03-20',
                 'livello' => 3,
                 'telefono' => '1231231234',
+                'indirizzo' => 'Corso Italia 25, Torino',
             ],
             [
                 'username' => 'adminadmin',
@@ -50,6 +52,7 @@ class DatabaseSeeder extends Seeder
                 'dataNascita' => '1975-07-10',
                 'livello' => 4,
                 'telefono' => '4564564567',
+                'indirizzo' => 'Piazza Duomo 5, Firenze',
             ]
         ]);
 
