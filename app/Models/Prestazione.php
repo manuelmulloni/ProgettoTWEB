@@ -3,6 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Prestazione extends Model
 {
     public $table = "prestazioni";
@@ -21,7 +22,7 @@ class Prestazione extends Model
     {
         return $this->belongsTo(Dipartimento::class, 'idDipartimento', 'id');
     }
-    
+
     public function medico()
     {
         return $this->belongsTo(User::class, 'usernameMedico', 'username');

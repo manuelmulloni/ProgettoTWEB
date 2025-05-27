@@ -1,8 +1,8 @@
 @extends('areaPrestazioni.prestazione')
 
-@section("form")
+@section('form')
 
-    {{ html()->form("POST")->route('prestazione.create')->class('form-style')->open() }}
+    {{ html()->form('POST', route('prestazione.create'))->class('form-style')->open() }}
 
     <h3 class="form-description">Nuova Prestazione</h3>
 
@@ -25,9 +25,3 @@
         {{ html()->label('Dipartimento')->for('idDipartimento') }}
         {{ html()->select('idDipartimento')->class('select-style')->required()->options($dipartimenti->pluck('nome', 'id')) }}
     </div>
-
-    {{ html()->submit('Aggiungi Prestazione')->class('submit-button button-style') }}
-
-    {{ html()->form()->close() }}
-
-@endsection

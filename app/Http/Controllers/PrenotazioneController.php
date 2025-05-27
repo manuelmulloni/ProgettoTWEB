@@ -1,20 +1,34 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Prenotazione;
+use App\Http\Requests\NewPrenotazioneRequest;
+use App\Models\Prestazione;
+use Illuminate\Support\Facades\Auth;
 
 class PrenotazioneController extends Controller
 {
-    public function showPrenotazioni(){
+    public function showPrenotazioni()
+    {
+        $prenotazioni = Prenotazione::paginate(10);
 
-        $prenotazioni = Prenotazione::paginate(10); // Pagina con 10 prenotazioni per volta
-        return view('prenotazioni.index', compact('prenotazioni'));
-        //paginarla per prestazioni
+        return view('utenti.prenotazioni', [
+            'prenotazioni' => $prenotazioni,
+            'prestazioni' => Prestazione::all()
+        ]);
     }
 
-    public function createPrenotazione()
+    public function createPrenotazione( NewPrenotazioneRequest $request)
     {
-        $pren = new Prenotazione(); // da vedere
-        return view('prenotazioni.create');
+        $user=Auth::user();
+        if ($user->livello == 2) { // Livello 4 per admin, 3 per dipendente
+            $prenotazione = new Prenotazione();
+            $prenotazione->fill($request->validated());
+            $prenotazione->save();
+            return redirect()->back()->with('success', 'Prenotazione creata con successo.');
+        } else {
+            return redirect()->back()->with('error', 'Non hai i permessi per creare una prenotazione.');
+        }
+
     }
 
     public function deletePrenotazione($id)

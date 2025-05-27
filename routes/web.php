@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PrestazioneController;
 use App\Http\Controllers\DipartimentoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\PrenotazioneController;
 use App\Http\Middleware\IsAdmin;
 
 
@@ -49,17 +50,30 @@ Route::get('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_eleme
 
 Route::get('/agenda/{id}', [AgendaController::class, 'show_agenda_element'])->name('agenda.show');
 
+
+// Routes for the PrestazioneController
 Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_prestazione"])->name('prestazione.edit');
 Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->name('prestazione.edit');
 Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');
 Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->name('prestazione.create');
 
+//Routes for PrenotazioneController
+Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'createPrenotazione'])->name('prenotazione.create');
+Route::get('/cliente/prenotazione/show', [PrenotazioneController::class, 'showPrenotazioni'])->name('prenotazione.show');
+
+// Routes for the admin area
 Route::get('/admin', function () {
     return view('admin.area_admin');
 })->middleware(['auth', 'isAdmin'])->name('admin');
 
-
+// Routes for the staff area
 Route::get('/staff', function () {
     return view('staff.area_staff');
 })->middleware(['auth', 'isStaff'])->name('staff');
+
+// Routes for the cliente area
+Route::get('/cliente', function () {
+    return view('utenti.area_Utente');
+})->middleware(['auth', 'isCliente'])->name('cliente');
+
 

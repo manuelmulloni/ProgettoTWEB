@@ -5,6 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsStaff;
+use App\Http\Middleware\IsCliente;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Middleware\Authenticate;
 
@@ -18,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'isAdmin' => IsAdmin::class,
             'isStaff' => IsStaff::class,
+            'isCliente' => IsCliente::class,
         ]);
         // https://laravel.com/docs/12.x/authentication#redirecting-authenticated-users
         // Di default, se un utente autenticato riprova ad accedere alla pagina di login, viene reindirizzato alla route `dashboard`.

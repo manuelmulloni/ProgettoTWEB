@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
-
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
-class IsStaff
+class IsCliente
 {
-
 
     /**
      * Handle an incoming request.
@@ -17,12 +14,12 @@ class IsStaff
      */
     public function handle(Request $request, Closure $next): Response
     {
-        logger('IsStaff middleware triggered');
+        logger('IsCliente middleware triggered');
         $user = $request->user();
         logger('User:', [$user]);
 
-        if ($user && $user->isStaff()) {
-            logger('User is staff, proceeding to next middleware');
+        if ($user && $user->isCliente()) {
+            logger('User is cliente, proceeding to next middleware');
             return $next($request);
 
         }

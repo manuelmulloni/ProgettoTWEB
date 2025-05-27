@@ -4,7 +4,7 @@
     <div class ="container">
         <a href="{{ route('dipartimenti') }}"> Dipartimenti</a>
         @can('isUser')
-            <a href="{{ route('hubUtente') }}">Area Utente</a>
+            <a href="{{ route('cliente') }}">Area Utente</a>
         @endcan
         @can('isStaff')
             <a href="{{ route('staff') }}">Area Staff</a>

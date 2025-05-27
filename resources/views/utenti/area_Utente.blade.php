@@ -17,14 +17,14 @@
                     <th>Cognome</th>
                     <td>{{ Auth::user()->cognome }}</td>
                 </tr>
-                <!-- Aggiungi altri campi se necessario -->
             </table>
         </div>
 
         <div class="content">
             <h3>Le tue prenotazioni</h3>
-            <!-- Logica per mostrare le prenotazioni dell'utente -->
+          <a href="{{route('prenotazione.show')}}">Prenota</a>
         </div>
+
 
     </div>
 @endsection
