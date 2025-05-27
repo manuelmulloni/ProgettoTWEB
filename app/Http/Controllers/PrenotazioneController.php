@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class PrenotazioneController extends Controller
 {
+    public function showPrenotazioniCliente()
+    {
+        $prenotazioni = Prenotazione::where('usernamePaziente',Auth::user()->username)->paginate(10);
+
+        return view('utenti.prenotazioni', [
+            'prenotazioni' => $prenotazioni,
+        ]);
+    }
+    
     public function showPrenotazioni()
     {
         $prenotazioni = Prenotazione::paginate(10);

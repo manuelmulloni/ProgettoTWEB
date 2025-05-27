@@ -59,7 +59,7 @@ Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazio
 
 //Routes for PrenotazioneController
 Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'createPrenotazione'])->name('prenotazione.create');
-Route::get('/cliente/prenotazione/show', [PrenotazioneController::class, 'showPrenotazioni'])->name('prenotazione.show');
+Route::get('/cliente/prenotazione/show', [PrenotazioneController::class, 'showPrenotazioniCliente'])->name('prenotazione.show');
 
 // Routes for the admin area
 Route::get('/admin', function () {
