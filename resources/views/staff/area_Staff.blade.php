@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        <h2>Area Utente</h2>
+        <h2>Area Staff</h2>
         <p>Benvenuto, {{ Auth::user()->username }}!</p>
 
         <div class="content">
@@ -20,11 +20,10 @@
                 <!-- Aggiungi altri campi se necessario -->
             </table>
         </div>
+   
 
-        <div class="content">
-            <h3>Le tue prenotazioni</h3>
-            <!-- Logica per mostrare le prenotazioni dell'utente -->
-        </div>
-
+    </div>
+<div class="container">
+        <a href = " {{route('agenda')}}" class = "button" > Agenda</a>
     </div>
 @endsection
