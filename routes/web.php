@@ -36,7 +36,7 @@ Route::get('/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
 
 require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 
-Route::get('/dipartimenti/show', [DipartimentoController::class, 'getDipendentiDipartimento'])
+Route::get('/dipartimenti/{id}', [DipartimentoController::class, 'getDipendentiDipartimento'])
     ->name('dipSpec');  // da vedere il funzionamento, crea una view dinamica del dipartimento specifico
 
 //Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');

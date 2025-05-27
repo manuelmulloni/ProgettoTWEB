@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Dipartimento;
+use App\Models\Prestazione;
 use App\Models\User;
 
 class DipartimentoController extends Controller
@@ -19,21 +20,19 @@ class DipartimentoController extends Controller
         }
 
 
-    public function getDipendentiDipartimento($nome)
+    public function getDipendentiDipartimento($id)
     {
-        $dipartimento = Dipartimento::where('nome', $nome)->first();
+        $dipartimento = Dipartimento::find($id);
 
         if (!$dipartimento) {
             abort(404, 'Dipartimento non trovato');
         }
 
-        $dipendenti = User::where('dipartimento', $dipartimento->nome)
-            ->where('livello', 3)
-            ->get();
+        $prestazioni = Prestazione::where('idDipartimento', $id)->get();
 
-        return view('dipartimenti/show', [
+        return view('datiDipartimento', [
             'dipartimento' => $dipartimento,
-            'dipendenti' => $dipendenti,
+            'prestazioni' => $prestazioni,
         ]);
     }
 }

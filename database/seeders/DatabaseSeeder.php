@@ -25,31 +25,31 @@ class DatabaseSeeder extends Seeder
 
         DB::table("utenti")->insert([
             [
-            'username' => 'pazipazi',
-            'password' => bcrypt('pazipazi'),
-            'nome' => 'Giovanni',
-            'cognome' => 'Bianchi',
-            'dataNascita' => '1985-05-15',
-            'livello' => 2,
-            'telefono' => '9876543210',
+                'username' => 'pazipazi',
+                'password' => bcrypt('pazipazi'),
+                'nome' => 'Giovanni',
+                'cognome' => 'Bianchi',
+                'dataNascita' => '1985-05-15',
+                'livello' => 2,
+                'telefono' => '9876543210',
             ],
             [
-            'username' => 'staffstaff',
-            'password' => bcrypt('staffstaff'),
-            'nome' => 'Luca',
-            'cognome' => 'Verdi',
-            'dataNascita' => '1980-03-20',
-            'livello' => 3,
-            'telefono' => '1231231234',
+                'username' => 'staffstaff',
+                'password' => bcrypt('staffstaff'),
+                'nome' => 'Luca',
+                'cognome' => 'Verdi',
+                'dataNascita' => '1980-03-20',
+                'livello' => 3,
+                'telefono' => '1231231234',
             ],
             [
-            'username' => 'adminadmin',
-            'password' => bcrypt('adminadmin'),
-            'nome' => 'Maria',
-            'cognome' => 'Rossi',
-            'dataNascita' => '1975-07-10',
-            'livello' => 4,
-            'telefono' => '4564564567',
+                'username' => 'adminadmin',
+                'password' => bcrypt('adminadmin'),
+                'nome' => 'Maria',
+                'cognome' => 'Rossi',
+                'dataNascita' => '1975-07-10',
+                'livello' => 4,
+                'telefono' => '4564564567',
             ]
         ]);
 
@@ -65,32 +65,108 @@ class DatabaseSeeder extends Seeder
             [
                 'nome' => 'Ortopedia',
                 'descrizione' => 'Ortopedia',
+            ],
+            [
+                'nome' => 'Dermatologia',
+                'descrizione' => 'Dermatologia',
             ]
         ]);
 
+
         DB::table("prestazioni")->insert([
+            // Prestazioni per Cardiologia (idDipartimento: 1)
             [
                 'nome' => 'Visita cardiologica',
-                'descrizione' => 'Visita cardiologica',
-                'prescrizioni' => 'Visita cardiologica',
+                'descrizione' => 'Visita cardiologica generale',
+                'prescrizioni' => 'Prescrizioni per visita cardiologica',
                 'idDipartimento' => 1,
-                'medico' => 'medico1',
+                'medico' => 'Dr. Rossi',
             ],
             [
-                'nome' => 'Visita oculistica',
-                'descrizione' => 'Visita oculistica',
-                'prescrizioni' => 'Visita oculistica',
-                'idDipartimento' => 2,
-                'medico' => 'medico1',
+                'nome' => 'Elettrocardiogramma (ECG)',
+                'descrizione' => 'Registrazione dell\'attività elettrica del cuore',
+                'prescrizioni' => 'Indicazioni per ECG',
+                'idDipartimento' => 1,
+                'medico' => 'Dr. Bianchi',
             ],
+            [
+                'nome' => 'Ecocardiogramma',
+                'descrizione' => 'Ecografia del cuore',
+                'prescrizioni' => 'Preparazione per ecocardiogramma',
+                'idDipartimento' => 1,
+                'medico' => 'Dr. Verdi',
+            ],
+
+            // Prestazioni per Oculistica (idDipartimento: 2)
+            [
+                'nome' => 'Visita oculistica completa',
+                'descrizione' => 'Visita per controllo della vista e salute degli occhi',
+                'prescrizioni' => 'Prescrizioni per visita oculistica',
+                'idDipartimento' => 2,
+                'medico' => 'Dr. Gialli',
+            ],
+            [
+                'nome' => 'Esame del fondo oculare',
+                'descrizione' => 'Esame della retina e del nervo ottico',
+                'prescrizioni' => 'Potrebbe essere necessario dilatare la pupilla',
+                'idDipartimento' => 2,
+                'medico' => 'Dr. Neri',
+            ],
+            [
+                'nome' => 'Misurazione pressione oculare',
+                'descrizione' => 'Screening per glaucoma',
+                'prescrizioni' => 'Nessuna preparazione richiesta',
+                'idDipartimento' => 2,
+                'medico' => 'Dr. Marroni',
+            ],
+
+            // Prestazioni per Ortopedia (idDipartimento: 3)
             [
                 'nome' => 'Visita ortopedica',
-                'descrizione' => 'Visita ortopedica',
-                'prescrizioni' => 'Visita ortopedica',
+                'descrizione' => 'Visita per problemi muscoloscheletrici',
+                'prescrizioni' => 'Prescrizioni per visita ortopedica',
                 'idDipartimento' => 3,
-                'medico' => 'medico1',
+                'medico' => 'Dr. Azzurri',
+            ],
+            [
+                'nome' => 'Infiltrazione articolare',
+                'descrizione' => 'Iniezione di farmaci direttamente nell\'articolazione',
+                'prescrizioni' => 'Potenziale dolore dopo l\'iniezione',
+                'idDipartimento' => 3,
+                'medico' => 'Dr. Rossi',
+            ],
+            [
+                'nome' => 'Radiografia (RX) articolare',
+                'descrizione' => 'Esame radiografico di un\'articolazione',
+                'prescrizioni' => 'Nessuna preparazione specifica',
+                'idDipartimento' => 3,
+                'medico' => 'Dr. Bianchi',
+            ],
+
+            // Prestazioni per Dermatologia (idDipartimento: 4)
+            [
+                'nome' => 'Visita dermatologica',
+                'descrizione' => 'Visita per problemi della pelle, capelli e unghie',
+                'prescrizioni' => 'Prescrizioni per visita dermatologica',
+                'idDipartimento' => 4,
+                'medico' => 'Dr. Rossi',
+            ],
+            [
+                'nome' => 'Mappatura nevi',
+                'descrizione' => 'Controllo dermatoscopico dei nevi',
+                'prescrizioni' => 'Evitare l\'esposizione solare prima dell\'esame',
+                'idDipartimento' => 4,
+                'medico' => 'Dr. Verdi',
+            ],
+            [
+                'nome' => 'Crioterapia verruche',
+                'descrizione' => 'Trattamento delle verruche con azoto liquido',
+                'prescrizioni' => 'Possibile formazione di vescicole',
+                'idDipartimento' => 4,
+                'medico' => 'Dr. Neri',
             ]
         ]);
+
 
         DB::table("prenotazioni")->insert([
             [
