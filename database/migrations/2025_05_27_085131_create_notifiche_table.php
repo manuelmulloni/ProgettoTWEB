@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('notifiche', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idUtente')
-                ->constrained('utenti', 'username')
+            $table->string('username');
+            $table->foreign('username')
+                ->references('username')
+                ->on('utenti')
                 ->onDelete('cascade');
             $table->string('contenuto');
             $table->boolean('letto')->default(false);

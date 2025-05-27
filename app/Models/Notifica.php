@@ -10,13 +10,13 @@ class Notifica extends Model
     protected $table = 'notifiche';
 
     protected $fillable = [
-        'idUtente',
+        'username',
         'contenuto',
         'letto',
     ];
 
-    public function utente()
+    public function username()
     {
-        return $this->belongsTo(User::class, 'idUtente', 'username');
+        return $this->belongsTo(User::class, 'username', 'username');
     }
 }

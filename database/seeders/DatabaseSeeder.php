@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $DEPLOYMENT = 'dev';
+        $PASSWORD = $DEPLOYMENT === 'dev' ? 'pass' : 'nlFHnlFH';
+
         // User::factory(10)->create();
 
         /*User::factory()->create([
@@ -26,7 +30,7 @@ class DatabaseSeeder extends Seeder
         DB::table("utenti")->insert([
             [
                 'username' => 'pazipazi',
-                'password' => bcrypt('pazipazi'),
+                'password' => bcrypt($PASSWORD),
                 'nome' => 'Giovanni',
                 'cognome' => 'Bianchi',
                 'dataNascita' => '1985-05-15',
@@ -36,7 +40,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'username' => 'staffstaff',
-                'password' => bcrypt('staffstaff'),
+                'password' => bcrypt($PASSWORD),
                 'nome' => 'Luca',
                 'cognome' => 'Verdi',
                 'dataNascita' => '1980-03-20',
@@ -46,7 +50,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'username' => 'adminadmin',
-                'password' => bcrypt('adminadmin'),
+                'password' => bcrypt($PASSWORD),
                 'nome' => 'Maria',
                 'cognome' => 'Rossi',
                 'dataNascita' => '1975-07-10',
@@ -218,11 +222,11 @@ class DatabaseSeeder extends Seeder
 
         DB::table("notifiche")->insert([
             [
-                'idUtente' => 'pazipazi',
+                'username' => 'pazipazi',
                 'contenuto' => 'Promemoria: Visita cardiologica il 2024-01-22 alle 09:00.',
             ],
             [
-                'idUtente' => 'pazipazi',
+                'username' => 'pazipazi',
                 'contenuto' => 'Nuova funzionalità disponibile: Prenota online!',
             ],
         ]);
