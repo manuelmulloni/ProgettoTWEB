@@ -215,5 +215,16 @@ class DatabaseSeeder extends Seeder
                 'idPrenotazione' => null,
             ]
         ]);
+
+        DB::table("notifiche")->insert([
+            [
+                'idUtente' => 'pazipazi',
+                'contenuto' => 'Promemoria: Visita cardiologica il 2024-01-22 alle 09:00.',
+            ],
+            [
+                'idUtente' => 'pazipazi',
+                'contenuto' => 'Nuova funzionalità disponibile: Prenota online!',
+            ],
+        ]);
     }
 }
