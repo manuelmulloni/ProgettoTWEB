@@ -22,9 +22,8 @@ class NewAgendaElementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'giorno_settimana' => 'required|string|max:10',
+            'data' => 'required|date_format:Y-m-d',
             'orario_inizio' => 'required|date_format:H:i',
-            'orario_fine' => 'required|date_format:H:i',
             'idPrestazione' => 'required|integer|exists:prestazioni,id',
         ];
     }

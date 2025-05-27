@@ -137,7 +137,7 @@
             </div>
         @else
             <div class="">
-                <button class="button-style submit-button">
+                <button class="submit-button button-style">
                     <a href="{{ route('agenda.show', $agendaElement->id) }}" class="button-text">Aggiungi Prenotazione</a>
                 </button>
             </div>

@@ -1,8 +1,7 @@
 @extends('areaPrestazioni.agenda')
 
 @section('form')
-    <div class="content" style="width: 50%; align-self: left;">
-        <h3>Aggiungi prestazione in agenda</h3>
+    <div class="content" style="width: 60%; align-self: left;">
         {{ html()->form('POST')->route('agenda.create')->class('form-style')->open() }}
 
         <h3 class="form-description">Aggiunta Prestazione in Agenda</h3>
@@ -13,18 +12,13 @@
         </div>
 
         <div class="form-group">
-            {{ html()->label('Giorno')->for('giorno_settimana') }}
-            {{ html()->select('giorno_settimana')->class('select-style')->required()->options(['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica']) }}
+            {{ html()->label('Data')->for('data') }}
+            {{ html()->date('data')->class('text-area-style')->required()->value($showDate) }}
         </div>
 
         <div class="form-group">
             {{ html()->label('Ora Inizio')->for('orario_inizio') }}
             {{ html()->time('orario_inizio')->class('')->attribute("step", "60")->required() }}
-        </div>
-
-        <div class="form-group">
-            {{ html()->label('Ora fine')->for('orario_fine') }}
-            {{ html()->time('orario_fine')->class('')->attribute("step", "60")->required() }}
         </div>
 
         {{ html()->submit('Aggiungi Prestazione')->class('submit-button button-style') }}

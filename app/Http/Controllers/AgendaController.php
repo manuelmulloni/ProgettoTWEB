@@ -66,18 +66,6 @@ class AgendaController extends Controller
         Log::debug("Agenda instance filled with validated data");
         Log::debug("Agenda data: ", $agenda->toArray());
 
-        // Manual fix -> day number to day name
-        $mapping = [
-            0 => 'Lunedì',
-            1 => 'Martedì',
-            2 => 'Mercoledì',
-            3 => 'Giovedì',
-            4 => 'Venerdì',
-            5 => 'Sabato',
-            6 => 'Domenica',
-        ];
-        $agenda->giorno_settimana = $mapping[$request->giorno_settimana];
-
         $agenda->save();
         Log::debug("Agenda instance saved to database");
 
