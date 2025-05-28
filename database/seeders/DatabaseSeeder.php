@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $DEPLOYMENT = 'dev';
         $PASSWORD = $DEPLOYMENT === 'dev' ? 'pass' : 'nlFHnlFH';
 
+        $TODAY = date('Y-m-d');
+
         // User::factory(10)->create();
 
         /*User::factory()->create([
@@ -195,25 +197,25 @@ class DatabaseSeeder extends Seeder
 
         DB::table("agende")->insert([
             [
-                'data' => '2024-01-22',
+                'data' => $TODAY,
                 'orario_inizio' => '09:00:00',
                 'idPrestazione' => 1,
                 'idPrenotazione' => 1,
             ],
             [
-                'data' => '2024-01-22',
+                'data' => $TODAY,
                 'orario_inizio' => '10:00:00',
                 'idPrestazione' => 1,
                 'idPrenotazione' => null,
             ],
             [
-                'data' => '2024-01-23',
+                'data' => $TODAY,
                 'orario_inizio' => '10:00:00',
                 'idPrestazione' => 2,
                 'idPrenotazione' => null,
             ],
             [
-                'data' => '2024-01-24',
+                'data' => $TODAY,
                 'orario_inizio' => '11:00:00',
                 'idPrestazione' => 3,
                 'idPrenotazione' => null,
