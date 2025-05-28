@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Agenda;
 use App\Models\Prestazione;
 use App\Models\Dipartimento;
+use App\Models\Utente;
+use App\Models\Prenotazione;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\NewAgendaElementRequest;
@@ -27,6 +29,70 @@ class AgendaController extends Controller
         $agendaElements = Agenda::where('data', $date)->get();
         Log::debug("Agenda elements for today: ", $agendaElements->toArray());
         return view('areaPrestazioni.agenda_add')->with('prestazioni', Prestazione::all())->with('agendaElements', $agendaElements)->with('showDate', $date);
+    }
+
+    public function cancel_appointment($id)
+    {
+        // Trova l'elemento dell'agenda da cancellare
+        $agenda = Agenda::find($id);
+
+        if ($agenda) {
+            // Elimina l'elemento dell'agenda
+            $agenda->idPrenotazione = null;
+            $agenda->save();
+            return redirect()->route('agenda')->with('success', 'Appuntamento cancellato con successo.');
+        } else {
+            return redirect()->route('agenda')->with('error', 'Appuntamento non trovato.');
+        }
+    }
+
+    public function add_appointment($id)
+    {
+        // Trova l'elemento dell'agenda da modificare
+        $agenda = Agenda::find($id);
+
+        Log::debug("Adding appointment for agenda element with ID: $id");
+
+        if ($agenda) {
+
+            $prestazione = $agenda->idPrestazione;
+
+            Log::debug("Found agenda element: ", $agenda->toArray());
+            Log::debug("Prestazione ID: $prestazione");
+
+            $prenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)->get();
+
+            Log::debug("Found prenotazioni: ", $prenotazioni->toArray());
+
+            
+            return view('areaPrestazioni.agenda_add_appointment')
+                ->with('agendaElement', $agenda)
+                ->with('prestazione', $prestazione)
+                ->with('prenotazioni', $prenotazioni);
+        } else {
+            return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
+        }
+    }
+
+    public function add_appointment_to_agenda(Request $request, $id)
+    {
+        Log::debug("Starting add_appointment_to_agenda method");
+        Log::debug("Request data: ", $request->all());
+        Log::debug("Agenda ID: $id");
+
+        // Trova l'elemento dell'agenda da modificare
+        $agenda = Agenda::find($id);
+
+        if ($agenda) {
+            // Aggiorna l'ID della prenotazione nell'elemento dell'agenda
+            $agenda->idPrenotazione = $request->input('idPrenotazione');
+            $agenda->save();
+            Log::debug("Updated agenda element with ID: $id");
+
+            return redirect()->route('agenda')->with('success', 'Appuntamento aggiunto all\'agenda con successo.');
+        } else {
+            return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
+        }
     }
 
     public function show_agenda_element($id)

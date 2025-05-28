@@ -23,10 +23,7 @@
                         <td>{{ $element->prenotazione ? 'Sì' : 'No' }}</td>
                         <td>
                             <button class="button-style edit-button">
-                                <a href="{{ route('agenda.show', $element->id) }}">Visualizza</a>
-                            </button>
-                            <button class="button-style edit-button">
-                                <a href="{{ route('agenda.edit', $element->id) }}">Modifica</a>
+                                <a href="{{ route('agenda.show', $element->id) }}">Modifica</a>
                             </button>
                             <button class="button-style delete-button">
                                 <a href="{{ route('agenda.delete', $element->id) }}">Elimina</a>

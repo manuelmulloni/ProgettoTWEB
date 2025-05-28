@@ -44,11 +44,13 @@ Route::get('/dipartimenti/{id}', [DipartimentoController::class, 'getDipendentiD
 //questa rotta non serve più, ora è in admin.php
 
 Route::get('/agenda', [AgendaController::class, 'show_agenda'])->name('agenda');
-Route::get('/agenda/new', [AgendaController::class, 'create_agenda_element'])->name('agenda.edit');
 Route::post('/agenda/new', [AgendaController::class, 'create_agenda_element'])->name('agenda.create');
 Route::get('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])->name('agenda.delete');
 
 Route::get('/agenda/{id}', [AgendaController::class, 'show_agenda_element'])->name('agenda.show');
+Route::get('/agenda/cancel/{id}', [AgendaController::class, 'cancel_appointment'])->name('agenda.appointment.cancel');
+Route::get('/agenda/new/{id}', [AgendaController::class, 'add_appointment'])->name('agenda.appointment.new');
+Route::post('/agenda/new/{id}', [AgendaController::class, 'add_appointment_to_agenda'])->name('agenda.appointment.new');
 
 
 // Routes for the PrestazioneController
