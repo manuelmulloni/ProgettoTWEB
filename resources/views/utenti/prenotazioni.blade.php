@@ -25,7 +25,7 @@
             </table>
         @endif
         @if(auth()->user() && auth()->user()->livello === 2)
-            @yield('form')
+            @include('utenti.prenotazioni_create')
         @endif
     </div>
 @endsection

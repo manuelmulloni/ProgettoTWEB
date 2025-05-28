@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div style="align-self: center; text-align: center;">
-            <h1>Diaprtimento di {{ $dipartimento->nome }}</h1>
+            <h1>Dipartimento di {{ $dipartimento->nome }}</h1>
 
         </div>
         <h2>Prestazioni Offerte</h2>

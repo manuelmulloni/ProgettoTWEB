@@ -13,9 +13,10 @@ class PrenotazioneController extends Controller
 
         return view('utenti.prenotazioni', [
             'prenotazioni' => $prenotazioni,
+            'prestazioni' => Prestazione::all()
         ]);
     }
-    
+
     public function showPrenotazioni()
     {
         $prenotazioni = Prenotazione::paginate(10);

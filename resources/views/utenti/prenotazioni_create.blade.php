@@ -1,8 +1,5 @@
-@extends('utenti.prenotazioni')
 
-@section('form')
-
-    {{ html()->form('POST', route('prenotazioni.create'))->class('form-style')->open() }}
+    {{ html()->form('POST', route('prenotazione.create'))->class('form-style')->open() }}
 
     <h3 class="form-description">Nuova Prenotazione</h3>
 
@@ -24,4 +21,3 @@
 
     {{ html()->form()->close() }}
 
-@endsection
