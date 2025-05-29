@@ -25,3 +25,5 @@
         {{ html()->label('Dipartimento')->for('idDipartimento') }}
         {{ html()->select('idDipartimento')->class('select-style')->required()->options($dipartimenti->pluck('nome', 'id')) }}
     </div>
+
+@endsection
