@@ -26,4 +26,7 @@
         {{ html()->select('idDipartimento')->class('select-style')->required()->options($dipartimenti->pluck('nome', 'id')) }}
     </div>
 
+    {{ html()->submit('Aggiungi Prestazione')->class('submit-button button-style') }}
+
+    {{ html()->form()->close() }}
 @endsection
