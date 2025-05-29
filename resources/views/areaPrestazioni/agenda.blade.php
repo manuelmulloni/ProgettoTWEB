@@ -21,13 +21,15 @@
                         <td>{{ $element->data }}</td>
                         <td>{{ $element->orario_inizio }}</td>
                         <td>{{ $element->prenotazione ? 'Sì' : 'No' }}</td>
-                        <td>
-                            <button class="button-style edit-button">
-                                <a href="{{ route('agenda.show', $element->id) }}">Modifica</a>
-                            </button>
-                            <button class="button-style delete-button">
-                                <a href="{{ route('agenda.delete', $element->id) }}">Elimina</a>
-                            </button>
+                        <td style="display: flex; gap: 10px; justify-content: center;">
+                            <form action="{{ route('agenda.show', $element->id) }}" method="GET">
+                                <button type="submit" class="button-style edit-button">Modifica</button>
+                            </form>
+                            <form action="{{ route('agenda.delete', $element->id) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare questo elemento?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button-style delete-button">Elimina</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

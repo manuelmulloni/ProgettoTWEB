@@ -38,16 +38,29 @@ button a {
 
 .edit-button {
     background-color: #4ba3f7;
-    /* box-shadow: inset 2px 2px #4b4df7, inset -2px -2px #4b4df7; */
+    font-size: 100%;
+}
+
+.edit-button:hover {
+    background-color: #3a8acb;
 }
 
 .delete-button {
     background-color: #f03131;
+    font-size: 100%;
+}
+
+.delete-button:hover {
+    background-color: #d12c2c;
 }
 
 .submit-button {
     background-color: #26da27;
     font-size: 100%;
+}
+
+.submit-button:hover {
+    background-color: #1fbf1f;
 }
 
 .form-style {
