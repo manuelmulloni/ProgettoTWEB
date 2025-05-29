@@ -17,6 +17,7 @@
     @if (Auth::check())
         <div class="user-info">
             <span class="username">{{ Auth::user()->username }}</span>
+            <img src="{{ Auth::user()->profile_picture() }}" alt="User Icon" class="profile-image">
             <button class="button-style delete-button">
                 <a href="{{ route('logout') }}" class="logout-button">Logout</a>
             </button>

@@ -39,10 +39,20 @@ class RegisteredUserController extends Controller
             'dataNascita' => ['required', 'date'],
             'telefono' => ['required', 'string', 'max:10'],
             'indirizzo' => ['required', 'string', 'max:255'],
+            'profile_picture' => ['image', 'max:4000'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         Log::debug("Validation passed, creating user");
+
+        // Handle profile picture upload
+        if ($request->hasFile('profile_picture')) {
+            $profilePicturePath = basename($request->file('profile_picture')->store('profile_pics', 'local'));
+            Log::debug("Profile picture uploaded to: " . $profilePicturePath);
+        } else {
+            Log::warning("No profile picture uploaded, using default");
+            $profilePicturePath = 'default.jpg'; // Use a default image if none is provided
+        }
 
         $user = User::create([
             'username' => $request->username,
@@ -52,6 +62,7 @@ class RegisteredUserController extends Controller
             'telefono' => $request->telefono,
             'indirizzo' => $request->indirizzo,
             'password' => Hash::make($request->password),
+            'propic' => $profilePicturePath,
         ]);
 
         Log::debug("User created, firing Registered event");

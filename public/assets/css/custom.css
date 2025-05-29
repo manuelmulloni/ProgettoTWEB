@@ -87,3 +87,15 @@ button a {
     font-size: 20px;
     margin-bottom: 10px;
 }
+
+.profile-image {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.user-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
