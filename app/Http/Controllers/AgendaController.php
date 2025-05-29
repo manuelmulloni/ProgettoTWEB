@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Agenda;
 use App\Models\Prestazione;
 use App\Models\Dipartimento;
-use App\Models\Utente;
+use App\Models\User;
+use App\Models\Notifica;
 use App\Models\Prenotazione;
 use Illuminate\Support\Facades\Log;
 
@@ -37,6 +38,15 @@ class AgendaController extends Controller
         $agenda = Agenda::find($id);
 
         if ($agenda) {
+
+            $idPrenotazione = $agenda->idPrenotazione;
+            $utente = Prenotazione::find($idPrenotazione)->cliente;
+
+            $notifica = new Notifica();
+            $notifica->username = $utente->username;
+            $notifica->contenuto = "L'appuntamento del " . $agenda->data . " alle " . $agenda->orario_inizio . " è stato cancellato.";
+            $notifica->save();
+
             // Elimina l'elemento dell'agenda
             $agenda->idPrenotazione = null;
             $agenda->save();
@@ -89,6 +99,16 @@ class AgendaController extends Controller
             $agenda->save();
             Log::debug("Updated agenda element with ID: $id");
 
+
+            $idPrenotazione = $agenda->idPrenotazione;
+            $utente = Prenotazione::find($idPrenotazione)->cliente;
+
+            $notifica = new Notifica();
+            $notifica->username = $utente->username;
+            $notifica->contenuto = "L'appuntamento del " . $agenda->data . " alle " . $agenda->orario_inizio . " è stato aggiunto all'agenda.";
+            $notifica->save();
+
+
             return redirect()->route('agenda')->with('success', 'Appuntamento aggiunto all\'agenda con successo.');
         } else {
             return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
@@ -113,6 +133,15 @@ class AgendaController extends Controller
         $agenda = Agenda::find($id);
 
         if ($agenda) {
+
+            $idPrenotazione = $agenda->idPrenotazione;
+            $utente = Prenotazione::find($idPrenotazione)->cliente;
+
+            $notifica = new Notifica();
+            $notifica->username = $utente->username;
+            $notifica->contenuto = "L'elemento dell'agenda del " . $agenda->data . " alle " . $agenda->orario_inizio . " è stato eliminato.";
+            $notifica->save();
+
             // Elimina l'elemento dell'agenda
             $agenda->delete();
             return redirect()->back()->with('success', 'Elemento dell\'agenda eliminato con successo.');
