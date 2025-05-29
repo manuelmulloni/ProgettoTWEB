@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Dipartimento;
 use App\Models\Prestazione;
 use App\Models\User;
+use Illuminate\Container\Attributes\Log;
+use Illuminate\Http\JsonResponse;
 
 class DipartimentoController extends Controller
 {
@@ -35,4 +37,20 @@ class DipartimentoController extends Controller
             'prestazioni' => $prestazioni,
         ]);
     }
+
+    public function ajaxDescrizioneDipartimento (int $id):JsonResponse
+    {
+        logger("Chiamato con ID: $id");
+        $dipartimento = Dipartimento::find($id);
+
+        if (!$dipartimento) {
+            return response()->json(['error' => 'Dipartimento non trovato'], 404);
+        }
+
+        return response()->json([
+            'descrizione' => $dipartimento->descrizione,
+        ]);
+    }
+
+
 }

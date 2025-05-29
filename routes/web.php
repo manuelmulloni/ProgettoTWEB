@@ -40,6 +40,8 @@ require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 Route::get('/dipartimenti/{id}', [DipartimentoController::class, 'getDipendentiDipartimento'])
     ->name('dipSpec');  // da vedere il funzionamento, crea una view dinamica del dipartimento specifico
 
+Route::get('ajax/descrizione-dipartimento/{id}', [DipartimentoController::class, 'ajaxDescrizioneDipartimento'])->name('getDescDip');
+
 //Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
 //questa rotta non serve più, ora è in admin.php
 
