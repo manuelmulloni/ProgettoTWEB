@@ -54,15 +54,17 @@
 
         @if (isset($agendaElement->prenotazione->cliente))
             <div class="">
-                <button class="button-style delete-button">
-                    <a href="{{ route('agenda.appointment.cancel', $agendaElement->id) }}" class="button-text">Annulla Prenotazione</a>
-                </button>
+                <form action="{{ route('agenda.appointment.cancel', $agendaElement->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button-style delete-button button-text">Annulla Prenotazione</button>
+                </form>
             </div>
         @else
             <div class="">
-                <button class="submit-button button-style">
-                    <a href="{{ route('agenda.appointment.new', $agendaElement->id) }}" class="button-text">Aggiungi Prenotazione</a>
-                </button>
+                <form action="{{ route('agenda.appointment.new', $agendaElement->id) }}" method="GET">
+                    <button type="submit" class="submit-button button-style button-text">Aggiungi Prenotazione</button>
+                </form>
             </div>
         @endif
     </div>
