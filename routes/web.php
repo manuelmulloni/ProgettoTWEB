@@ -45,7 +45,7 @@ Route::get('/dipartimenti/{id}', [DipartimentoController::class, 'getDipendentiD
 
 Route::get('/agenda', [AgendaController::class, 'show_agenda'])->name('agenda');
 Route::post('/agenda/new', [AgendaController::class, 'create_agenda_element'])->name('agenda.create');
-Route::get('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])->name('agenda.delete');
+Route::delete('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])->name('agenda.delete');
 
 Route::get('/agenda/{id}', [AgendaController::class, 'show_agenda_element'])->name('agenda.show');
 Route::delete('/agenda/cancel/{id}', [AgendaController::class, 'cancel_appointment'])->name('agenda.appointment.cancel');

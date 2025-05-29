@@ -17,20 +17,30 @@ use App\Http\Requests\NewAgendaElementRequest;
 class AgendaController extends Controller
 {
     public function show_agenda(Request $request)
-    {   
+    {
         Log::debug("Starting show_agenda method");
-        // Recupera gli elementi dell'agenda di oggi
-        
+
         if ($request->has('date')) {
             $date = $request->input('date');
         } else {
             $date = date('Y-m-d'); // Imposta la data di oggi se non è fornita
         }
-        
+
         $agendaElements = Agenda::where('data', $date)->get();
         Log::debug("Agenda elements for today: ", $agendaElements->toArray());
-        return view('areaPrestazioni.agenda_add')->with('prestazioni', Prestazione::all())->with('agendaElements', $agendaElements)->with('showDate', $date);
+
+        // Retrieve flash messages
+        $successMessage = session('success');
+        $errorMessage = session('error');
+
+        return view('areaPrestazioni.agenda_add')
+            ->with('prestazioni', Prestazione::all())
+            ->with('agendaElements', $agendaElements)
+            ->with('showDate', $date)
+            ->with('success', $successMessage) // Pass success message to the view
+            ->with('error', $errorMessage);   // Pass error message to the view
     }
+
 
     public function cancel_appointment($id)
     {
@@ -50,6 +60,7 @@ class AgendaController extends Controller
             // Elimina l'elemento dell'agenda
             $agenda->idPrenotazione = null;
             $agenda->save();
+
             return redirect()->route('agenda')->with('success', 'Appuntamento cancellato con successo.');
         } else {
             return redirect()->route('agenda')->with('error', 'Appuntamento non trovato.');
@@ -74,7 +85,7 @@ class AgendaController extends Controller
 
             Log::debug("Found prenotazioni: ", $prenotazioni->toArray());
 
-            
+
             return view('areaPrestazioni.agenda_add_appointment')
                 ->with('agendaElement', $agenda)
                 ->with('prestazione', $prestazione)
@@ -135,12 +146,17 @@ class AgendaController extends Controller
         if ($agenda) {
 
             $idPrenotazione = $agenda->idPrenotazione;
-            $utente = Prenotazione::find($idPrenotazione)->cliente;
 
-            $notifica = new Notifica();
-            $notifica->username = $utente->username;
-            $notifica->contenuto = "L'elemento dell'agenda del " . $agenda->data . " alle " . $agenda->orario_inizio . " è stato eliminato.";
-            $notifica->save();
+            if ($idPrenotazione) {
+                $utente = Prenotazione::find($idPrenotazione)->cliente;
+
+                $notifica = new Notifica();
+                $notifica->username = $utente->username;
+                $notifica->contenuto = "L'elemento dell'agenda del " . $agenda->data . " alle " . $agenda->orario_inizio . " è stato eliminato.";
+                $notifica->save();
+            }
+
+
 
             // Elimina l'elemento dell'agenda
             $agenda->delete();
