@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('indirizzo')->nullable();
             $table->integer('livello')->default(2);
             $table->string('telefono', 10)->nullable();
-            $table->string('propic', 20)->default('default.jpg');
+            $table->string('propic')->default('default.jpg');
         });
     }
 
