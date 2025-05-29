@@ -40,7 +40,6 @@ class DipartimentoController extends Controller
 
     public function ajaxDescrizioneDipartimento (int $id):JsonResponse
     {
-        logger("Chiamato con ID: $id");
         $dipartimento = Dipartimento::find($id);
 
         if (!$dipartimento) {
