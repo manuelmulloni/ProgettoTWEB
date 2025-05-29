@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 
 class User extends Authenticatable
@@ -38,6 +39,7 @@ class User extends Authenticatable
         'indirizzo',
         'livello',
         'telefono',
+        'propic',
     ];
 
     // Relazione con il dipartimento
@@ -82,5 +84,10 @@ class User extends Authenticatable
     public function isCliente(): bool
     {
         return $this->livello == 2;
+    }
+
+    /* Get the full url to display the image */
+    public function profile_picture() {
+        return Storage::url("app/private/profile_pics/" . $this->propic);
     }
 }
