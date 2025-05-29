@@ -1,32 +1,29 @@
 @extends('layouts/skelet')
 
 @section('content')
-    <h1>Prenotazioni</h1>
+    <h1>Prestazioni</h1>
+    <label>Nome Dipartimento o nome Prestazione<input type='text' class='text'></inptut></label>
+    <button>Cerca</button>
     <div class="content">
-        @if ($prenotazioni->isEmpty())
-            <p>Non ci sono prenotazioni disponibili.</p>
-        @else
             <table>
                 <thead>
                 <tr>
                     <th>Data Esclusa</th>
                     <th>Nome Prestazione</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($prenotazioni as $prenotazione)
+                @foreach ($prestazioni as $prestazione)
                     <tr>
-                        <td>{{ $prenotazione->dataEsclusa }}</td>
-                        <td>{{ $prenotazione->prestazione->nome }}</td>
+                        <td>{{ $prestazione->nome }}</td>
+                        <td>{{ $prestazione->medico }}</td>
+                        <td><a href="{{route('prestazione.info',$prestazione->id)}}">Prenota</a></td>
                         <!-- metodi modifica o elimina prenotazione -->
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-        @endif
-        @if(auth()->user() && auth()->user()->livello === 2)
-            @include('utenti.prenotazioni_create')
-        @endif
     </div>
 @endsection
 

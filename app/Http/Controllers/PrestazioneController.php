@@ -13,6 +13,26 @@ use App\Http\Requests\NewPrestazioneRequest;
 class PrestazioneController extends Controller
 {
 
+    public function show_prestazione_element($id)
+    {
+        $prestazione = Prestazione::find($id);
+
+        if ($prestazione) {
+            return view('areaPrestazioni.prestazione_info')->with('prestazione', $prestazione);
+        } else {
+            return redirect()->back()->with('error', 'Prestazione non trovata.');
+        }
+    }
+    
+    public function show_prestazioniCliente()
+    {
+        Log::debug("Starting show_prestazioni method");
+        return view('utenti.prenotazioni', [
+            'prestazioni' => Prestazione::paginate(10), // Pagina con 10 prestazioni per volta
+            'dipartimenti' => Dipartimento::all(),
+        ]);
+    }
+    
     public function show_prestazioni()
     {
         Log::debug("Starting show_prestazioni method");
