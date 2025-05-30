@@ -22,7 +22,7 @@
 
         <div class="content">
             <h3>Le tue prenotazioni</h3>
-          <a href="{{route('prenotazione.show')}}">Prenota</a>
+          <a href="{{route('prestazioni.show')}}">Prenota</a>
         </div>
 
 

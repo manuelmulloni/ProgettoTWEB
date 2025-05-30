@@ -60,6 +60,8 @@ Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_p
 Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->name('prestazione.edit');
 Route::get('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');
 Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->name('prestazione.create');
+Route::get('/prestazioni/show', [PrestazioneController::class, "show_prestazioniCliente"])->name('prestazioni.show');
+Route::get('/prestazione/{id}', [PrestazioneController::class, "show_prestazione_element"])->name('prestazione.info');
 
 //Routes for PrenotazioneController
 Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'createPrenotazione'])->name('prenotazione.create');
