@@ -24,7 +24,7 @@ class PrestazioneController extends Controller
             return redirect()->back()->with('error', 'Prestazione non trovata.');
         }
     }
-    
+
     public function show_prestazioniCliente()
     {
         Log::debug("Starting show_prestazioni method");
@@ -33,7 +33,7 @@ class PrestazioneController extends Controller
             'dipartimenti' => Dipartimento::all(),
         ]);
     }
-    
+
     public function show_prestazioni()
     {
         Log::debug("Starting show_prestazioni method");
@@ -106,16 +106,6 @@ class PrestazioneController extends Controller
         }
     }
 
-    public function prestazione_search(Request $request){
-        $search = $request->input('search');
-        $prestazioni = Prestazione::where('nome', 'LIKE', '%' . $search . '%')
-            ->orWhereHas('dipartimento', function ($query) use ($search) {
-                $query->where('nome', 'LIKE', '%' . $search . '%');
-            })
-            ->paginate(10);
-        return view('prenotazioni', compact('prestazioni', 'search'));
-
-    }
 
     public function dipartimento()
     {
