@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestazione;
 use App\Models\Dipartimento;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Log;
@@ -85,4 +86,34 @@ class PrestazioneController extends Controller
         }
     }
 
+    public function prestazione_search(Request $request){
+        $search = $request->input('search');
+        $prestazioni = Prestazione::where('nome', 'LIKE', '%' . $search . '%')
+            ->orWhereHas('dipartimento', function ($query) use ($search) {
+                $query->where('nome', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+        return view('prenotazioni', compact('prestazioni', 'search'));
+
+    }
+
+    public function dipartimento()
+    {
+        return $this->belongsTo(Dipartimento::class);
+    }
+    public function autocomplete(Request $request)
+    {
+        $query = $request->get('query');
+
+        $results = Prestazione::where('nome', 'LIKE', "%{$query}%")
+            ->orWhereHas('dipartimento', function($q) use ($query) {
+                $q->where('nome', 'LIKE', "%{$query}%");
+            })
+            ->select('id', 'nome')
+            ->limit(10)
+            ->get();
+
+        return response()->json($results);
+
+    }
 }
