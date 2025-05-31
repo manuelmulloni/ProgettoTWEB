@@ -124,3 +124,35 @@ button a {
 .notification-close {
     cursor: pointer;
 }
+
+.client-nofication {
+    position: fixed;
+    top: 135px;
+    right: 0;
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+}
+
+.notification-item{
+    border-bottom: 1px solid #ddd;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.pagination-link{
+    padding: 5px 10px;
+    margin: 0 2px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: peachpuff;
+}
+
+.pagination-current{
+    background-color: #4ba3f7;
+}

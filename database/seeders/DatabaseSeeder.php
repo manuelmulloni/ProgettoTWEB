@@ -224,12 +224,54 @@ class DatabaseSeeder extends Seeder
 
         DB::table("notifiche")->insert([
             [
-                'username' => 'pazipazi',
-                'contenuto' => 'Promemoria: Visita cardiologica il 2024-01-22 alle 09:00.',
+            'username' => 'pazipazi',
+            'contenuto' => 'Promemoria: Visita cardiologica il 2024-01-22 alle 09:00.',
+            'created_at' => now(),
             ],
             [
-                'username' => 'pazipazi',
-                'contenuto' => 'Nuova funzionalità disponibile: Prenota online!',
+            'username' => 'pazipazi',
+            'contenuto' => 'Nuova funzionalità disponibile: Prenota online!',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Il tuo referto della visita cardiologica è disponibile.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Nuovo paziente assegnato per la visita di domani.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Aggiornamento sistema: Manutenzione programmata.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Ricorda di portare la documentazione precedente.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Riunione di reparto programmata per venerdì.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Nuovo protocollo sanitario disponibile.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'La sua richiesta di cambio appuntamento è stata accettata.',
+            'created_at' => now(),
+            ],
+            [
+            'username' => 'pazipazi',
+            'contenuto' => 'Aggiornamento turni disponibile.',
+            'created_at' => now(),
             ],
         ]);
     }

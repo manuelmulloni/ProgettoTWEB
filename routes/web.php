@@ -7,6 +7,7 @@ use App\Http\Controllers\PrestazioneController;
 use App\Http\Controllers\DipartimentoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PrenotazioneController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\IsAdmin;
 
 
@@ -39,6 +40,14 @@ require __DIR__ . '/dipartimenti.php'; // creare una view dinamica
 
 Route::get('/dipartimenti/{id}', [DipartimentoController::class, 'getDipendentiDipartimento'])
     ->name('dipSpec');  // da vedere il funzionamento, crea una view dinamica del dipartimento specifico
+
+Route::get('api/notifications', [NotificationController::class, 'get_notifications'])
+    ->name('notifications.get')
+    ->middleware(['auth']);
+
+Route::get('api/notifications_amount', [NotificationController::class, 'notificantion_amount'])
+    ->name('notifications.amount')
+    ->middleware(['auth']);
 
 Route::get('ajax/descrizione-dipartimento/{id}', [DipartimentoController::class, 'ajaxDescrizioneDipartimento'])->name('getDescDip');
 

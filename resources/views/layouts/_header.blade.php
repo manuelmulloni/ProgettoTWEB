@@ -16,6 +16,7 @@
 
     @if (Auth::check())
         <div class="user-info">
+            @include('utenti.user_notification')
             <span class="username">{{ Auth::user()->username }}</span>
             <img src="{{ Auth::user()->profile_picture() }}" alt="User Icon" class="profile-image">
             <button class="button-style delete-button">
