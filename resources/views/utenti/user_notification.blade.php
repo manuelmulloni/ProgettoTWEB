@@ -1,13 +1,11 @@
 @if (Auth::user()->isCliente())
+    <!-- From https://docs.fontawesome.com/web/style/layer -->
     <span class="fa-layers fa-fw notification-close" id="notificationIcon"> <i class="fa-solid fa-bell"></i> </span>
 
     <div class="client-nofication" id="userNotificationContainer" hidden>
 
         <div style="display: flex; justify-content: space-between;">
-            <h4>Notifica</h4>
-            <div id="notificationClose" class="notification-close">
-                <i class="fa-solid fa-circle-xmark"></i>
-            </div>
+            <h4>Notifiche</h4>
         </div>
 
         <div id="notificationList"></div>

@@ -19,9 +19,10 @@
             @include('utenti.user_notification')
             <span class="username">{{ Auth::user()->username }}</span>
             <img src="{{ Auth::user()->profile_picture() }}" alt="User Icon" class="profile-image">
-            <button class="button-style delete-button">
-                <a href="{{ route('logout') }}" class="logout-button">Logout</a>
-            </button>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="GET">
+                <button type="submit" class="button-style delete-button">Logout</button>
+            </form>
         </div>
     @else
         <!-- Icona Hamburger (sempre visibile) -->
