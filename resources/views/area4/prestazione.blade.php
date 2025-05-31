@@ -26,12 +26,14 @@
                             <td>{{ $prestazione->prescrizioni }}</td>
                             <td>
                                 @if(auth()->user() && auth()->user()->livello === 4)
-                                    <button class="edit-button button-style">
-                                        <a href="{{ route('prestazione.edit', $prestazione->id) }}">Modifica</a>
-                                    </button>
-                                    <button class="delete-button button-style">
-                                        <a href="{{ route('prestazione.delete', $prestazione->id) }}">Elimina</a>
-                                    </button>
+                                    <form action="{{ route('prestazione.edit', $prestazione->id) }}" method="GET">
+                                        <button type="submit" class="edit-button button-style">Modifica</button>
+                                    </form>
+                                    <form action="{{ route('prestazione.delete', $prestazione->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="delete-button button-style">Elimina</button>
+                                    </form>
                                 @endif
                             </td>
                         </tr>

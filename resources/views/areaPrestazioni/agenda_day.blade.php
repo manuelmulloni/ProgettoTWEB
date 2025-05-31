@@ -18,12 +18,14 @@
                     <td>{{ $prestazione->orario_inizio }}</td>
                     <td>{{ $prestazione->orario_fine }}</td>
                     <td>
-                        <button class="edit-button button-style">
-                            <a href="{{ route('agenda', $prestazione->id) }}">Modifica</a>
-                        </button>
-                        <button class="delete-button button-style">
-                            <a href="{{ route('agenda.delete', $prestazione->id) }}">Elimina</a>
-                        </button>
+                        <form action="{{ route('agenda', $prestazione->id) }}" method="GET">
+                            <button type="submit" class="edit-button button-style">Modifica</button>
+                        </form>
+                        <form action="{{ route('agenda.delete', $prestazione->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-button button-style">Elimina</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
