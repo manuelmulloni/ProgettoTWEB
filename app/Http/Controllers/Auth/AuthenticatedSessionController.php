@@ -51,7 +51,7 @@ class AuthenticatedSessionController extends Controller
 
         //Redirect personalizzato con isStaff()
         if ($user->isStaff()) {
-            return redirect()->intended('/staff');
+            return redirect()->route("agenda");
         }
         //Redirect personalizzato con isCliente()
         if ($user->isCliente()) {
