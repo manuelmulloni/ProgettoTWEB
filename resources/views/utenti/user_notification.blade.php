@@ -16,7 +16,7 @@
     <script>
         $(document).ready(function() {
 
-            function updateNoificationCount() {
+            function updateNotificationCount() {
                 $.ajax({
                     url: "{{ route('notifications.amount') }}",
                     type: "GET",
@@ -90,7 +90,7 @@
                         }
 
                         // Aggiorno il conteggio delle notifiche
-                        updateNoificationCount();
+                        updateNotificationCount();
 
                     },
                     error: function(xhr, status, error) {
@@ -112,7 +112,7 @@
                 }
             });
 
-            updateNoificationCount();
+            updateNotificationCount();
 
         });
     </script>
