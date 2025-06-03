@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Laravolt\Avatar\Facade as Avatar;
 
 class RegisteredUserController extends Controller
 {
@@ -51,7 +52,9 @@ class RegisteredUserController extends Controller
             Log::debug("Profile picture uploaded to: " . $profilePicturePath);
         } else {
             Log::warning("No profile picture uploaded, using default");
-            $profilePicturePath = 'default.jpg'; // Use a default image if none is provided
+            $random_safe_url_id = str_replace('.', '', uniqid('', true));
+            $profilePicturePath = $random_safe_url_id . '.png';
+            Avatar::create($request->nome . " " . $request->cognome)->save(storage_path('app/private/profile_pics/' . $profilePicturePath));
         }
 
         $user = User::create([
