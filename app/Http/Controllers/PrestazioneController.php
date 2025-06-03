@@ -119,7 +119,7 @@ class PrestazioneController extends Controller
             ->orWhereHas('dipartimento', function($q) use ($query) {
                 $q->where('nome', 'LIKE', "%{$query}%");
             })
-            ->select('id', 'nome')
+            ->select('id', 'nome', 'descrizione', 'prescrizioni', 'medico')
             ->limit(10)
             ->get();
 
