@@ -149,6 +149,11 @@ button a {
     background-color: #fff8f8;
 }
 
+.notification-pagination{
+    display: flex;
+    justify-content: center;
+}
+
 .pagination-link{
     padding: 5px 10px;
     margin: 0 2px;

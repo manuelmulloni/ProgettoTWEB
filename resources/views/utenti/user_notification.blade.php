@@ -112,6 +112,16 @@
                 }
             });
 
+            // https://stackoverflow.com/questions/1403615/use-jquery-to-hide-a-div-when-the-user-clicks-outside-of-it
+            $(document).mouseup(function(e) {
+                var container = $("#userNotificationContainer");
+
+                // if the target of the click isn't the container nor a descendant of the container
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    container.fadeOut();
+                }
+            });
+
             updateNotificationCount();
 
         });
