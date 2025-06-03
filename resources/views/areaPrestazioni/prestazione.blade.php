@@ -25,6 +25,7 @@
                             <td>{{ $prestazione->prescrizioni }}</td>
                             <td>
                                 @if(auth()->user() && auth()->user()->livello === 4)
+                                    <div style="display: flex; justify-content: center; gap: 10px;">
                                     <form action="{{ route('prestazione.edit', $prestazione->id) }}" method="GET">
                                         <button type="submit" class="edit-button button-style">Modifica</button>
                                     </form>
@@ -33,6 +34,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="delete-button button-style">Elimina</button>
                                     </form>
+                                    </div>
                                 @endif
                             </td>
                         </tr>
