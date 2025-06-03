@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\Dipartimento;
 use App\Models\Prenotazione;
 use App\Http\Requests\NewPrenotazioneRequest;
 use App\Models\Prestazione;
@@ -13,6 +14,7 @@ class PrenotazioneController extends Controller
 
         return view('utenti.prenotazioni', [
             'prenotazioni' => $prenotazioni,
+            'dipartimenti'=> Dipartimento::all(),
             'prestazioni' => Prestazione::all()
         ]);
     }
@@ -62,7 +64,11 @@ class PrenotazioneController extends Controller
         }
     }
 
-
+    public function getPrestazioni($id)
+    {
+        $prestazioni = Prestazione::where('idDipartimento', $id)->pluck('nome', 'id');
+        return response()->json($prestazioni);
+    }
 
 
 }

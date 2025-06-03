@@ -76,6 +76,9 @@ Route::get('/prestazione/{id}', [PrestazioneController::class, "show_prestazione
 Route::get('/cliente/prenotazione/show', [PrenotazioneController::class, 'showPrenotazioniCliente'])->name('prenotazione.show');
 Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'createPrenotazione'])->name('prenotazione.create');
 Route::get('/cliente/prenotazione/prestazione-autocomplete', [PrestazioneController::class, 'autocomplete'])->name('prestazione.autocomplete');
+Route::get('/cliente/prestazioni/{dipartimento}', [PrenotazioneController::class, 'getPrestazioni']);
+
+
 // Routes for the admin area
 Route::get('/admin', function () {
     return view('admin.area_admin');
