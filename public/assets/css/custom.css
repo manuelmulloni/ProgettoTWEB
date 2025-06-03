@@ -165,3 +165,9 @@ button a {
 .pagination-current{
     background-color: #4ba3f7;
 }
+
+.pagination{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}

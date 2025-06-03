@@ -39,6 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $prestazioni->links("paginator") }}
         @endif
         @if(auth()->user() && auth()->user()->livello === 4)
             @yield('form')
