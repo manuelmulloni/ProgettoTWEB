@@ -26,7 +26,7 @@ class AgendaController extends Controller
             $date = date('Y-m-d'); // Imposta la data di oggi se non è fornita
         }
 
-        $agendaElements = Agenda::where('data', $date)->get();
+        $agendaElements = Agenda::where('data', $date)->paginate(10);
         Log::debug("Agenda elements for today: ", $agendaElements->toArray());
 
         // Retrieve flash messages

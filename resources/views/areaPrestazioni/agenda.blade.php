@@ -35,6 +35,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $agendaElements->links("paginator") }}
         <div class="operations" style="display: flex; justify-content: space-between; margin-top: 20px;">
             @yield('form')
             <div class="">
