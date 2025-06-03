@@ -5,6 +5,7 @@ use App\Models\Prenotazione;
 use App\Http\Requests\NewPrenotazioneRequest;
 use App\Models\Prestazione;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class PrenotazioneController extends Controller
 {
@@ -70,5 +71,19 @@ class PrenotazioneController extends Controller
         return response()->json($prestazioni);
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'prestazione_id' => 'required|exists:prestazioni,id',
+        ]);
+
+        Prenotazione::create([
+            'idPrestazione' => $request->prestazione_id,
+            'usernamePaziente' => Auth::user()->username,
+            'dataEsclusa' => now(), // oppure da input utente
+        ]);
+
+        return redirect()->back()->with('success', 'Prenotazione effettuata con successo!');
+    }
 
 }
