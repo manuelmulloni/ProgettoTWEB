@@ -145,6 +145,10 @@ button a {
     gap: 10px;
 }
 
+.notification-item-new{
+    background-color: #fff8f8;
+}
+
 .pagination-link{
     padding: 5px 10px;
     margin: 0 2px;

@@ -25,7 +25,7 @@
                         if (response.unread_count > 0) {
                             $('#notificationIcon').html(
                                 '<i class="fa-solid fa-bell"></i>' +
-                                `<span class="fa-layers-counter" style="background:Tomato">${response.unread_count}</span>`
+                                `<span class="fa-layers-counter" style="background:Tomato; font-size: 2em">${response.unread_count}</span>`
                             );
                         } else {
                             $('#notificationIcon').html('<i class="fa-solid fa-bell"></i>');
@@ -54,7 +54,7 @@
                             response.data.forEach(function(notification) {
                                 $('#notificationList').append(
 
-                                    `<div class="notification-item" id="notif-page-${notification.id}">` +
+                                    `<div class="notification-item ${notification.letto === 1 ? "" : "notification-item-new"} " id="notif-page-${notification.id}">` +
                                     `<p>${notification.contenuto}</p>` +
                                     `<small class="notification-date">${notification.created_at}</small>` +
                                     `</div>`
