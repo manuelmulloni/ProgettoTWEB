@@ -15,4 +15,4 @@ Route::get('/admin/getStaff', [UserController::class, 'getStaff'])->name('getSta
 Route::get('/admin/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
     ->name('dipartimentiAdmin'); // mostra tutti i dipartimenti dinamicamente
 
-
+Route::post('/admin/dipartimento/new', [DipartimentoController::class, 'newDipartimento'])->name('dipartimento.create');

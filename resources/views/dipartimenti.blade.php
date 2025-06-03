@@ -17,6 +17,10 @@
                     @endforeach
                 </ul>
             @endif
+            
+
+            @yield("form")
+
         </div>
 @endsection
 
