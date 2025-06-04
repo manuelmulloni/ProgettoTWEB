@@ -10,6 +10,7 @@
     <link rel="stylesheet" type= "text/css" href="{{ asset('assets/css/custom.css') }}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/2e1e0ffb29.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 </head>
 
 

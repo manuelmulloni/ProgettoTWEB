@@ -171,3 +171,10 @@ button a {
     justify-content: space-around;
     margin-top: 10px;
 }
+
+.help-block{
+   padding-top: -10px;
+   padding-bottom: 10px;
+   color: red;
+   font-size: 0.7em;
+}
