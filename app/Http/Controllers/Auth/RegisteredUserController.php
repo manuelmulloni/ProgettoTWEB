@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
 
         // Handle profile picture upload
         if ($request->hasFile('profile_picture')) {
-            $profilePicturePath = basename($request->file('profile_picture')->store('profile_pics', 'local'));
+            $profilePicturePath = basename($request->file('profile_picture')->store('profile_pics', 'public'));
             Log::debug("Profile picture uploaded to: " . $profilePicturePath);
         } else {
             Log::warning("No profile picture uploaded, using default");

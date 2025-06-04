@@ -8,6 +8,7 @@ use App\Http\Controllers\DipartimentoController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\PrenotazioneController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 
 
@@ -78,6 +79,10 @@ Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'create
 Route::get('/cliente/prenotazione/prestazione-autocomplete', [PrestazioneController::class, 'autocomplete'])->name('prestazione.autocomplete');
 Route::get('/cliente/prestazioni/{dipartimento}', [PrenotazioneController::class, 'getPrestazioni']);
 Route::post('/cliente/prenotazioni/store', [PrenotazioneController::class, 'store'])->name('prenotazioni.store');
+
+
+Route::get('/user/edit', [UserController::class, 'showEditUser'])->name('user.edit');
+Route::post('/user/edit', [UserController::class, 'editUser'])->name('user.update');
 
 
 // Routes for the admin area

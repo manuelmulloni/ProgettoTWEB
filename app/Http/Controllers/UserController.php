@@ -8,13 +8,50 @@ use App\Models\User;
 use App\Models\Agenda;
 use App\Models\Prestazione;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Validation\Rules;
 
 
 class UserController extends Controller
 {
 
+    public function showEditUser(){
+        $user = auth()->user();
+        return view('utenti.user_modify', ['user' => $user]);
+    }
 
+
+    public function editUser(Request $request){
+        $user = auth()->user();
+
+        $request->validate([
+            'nome' => ['required', 'string', 'max:20'],
+            'cognome' => ['required', 'string', 'max:20'],
+            'telefono' => ['required', 'string', 'max:10'],
+            'indirizzo' => ['required', 'string', 'max:255'],
+            'profile_picture' => ['image', 'max:4000'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user->nome = $request->input('nome');
+        $user->cognome = $request->input('cognome');
+        $user->telefono = $request->input('telefono');
+        $user->indirizzo = $request->input('indirizzo');
+
+        if (request('password')) {
+            $user->password = Hash::make(request('password'));
+        }
+
+        if ($request->hasFile('profile_picture')) {
+            $profilePicturePath = basename($request->file('profile_picture')->store('profile_pics', 'public'));
+            $user->propic = $profilePicturePath;
+        }
+
+
+
+        $user->save();
+
+        return redirect()->route('cliente')->with('success', 'Profilo aggiornato con successo!');
+    }
 
     // Funzione per vedere i dipendenti (admin)
     public function getStaff(Request $request){

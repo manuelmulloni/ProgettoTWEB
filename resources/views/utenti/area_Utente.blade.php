@@ -21,10 +21,18 @@
         </div>
 
         <div class="content">
+            <h3>Modifica le tue informazioni</h3>
+            <a href="{{ route('user.edit') }}">Modifica</a>
+        </div>
+
+        <div class="content">
             <h3>Le tue prenotazioni</h3>
           <a href="{{route('prenotazione.show')}}">Prenota</a>
         </div>
 
 
     </div>
+
+
+    @include('layouts.timed_notif')
 @endsection
