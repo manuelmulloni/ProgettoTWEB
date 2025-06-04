@@ -16,6 +16,9 @@ Route::get('/admin/dipartimenti', [DipartimentoController::class, 'getDipartimen
     ->name('dipartimentiAdmin'); // mostra tutti i dipartimenti dinamicamente
 
 Route::post('/admin/dipartimento/new', [DipartimentoController::class, 'newDipartimento'])->name('dipartimento.create');
+Route::delete('/admin/dipartimento/cancella/{id}', [DipartimentoController::class, 'cancellaDipartimento'])->name('dipartimento.cancella');
+Route::get('/admin/dipartimento/edit/{id}', [DipartimentoController::class, 'show_Modifica_Dipartimento'])->name('dipartimento.modifica');
+Route::post('/admin/dipartimento/edit/{id}', [DipartimentoController::class, 'modificaDipartimento'])->name('dipartimento.modifica');
 
 Route::get('/admin/statistiche',function (){
     return view('admin.statistiche');
