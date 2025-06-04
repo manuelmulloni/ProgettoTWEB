@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Benvenuti nel sito del Poliambulatorio Salus</h1>
-        <p>La nostra missione è fornire i migliori servizi ai nostri clienti</p>
+        <p>La nostra missione è fornire i migliori servizi ai nostri clienti!</p>
     <img src="{{ asset('immagini/immagine.jpg') }}" alt="Immagine Poliambulatorio" style="width: 100%; height: auto;">
 
 
