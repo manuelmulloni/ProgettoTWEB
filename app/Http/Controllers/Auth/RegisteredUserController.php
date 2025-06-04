@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
             Log::warning("No profile picture uploaded, using default");
             $random_safe_url_id = str_replace('.', '', uniqid('', true));
             $profilePicturePath = $random_safe_url_id . '.png';
-            Avatar::create($request->nome . " " . $request->cognome)->save(storage_path('app/private/profile_pics/' . $profilePicturePath));
+            Avatar::create($request->nome . " " . $request->cognome)->save(storage_path('app/public/profile_pics/' . $profilePicturePath));
         }
 
         $user = User::create([

@@ -88,6 +88,6 @@ class User extends Authenticatable
 
     /* Get the full url to display the image */
     public function profile_picture() {
-        return Storage::url("app/private/profile_pics/" . $this->propic);
+        return asset("profile_pics/" . $this->propic);
     }
 }

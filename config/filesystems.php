@@ -74,9 +74,9 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        // public_path('storage') => storage_path('app/public'),
         // Immagini profilo utenti
-        public_path('propics') => storage_path('app/private/profile_pics'),
+        public_path('profile_pics') => storage_path('app/public/profile_pics'),
 
     ],
 
