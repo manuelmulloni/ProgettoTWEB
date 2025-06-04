@@ -60,4 +60,6 @@
 
         {{ html()->closeModelForm() }}
     </div>
+
+    {!! JsValidator::formRequest('App\Http\Requests\ProfileUpdateRequest') !!}
 @endsection
