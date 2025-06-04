@@ -6,6 +6,7 @@ use App\Models\Prestazione;
 use App\Models\Dipartimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
 
@@ -125,5 +126,39 @@ class PrestazioneController extends Controller
 
         return response()->json($results);
 
+    }
+
+    public function statsByDip(Request $request)
+    {
+        $statistiche = Dipartimento::join('prestazioni', 'prestazioni.idDipartimento', '=', 'dipartimenti.id')
+            ->join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
+            ->select('dipartimenti.nome', DB::raw('COUNT(*) as total'))
+            ->groupBy('dipartimenti.nome')
+            ->get();
+
+        return response()->view('admin.stats.byDipartimento', [
+            'statistiche' => $statistiche,
+        ]);
+    }
+
+    public function statsByPrestazione(Request $request){
+        $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
+            ->select('prestazioni.nome',DB::raw('COUNT(*) as total'))
+            ->groupBy('prestazioni.nome')
+            ->get();
+
+        return response()->view('admin.stats.byPrestazione', [
+            'statistiche' => $statistiche,
+        ]);
+    }
+
+    public function statsByCliente(Request $request){
+        $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
+            ->select('prenotazioni.usernamePaziente', DB::raw('COUNT(*) as total'))
+            ->groupBy('prenotazioni.usernamePaziente')
+            ->get();
+        return response()->view('admin.stats.byCliente', [
+            'statistiche' => $statistiche,
+        ]);
     }
 }

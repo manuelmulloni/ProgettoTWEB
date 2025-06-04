@@ -12,5 +12,8 @@
     <div class="container">
         <a href = "{{route('getStaff')}}" class = "button" > Staff</a>
     </div>
+    <div class="container">
+        <a href = "{{route('statistiche')}}" class = "button" >Statistiche</a>
+    </div>
 @endsection
 

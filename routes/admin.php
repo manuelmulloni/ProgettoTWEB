@@ -16,3 +16,14 @@ Route::get('/admin/dipartimenti', [DipartimentoController::class, 'getDipartimen
     ->name('dipartimentiAdmin'); // mostra tutti i dipartimenti dinamicamente
 
 Route::post('/admin/dipartimento/new', [DipartimentoController::class, 'newDipartimento'])->name('dipartimento.create');
+
+Route::get('/admin/statistiche',function (){
+    return view('admin.statistiche');
+})->name('statistiche');
+
+Route::get('/admin/prestazioni/byCliente', [PrestazioneController::class, 'statsByCliente'])
+    ->name('stat.Cliente');
+Route::get('/admin/prestazioni/byDipartimento', [PrestazioneController::class, 'statsByDip'])
+    ->name('stat.Dipartimento');
+Route::get('/admin/prestazioni/byPrestazione', [PrestazioneController::class, 'statsByPrestazione'])
+    ->name('stat.Prestazione');
