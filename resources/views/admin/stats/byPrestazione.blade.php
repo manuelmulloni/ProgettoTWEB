@@ -6,7 +6,7 @@
             <thead>
             <tr>
                 <th>Prestazione</th>
-                <th>Numero di Prenotazioni</th>
+                <th>Numero di Prenotazioni.</th>
             </tr>
             </thead>
             <tbody>
