@@ -61,4 +61,5 @@
             @endif
         </div>
     </div>
+    {!! JsValidator::formRequest('App\Http\Requests\AddPrestazioniToUserRequest') !!}
 @endsection
