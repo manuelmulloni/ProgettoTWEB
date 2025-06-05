@@ -136,7 +136,7 @@ button a {
     border: 1px solid #ddd;
 }
 
-.notification-item{
+.notification-item {
     border-bottom: 1px solid #ddd;
     padding-top: 10px;
     display: flex;
@@ -145,16 +145,16 @@ button a {
     gap: 10px;
 }
 
-.notification-item-new{
+.notification-item-new {
     background-color: #fff8f8;
 }
 
-.notification-pagination{
+.notification-pagination {
     display: flex;
     justify-content: center;
 }
 
-.pagination-link{
+.pagination-link {
     padding: 5px 10px;
     margin: 0 2px;
     border-radius: 5px;
@@ -162,19 +162,27 @@ button a {
     background-color: peachpuff;
 }
 
-.pagination-current{
+.pagination-current {
     background-color: #4ba3f7;
 }
 
-.pagination{
+.pagination {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
 }
 
-.help-block{
-   padding-top: -10px;
-   padding-bottom: 10px;
-   color: red;
-   font-size: 0.7em;
+.help-block {
+    padding-top: -10px;
+    padding-bottom: 10px;
+    color: red;
+    font-size: 0.7em;
+}
+
+.vertical-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
