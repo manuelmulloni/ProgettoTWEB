@@ -35,7 +35,7 @@ class AssegnazioniPrestazioni extends Model
 		'utente_id'
 	];
 
-	public function prestazioni()
+	public function prestazione()
 	{
 		return $this->belongsTo(Prestazione::class, 'prestazione_id');
 	}

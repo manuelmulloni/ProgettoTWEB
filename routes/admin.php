@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PrestazioneController;
 use App\Http\Controllers\DipartimentoController;
+use App\Http\Controllers\AssegnazioniPrestazioniController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\UserController;
 
@@ -30,3 +31,6 @@ Route::get('/admin/prestazioni/byDipartimento', [PrestazioneController::class, '
     ->name('stat.Dipartimento');
 Route::get('/admin/prestazioni/byPrestazione', [PrestazioneController::class, 'statsByPrestazione'])
     ->name('stat.Prestazione');
+
+Route::post('/admin/staff/prestazioni', [AssegnazioniPrestazioniController::class, 'updatePrestazioni'])
+    ->name('admin.staff.updatePrestazioni');

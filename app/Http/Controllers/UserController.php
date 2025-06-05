@@ -9,6 +9,7 @@ use App\Models\Agenda;
 use App\Models\Prestazione;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\AssegnazioniPrestazioni;
 
 
 class UserController extends Controller
@@ -56,9 +57,13 @@ class UserController extends Controller
     // Funzione per vedere i dipendenti (admin)
     public function getStaff(Request $request){
 
-        $query = $request->input('query');
         $utenti = User::all()->where('livello', '=', 3);
-        return view('admin.getStaff', ['utenti' => $utenti]);
+
+        foreach ($utenti as $utente){
+            $utente->prestazioni = AssegnazioniPrestazioni::where('utente_id', $utente->username)->get();
+        }
+
+        return view('admin.getStaff', ['utenti' => $utenti, 'prestazioni' => Prestazione::all()]);
 
 
 

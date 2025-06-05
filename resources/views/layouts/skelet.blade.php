@@ -34,6 +34,10 @@
     @include('layouts/_footer')
 </footer>
 
+
+
+@include('layouts.timed_notif')
+
 </body>
 
 <script src="{{ asset('assets/javascript/script.js') }}"></script>
