@@ -25,6 +25,11 @@
         {{ html()->select('idDipartimento')->class('select-style')->required()->options($dipartimenti->pluck('nome', 'id')) }}
     </div>
 
+    <div class="form-group">
+        {{ html()->label('Staff')->for('medico') }}
+        {{ html()->select('medico')->class('form-control')->required()->options($utenti->pluck('nome', 'username')) }}
+    </div>
+
     {{ html()->submit('Modifica Prestazione')->class('submit-button button-style') }}
 
     {{ html()->closeModelForm() }}

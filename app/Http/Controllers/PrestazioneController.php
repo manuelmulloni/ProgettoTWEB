@@ -77,14 +77,15 @@ class PrestazioneController extends Controller
     public function show_edit_prestazione($id)
         {
           $user = Auth::user();
-            if ($user->livello != 4) {
+            if ($user->livello == 4) {
                 $prestazione = Prestazione::find($id);
                 if ($prestazione) {
-                    return view('areaPrestazioni.prestazione_edit', [ // View non aggiornata
+                    return view('admin.prestazione_edit', [ // View non aggiornata
                         'id' => $id, // Incluso nell'url, ma laravel da errore se non lo passo
-                        'prestazioni' => Prestazione::all(),
+                        'prestazioni' => Prestazione::paginate(10),
                         'prestazione' => $prestazione,
                         'dipartimenti' => Dipartimento::all(),
+                        'utenti' => DB::table('utenti')->where('livello', 3)->get(),
                     ]);
                 } else {
                     return redirect()->back()->with('error', 'Prestazione non trovata.');
@@ -95,7 +96,7 @@ class PrestazioneController extends Controller
     public function edit_prestazione($id, NewPrestazioneRequest $request)
     {
         $user = Auth::user();
-        if ($user->livello != 4) {
+        if ($user->livello == 4) {
                 Log::debug("Starting edit_prestazione method");
                 Log::debug("Request data: ", $request->all());
                 Log::debug("Prestazione ID: ", array($id));
