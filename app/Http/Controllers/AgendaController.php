@@ -10,7 +10,9 @@ use App\Models\Dipartimento;
 use App\Models\User;
 use App\Models\Notifica;
 use App\Models\Prenotazione;
+use App\Models\AssegnazioniPrestazioni;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
 use App\Http\Requests\NewAgendaElementRequest;
 
@@ -26,15 +28,27 @@ class AgendaController extends Controller
             $date = date('Y-m-d'); // Imposta la data di oggi se non è fornita
         }
 
-        $agendaElements = Agenda::where('data', $date)->paginate(10);
+        // Get the logged-in user
+        $user = Auth::user();
+
+        // Get the prestazioni assigned to the logged-in user
+        $prestazioniIds = AssegnazioniPrestazioni::where('utente_id', $user->username)->pluck('prestazione_id');
+
+        // Filter agenda elements based on prestazioni assigned to the user
+        $agendaElements = Agenda::where('data', $date)
+            ->whereIn('idPrestazione', $prestazioniIds)
+            ->paginate(10);
+
         Log::debug("Agenda elements for today: ", $agendaElements->toArray());
 
         // Retrieve flash messages
         $successMessage = session('success');
         $errorMessage = session('error');
 
+        $prestazioni = Prestazione::whereIn('id', $prestazioniIds)->get();
+
         return view('areaPrestazioni.agenda_add')
-            ->with('prestazioni', Prestazione::all())
+            ->with('prestazioni', $prestazioni)
             ->with('agendaElements', $agendaElements)
             ->with('showDate', $date)
             ->with('success', $successMessage) // Pass success message to the view

@@ -274,5 +274,22 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             ],
         ]);
+
+        DB::table("assegnazioni_prestazioni")->insert([
+            [
+                'prestazione_id' => 1,
+                'utente_id' => 'staffstaff',
+            ],
+            [
+                'prestazione_id' => 2,
+                'utente_id' => 'staffstaff',
+            ],
+            [
+                'prestazione_id' => 3,
+                'utente_id' => 'staffstaff',
+            ],
+        ]);
+
+
     }
 }

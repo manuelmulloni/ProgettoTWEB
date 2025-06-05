@@ -7,3 +7,7 @@
 ```bash
 php artisan vendor:publish --provider="Proengsoft\JsValidation\JsValidationServiceProvider"
 ```
+- [reliese/laravel](https://github.com/reliese/laravel)
+```bash
+php artisan code:models --table=assegnazioni_prestazioni
+```
