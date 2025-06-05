@@ -4,7 +4,7 @@
 
     <div class="client-nofication" id="userNotificationContainer" hidden>
 
-        <div style="display: flex; justify-content: space-between;">
+        <div class="flex-space-between">
             <h4>Notifiche</h4>
         </div>
 

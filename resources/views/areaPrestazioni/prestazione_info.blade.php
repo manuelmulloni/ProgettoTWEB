@@ -5,44 +5,29 @@
     <div class="container">
 
         {{-- Main grid container --}}
-        <div
-            style="
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Creates two columns, each taking equal width */
-            grid-template-rows: auto auto; /* Creates two rows, height adjusts to content */
-            gap: 20px; /* Space between grid items */
-            margin-bottom: 20px; /* Margin below the entire grid */
-            /* Optional: Add a max-width to the grid if it should not span the full container width */
-            /* max-width: 800px; */
-            /* margin-left: auto; */
-            /* margin-right: auto; */
-        ">
+        <div class="two-by-two-grid">
             {{-- Grid Item 1: Nome --}}
-            <div
-                style="text-align: center; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+            <div class="grid-item">
                 <small>Slot dello</small> <br>
                 <strong>{{ $prestazione->nome }}</strong>
             </div>
 
             {{-- Grid Item 2: Descrizione --}}
-            <div
-                style="text-align: center; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+            <div class="grid-item">
                 <small>Descrizione</small> <br>
                 <strong>{{ $prestazione->descrizione }}</strong>
             </div>
 
             {{-- Grid Item 3: Prescrizioni --}}
-            <div
-                style="text-align: center; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+            <div class="grid-item">
                 <small>Prescrizioni</small> <br>
                 <strong>{{ $prestazione->prescrizioni }}</strong>
             </div>
 
             {{-- Grid Item 4: Medico --}}
-            <div
-                style="text-align: center; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
-                    <small>Medico</small> <br>
-                    <strong>{{ $prestazione->medico }}</strong>
+            <div class="grid-item">
+                <small>Medico</small> <br>
+                <strong>{{ $prestazione->medico }}</strong>
             </div>
         </div>
 

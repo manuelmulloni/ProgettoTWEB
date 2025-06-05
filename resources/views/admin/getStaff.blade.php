@@ -38,10 +38,11 @@
                                 <td>{{ $utente->indirizzo }}</td>
                                 <td>{{ $utente->telefono }}</td>
                                 <td>
-                                    <ul style="list-style-type: none; padding: 0; display: flex; flex-direction: column;">
+                                    <ul class="vertical-flex">
                                         @foreach ($utente->prestazioni as $prestazione)
-                                            <li style="border: 1px lightgray solid; border-radius: 10px">
-                                                {{ $prestazione->prestazione->nome }}</li>
+                                            <li>
+                                                {{ $prestazione->prestazione->nome }}
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </td>
@@ -49,13 +50,13 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="content" style="display: flex; flex-direction: column; align-items: left;">
-                    <select name="prestazioni[]" multiple style="height: 150px;">
+                <div class="content vertical-flex">
+                    <select name="prestazioni[]" multiple style="height: 150px; width: 300px;">
                         @foreach ($prestazioni as $prestazione)
                             <option value="{{ $prestazione->id }}">{{ $prestazione->nome }}</option>
                         @endforeach
                     </select>
-                    <button type="submit">Aggiorna Prestazioni</button>
+                    <button type="submit" class="button-style edit-button">Aggiorna Prestazioni</button>
                 </div>
             </form>
         @endif

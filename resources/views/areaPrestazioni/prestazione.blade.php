@@ -25,7 +25,7 @@
                             <td>{{ $prestazione->prescrizioni }}</td>
                             <td>
                                 @if(auth()->user() && auth()->user()->livello === 4)
-                                    <div style="display: flex; justify-content: center; gap: 10px;">
+                                    <div class="flex-center">
                                     <form action="{{ route('prestazione.edit', $prestazione->id) }}" method="GET">
                                         <button type="submit" class="edit-button button-style">Modifica</button>
                                     </form>

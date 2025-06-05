@@ -21,7 +21,7 @@
                         <td>{{ $element->data }}</td>
                         <td>{{ $element->orario_inizio }}</td>
                         <td>{{ $element->prenotazione ? 'Sì' : 'No' }}</td>
-                        <td style="display: flex; gap: 10px; justify-content: center;">
+                        <td class="flex-center">
                             <form action="{{ route('agenda.show', $element->id) }}" method="GET">
                                 <button type="submit" class="button-style edit-button">Modifica</button>
                             </form>
@@ -36,7 +36,7 @@
             </tbody>
         </table>
         {{ $agendaElements->links("paginator") }}
-        <div class="operations" style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <div class="flex-space-between" style="margin-top: 20px;">
             @yield('form')
             <div class="">
                 <label for="datePicker" class="form-label">Seleziona Data:</label>

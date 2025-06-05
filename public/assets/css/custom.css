@@ -186,3 +186,41 @@ button a {
     justify-content: center;
     gap: 10px;
 }
+
+.vertical-flex li {
+    border: 1px lightgray solid;
+    padding: 1px 1px;
+    border-radius: 3px
+}
+
+.two-by-two-grid {
+    display: grid;
+    /* Creates two columns, each taking equal width */
+    grid-template-columns: repeat(2, 1fr);
+    /* Creates two rows, height adjusts to content */
+    grid-template-rows: auto auto;
+    /* Space between grid items */
+    gap: 20px;
+    /* Margin below the entire grid */
+    margin-bottom: 20px;
+}
+
+.grid-item {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
