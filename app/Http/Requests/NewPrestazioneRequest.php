@@ -26,6 +26,7 @@ class NewPrestazioneRequest extends FormRequest
             'descrizione' => 'required|string',
             'prescrizioni' => 'required|string|max:100',
             'idDipartimento' => 'required|integer|exists:dipartimenti,id',
+            'medico' => 'required|string|exists:utenti,username',
         ];
     }
 }

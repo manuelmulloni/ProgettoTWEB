@@ -15,7 +15,7 @@ class Prestazione extends Model
         'descrizione',
         'prescrizioni',
         'idDipartimento',
-        'usernameMedico',
+        'medico',
     ];
 
     public function dipartimento()
@@ -25,7 +25,7 @@ class Prestazione extends Model
 
     public function medico()
     {
-        return $this->belongsTo(User::class, 'usernameMedico', 'username');
+        return $this->belongsTo(User::class, 'medico', 'username');
     }
 
 

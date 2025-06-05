@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        
+
     {{ html()->form('POST', route('prenotazione.create'))->class('form-style')->open() }}
 
         {{ html()->hidden('idPrestazione', $prestazione->id) }}
@@ -59,6 +59,7 @@
     <div class="form-group">
         {{ html()->hidden('usernamePaziente', Auth::user()->username) }}
     </div>
+
 
     {{ html()->submit('Prenota')->class('submit-button button-style') }}
 

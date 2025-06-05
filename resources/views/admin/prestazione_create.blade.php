@@ -3,7 +3,6 @@
 @section('form')
 
     {{ html()->form('POST', route('prestazione.create'))->class('form-style')->open() }}
-
     <h3 class="form-description">Nuova Prestazione</h3>
 
     <div class="form-group">
@@ -25,6 +24,12 @@
         {{ html()->label('Dipartimento')->for('idDipartimento') }}
         {{ html()->select('idDipartimento')->class('select-style')->required()->options($dipartimenti->pluck('nome', 'id')) }}
     </div>
+
+    <div class="form-group">
+        {{ html()->label('Staff')->for('medico') }}
+        {{ html()->select('medico')->class('select-style')->required()->options($utenti->pluck('nome', 'username')) }}
+    </div>
+
 
     {{ html()->submit('Aggiungi Prestazione')->class('submit-button button-style') }}
 

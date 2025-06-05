@@ -32,6 +32,7 @@ class PrestazioneController extends Controller
         return view('utenti.prenotazioni', [
             'prestazioni' => Prestazione::paginate(10), // Pagina con 10 prestazioni per volta
             'dipartimenti' => Dipartimento::all(),
+
         ]);
     }
 
@@ -41,7 +42,9 @@ class PrestazioneController extends Controller
         return view('admin.prestazione_create', [
             'prestazioni' => Prestazione::paginate(10), // Pagina con 10 prestazioni per volta
             'dipartimenti' => Dipartimento::all(),
+            'utenti' => DB::table('utenti')->where('livello', 3)->get(),
         ]);
+
     }
 
     public function delete_prestazione($id)
