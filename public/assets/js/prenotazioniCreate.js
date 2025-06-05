@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         prestazioneSelect.innerHTML = '<option disabled selected>Caricamento...</option>';
 
-        fetch(`cliente/prestazioni/${dipId}`)
+        fetch(route('prestazione.info', dipId))
             .then(response => {
                 if (!response.ok) throw new Error(`Errore HTTP: ${response.status}`);
                 return response.json();

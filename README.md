@@ -11,3 +11,4 @@ php artisan vendor:publish --provider="Proengsoft\JsValidation\JsValidationServi
 ```bash
 php artisan code:models --table=assegnazioni_prestazioni
 ```
+- [ziggy](https://github.com/tighten/ziggy)

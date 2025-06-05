@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poliambulatorio Salus</title>
+    @routes
     <link rel="stylesheet" type= "text/css" href="{{ asset('assets/css/body.css') }}">
     <link rel="stylesheet" type= "text/css" href="{{ asset('assets/css/containers.css') }}">
     <link rel="stylesheet" type= "text/css" href="{{ asset('assets/css/structure.css') }}">

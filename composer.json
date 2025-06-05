@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.10.1",
         "laravolt/avatar": "^6.2",
         "proengsoft/laravel-jsvalidation": "^4.10",
-        "spatie/laravel-html": "^3.12"
+        "spatie/laravel-html": "^3.12",
+        "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
