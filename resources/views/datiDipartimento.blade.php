@@ -1,6 +1,4 @@
 @extends('layouts/skelet')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 
 @section('content')
     <div class="entry" id="{{ $dipartimento->id }}">
@@ -22,34 +20,6 @@
     </div>
 @endsection
 
-   <script>
-        $(function () {
-            $('.entry').on('click', function () {
-                injectDescLong($(this), "{{ route('getDescDip', ['id' => 'idPlaceholder']) }}");
-            });
-        });
 
-        function injectDescLong(dipartimento, route) {
-            const id = dipartimento.attr('id');
-            const lDesc = dipartimento.find('.lDesc');
-            const lDescLable = dipartimento.find('.lDescLable');
-
-            if (lDesc.is(':empty')) {
-                $.ajax({
-                    type: 'GET',
-                    url: route.replace('idPlaceholder', id),
-                    dataType: "json",
-                    success: function (data) {
-                        lDesc.html(data.descrizione).show();
-                        lDescLable.html('Descrizione estesa (<span style="color:red;">nascondi</span>)');
-                    }
-                });
-            } else if (lDesc.is(':hidden')) {
-                lDesc.show();
-                lDescLable.html('Descrizione estesa (<span style="color:red;">nascondi</span>)');
-            } else {
-                lDesc.hide();
-                lDescLable.html('Descrizione estesa (<span style="color:red;">mostra</span>)');
-            }
-        }
-    </script>
+<meta data-for-external-file="{{ json_encode(['id' => $dipartimento->id]) }}">
+<script src="{{ asset('assets/js/datiDipartimento.js') }}"></script>

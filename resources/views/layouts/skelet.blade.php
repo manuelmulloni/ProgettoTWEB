@@ -40,6 +40,6 @@
 
 </body>
 
-<script src="{{ asset('assets/javascript/script.js') }}"></script>
+<script src="{{ asset('assets/js/header.js') }}"></script>
 
 </html>
