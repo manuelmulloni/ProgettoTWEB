@@ -1,22 +1,11 @@
-// Seleziona l'icona hamburger e il menu
-const hamburger = document.querySelector('.hamburger-icon');
-const mobileMenu = document.querySelector('.mobile-menu');
-
-// Aggiungi un listener per l'evento click sull'icona hamburger
-hamburger.addEventListener('click', () => {
-    // Toglie/aggiunge la classe 'is-open' al menu per mostrarlo/nasconderlo
-    mobileMenu.classList.toggle('is-open');
-
-    // Aggiorna l'attributo aria-expanded per l'accessibilità
-    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-    hamburger.setAttribute('aria-expanded', !isExpanded);
+document.addEventListener('DOMContentLoaded', function () {
+    $('.hamburger-icon').click(function() {
+        $('.mobile-menu').toggleClass('is-open');
+        const isExpanded = $(this).attr('aria-expanded') === 'true';
+        $(this).attr('aria-expanded', !isExpanded);
+    });
 });
 
 function toggleForm(id) {
-    const form = document.getElementById('form-' + id);
-    if (form.style.display === 'none' || form.style.display === '') {
-        form.style.display = 'block';
-    } else {
-        form.style.display = 'none';
-    }
+    $('#form-' + id).toggle();
 }
