@@ -17,8 +17,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $DEPLOYMENT = 'dev';
-        $PASSWORD = $DEPLOYMENT === 'dev' ? 'pass' : 'nlFHnlFH';
+        $hostname = gethostname();
+
+        $PASSWORD = $hostname === 'tweban.dii.univpm.it' ? 'nlFHnlFH' : 'pass';
 
         $TODAY = date('Y-m-d');
 
