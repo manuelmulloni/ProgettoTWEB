@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const data = JSON.parse($('meta[data-for-external-file]').attr('data-for-external-file')).id;
 
     $('.entry').on('click', function () {
-        injectDescLong($(this), `/public/ajax/descrizione-dipartimento/${data}`);
+        injectDescLong($(this), `ajax/descrizione-dipartimento/${data}`);
     });
 
 

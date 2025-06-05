@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const query = $(this).val();
         if (query.length > 1) {
             $.ajax({
-                url: "/public/cliente/prenotazione/prestazione-autocomplete",
+                url: "cliente/prenotazione/prestazione-autocomplete",
                 type: "GET",
                 data: { query: query },
                 success: function (data) {

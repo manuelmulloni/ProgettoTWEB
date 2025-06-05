@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateNotificationCount() {
         $.ajax({
-            url: "/public/api/notifications_amount",
+            url: "api/notifications_amount",
             type: "GET",
             dataType: "json",
             success: function (response) {
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
             $('#userNotificationContainer').fadeOut();
             return;
         } else {
-            loadNotificationsPage("/public/api/notifications");
+            loadNotificationsPage("api/notifications");
             $('#userNotificationContainer').fadeIn();
         }
     });
