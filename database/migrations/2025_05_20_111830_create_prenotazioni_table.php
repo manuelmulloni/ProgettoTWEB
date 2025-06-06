@@ -19,7 +19,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->date('dataEsclusa');
+            $table->date('dataEsclusa')->nullable();;
 
             $table->foreignId('idPrestazione')
                 ->constrained('prestazioni')

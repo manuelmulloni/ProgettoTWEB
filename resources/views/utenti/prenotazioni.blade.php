@@ -16,7 +16,7 @@
                 <tbody>
                     @foreach ($prenotazioni as $prenotazione)
                         <tr>
-                            <td>{{ $prenotazione->dataEsclusa }}</td>
+                            <td>{{ isset($prenotazione->dataEsclusa) ? $prenotazione->dataEsclusa : "Nessuna data esclusa"}}</td>
                             <td>{{ $prenotazione->prestazione->nome }}</td>
                         </tr>
                     @endforeach

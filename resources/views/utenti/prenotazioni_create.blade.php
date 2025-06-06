@@ -19,3 +19,5 @@
 {{ html()->form()->close() }}
 
 <script src="{{ asset('assets/js/prenotazioniCreate.js') }}"></script>
+
+{!! JsValidator::formRequest('App\Http\Requests\NewPrenotazioneRequest') !!}

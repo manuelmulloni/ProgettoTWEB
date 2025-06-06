@@ -23,7 +23,7 @@ class NewPrenotazioneRequest extends FormRequest
     {
         return [
             'usernamePaziente' => 'required|string|max:20|exists:utenti,username',
-            'dataEsclusa' => 'required|date|after_or_equal:today',
+            'dataEsclusa' => 'nullable|date|after_or_equal:today',
             'idPrestazione' => 'required|integer|exists:prestazioni,id',
         ];
     }

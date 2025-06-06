@@ -1,21 +1,24 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Dipartimento;
 use App\Models\Prenotazione;
 use App\Http\Requests\NewPrenotazioneRequest;
 use App\Models\Prestazione;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PrenotazioneController extends Controller
 {
     public function showPrenotazioniCliente()
     {
-        $prenotazioni = Prenotazione::where('usernamePaziente',Auth::user()->username)->paginate(10);
+        $prenotazioni = Prenotazione::where('usernamePaziente', Auth::user()->username)->paginate(10);
 
         return view('utenti.prenotazioni', [
             'prenotazioni' => $prenotazioni,
-            'dipartimenti'=> Dipartimento::all(),
+            'dipartimenti' => Dipartimento::all(),
             'prestazioni' => Prestazione::all()
         ]);
     }
@@ -30,9 +33,9 @@ class PrenotazioneController extends Controller
         ]);
     }
 
-    public function createPrenotazione( NewPrenotazioneRequest $request)
+    public function createPrenotazione(NewPrenotazioneRequest $request)
     {
-        $user=Auth::user();
+        $user = Auth::user();
         if ($user->livello == 2) { // Livello 4 per admin, 3 per dipendente
             $prenotazione = new Prenotazione();
             $prenotazione->fill($request->validated());
@@ -41,7 +44,6 @@ class PrenotazioneController extends Controller
         } else {
             return redirect()->back()->with('error', 'Non hai i permessi per creare una prenotazione.');
         }
-
     }
 
     public function deletePrenotazione($id)
@@ -74,16 +76,15 @@ class PrenotazioneController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'prestazione_id' => 'required|exists:prestazioni,id',
+            'idPrestazione' => 'required|exists:prestazioni,id',
         ]);
 
         Prenotazione::create([
-            'idPrestazione' => $request->prestazione_id,
+            'idPrestazione' => $request->idPrestazione,
             'usernamePaziente' => Auth::user()->username,
-            'dataEsclusa' => now(), // oppure da input utente
+            // 'dataEsclusa' => now(), // oppure da input utente
         ]);
 
         return redirect()->back()->with('success', 'Prenotazione effettuata con successo!');
     }
-
 }
