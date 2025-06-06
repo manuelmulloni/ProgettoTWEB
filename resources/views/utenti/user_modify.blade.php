@@ -4,16 +4,6 @@
     <div class="container">
         <h1>Modifica Utente</h1>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         {{ html()->modelForm($user, 'POST', route('user.update', $user->username))->class('')->attribute('enctype', 'multipart/form-data')->open() }}
 
         <div class="form-group" hidden>

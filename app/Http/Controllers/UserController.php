@@ -10,21 +10,21 @@ use App\Models\Prestazione;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\AssegnazioniPrestazioni;
+use Illuminate\Support\Facades\Log;
 
 
 class UserController extends Controller
 {
 
-    public function showEditUser()
+    public function showEditUser(Request $request)
     {
-        $user = auth()->user();
-        return view('utenti.user_modify', ['user' => $user]);
-    }
-
-    public function showEditUserAdmin($username)
-    {
-        $user = User::where('username', $username)->first();
-        return view('utenti.user_modify', ['user' => $user]);
+        if ($request->user()->livello == 4){
+            $username = $request->query('username');
+            $user = User::where('username', $username)->first();
+        }
+        else
+            $user = $request->user();
+        return view('utenti.user_modify', ['user' => $user, 'adminInitiated' => $request->user()->livello == 4]);
     }
 
     public function editUser(Request $request)
