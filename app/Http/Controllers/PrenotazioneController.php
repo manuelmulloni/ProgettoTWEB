@@ -55,6 +55,7 @@ class PrenotazioneController extends Controller
         if ($user->livello == 2) { // Livello 4 per admin, 3 per dipendente
             $prenotazione = new Prenotazione();
             $prenotazione->fill($request->validated());
+            $prenotazione->usernamePaziente = $user->username;
             $prenotazione->save();
             return redirect()->back()->with('success', 'Prenotazione creata con successo.');
         } else {
@@ -98,20 +99,5 @@ class PrenotazioneController extends Controller
     {
         $prestazioni = Prestazione::where('idDipartimento', $id)->pluck('nome', 'id');
         return response()->json($prestazioni);
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'idPrestazione' => 'required|exists:prestazioni,id',
-        ]);
-
-        Prenotazione::create([
-            'idPrestazione' => $request->idPrestazione,
-            'usernamePaziente' => Auth::user()->username,
-            // 'dataEsclusa' => now(), // oppure da input utente
-        ]);
-
-        return redirect()->back()->with('success', 'Prenotazione effettuata con successo!');
     }
 }

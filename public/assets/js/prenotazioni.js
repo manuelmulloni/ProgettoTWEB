@@ -43,22 +43,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const descrizione = $(this).data('descrizione');
         const prescrizione = $(this).data('prescrizione');
 
-        $('#search').val(selectedName);
+        $('#search').val(selectedName.trim());
         $('#result-list').hide();
 
         $('#service-name').text(selectedName);
         $('#service-medico').text(medico);
         $('#service-descrizione').text(descrizione);
         $('#service-prescrizione').text(prescrizione);
+        $('#prestazione-id').val(selectedId);
 
         $('#selected-service').show();
-        $('#book-button').data('id', selectedId);
-    });
-
-    $('#book-button').on('click', function () {
-        const prestazioneId = $(this).data('id');
-        $('#prestazione-id').val(prestazioneId);
-        $('#booking-form').submit();
     });
 
     // Nasconde la lista risultati se clicchi fuori

@@ -22,7 +22,6 @@ class NewPrenotazioneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'usernamePaziente' => 'required|string|max:20|exists:utenti,username',
             'dataEsclusa' => 'nullable|date|after_or_equal:today',
             'idPrestazione' => 'required|integer|exists:prestazioni,id',
         ];

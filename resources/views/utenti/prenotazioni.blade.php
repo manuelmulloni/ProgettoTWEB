@@ -19,7 +19,8 @@
                 <tbody>
                     @foreach ($prenotazioni as $prenotazione)
                         <tr>
-                            <td>{{ isset($prenotazione->dataEsclusa) ? $prenotazione->dataEsclusa : "Nessuna data esclusa"}}</td>
+                            <td>{{ isset($prenotazione->dataEsclusa) ? $prenotazione->dataEsclusa : 'Nessuna data esclusa' }}
+                            </td>
                             <td>{{ $prenotazione->prestazione->nome }}</td>
                             @if (isset($prenotazione->data))
                                 <td>{{ $prenotazione->data }}</td>
@@ -28,17 +29,20 @@
                                 <td colspan="2">Non ancora assegnata</td>
                             @endif
                             <td>
-                                <form action="{{ route('prenotazione.delete', $prenotazione->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('prenotazione.delete', $prenotazione->id) }}" method="POST"
+                                    style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="button-style delete-button" {{ isset($prenotazione->isUsed) && $prenotazione->isUsed ? "disabled" : "" }}>Annulla</button>
+                                    <button type="submit" class="button-style delete-button"
+                                        {{ isset($prenotazione->isUsed) && $prenotazione->isUsed ? 'disabled' : '' }}>Annulla</button>
                                 </form>
                             </td>
-                                
+
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $prenotazioni->links('paginator') }}
         @endif
 
         @if (auth()->user() && auth()->user()->livello === 2)
@@ -56,17 +60,20 @@
 
         <div id="selected-service"
             style="margin-top: 20px; display: none; border: 1px solid #ddd; padding: 15px; max-width: 600px;">
-            <p><strong>Hai selezionato:</strong> <span id="service-name"></span></p>
-            <p><strong>Medico:</strong> <span id="service-medico"></span></p>
-            <p><strong>Descrizione:</strong> <span id="service-descrizione"></span></p>
-            <p><strong>Prescrizione:</strong> <span id="service-prescrizione"></span></p>
-            <button id="book-button" style="margin-top: 10px;">Prenota</button>
+            <form id="booking-form" method="POST" action="{{ route('prenotazione.create') }}">
+                @csrf
+                <p><strong>Hai selezionato:</strong> <span id="service-name"></span></p>
+                <p><strong>Medico:</strong> <span id="service-medico"></span></p>
+                <p><strong>Descrizione:</strong> <span id="service-descrizione"></span></p>
+                <p><strong>Prescrizione:</strong> <span id="service-prescrizione"></span></p>
+                <input type="hidden" name="idPrestazione" id="prestazione-id">
+                <div class="form-group">
+                    <label for="dataEsclusa">Data Esclusa</label>
+                    <input type="date" id="dataEsclusa" name="dataEsclusa" class="form-control">
+                </div>
+                <button id="book-button" style="margin-top: 10px;" class="button-style submit-button">Prenota</button>
+            </form>
         </div>
-
-        <form id="booking-form" method="POST" action="{{ route('prenotazioni.store') }}" style="display: none;">
-            @csrf
-            <input type="hidden" name="idPrestazione" id="prestazione-id">
-        </form>
     </div>
 
     <script src="{{ asset('assets/js/prenotazioni.js') }}"></script>
