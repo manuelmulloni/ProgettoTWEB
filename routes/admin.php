@@ -12,6 +12,9 @@ use App\Http\Controllers\UserController;
 Route::get('/admin/prestazioni', [PrestazioneController::class, 'show_prestazioni'])->name('prestazioni');
 
 Route::get('/admin/getStaff', [UserController::class, 'getStaff'])->name('getStaff');
+Route::get('/admin/getUsers', [UserController::class, 'getUsers'])->name('getUsers');
+
+Route::delete('/admin/user/delete', [UserController::class, 'deleteUser'])->name('user.delete');
 
 Route::get('/admin/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
     ->name('dipartimentiAdmin'); // mostra tutti i dipartimenti dinamicamente

@@ -21,6 +21,11 @@ class UserController extends Controller
         return view('utenti.user_modify', ['user' => $user]);
     }
 
+    public function showEditUserAdmin($username)
+    {
+        $user = User::where('username', $username)->first();
+        return view('utenti.user_modify', ['user' => $user]);
+    }
 
     public function editUser(Request $request)
     {
@@ -62,6 +67,20 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('cliente')->with('success', 'Profilo aggiornato con successo!');
+    }
+
+    public function getUsers(Request $request)
+    {
+        // Recupera tutti gli utenti
+        $utenti = User::paginate(10);
+
+        $mappings = [2 => 'Cliente', 3 => 'Staff', 4 => 'Amministratore'];
+
+        foreach ($utenti as $utente) {
+            $utente->livello = $mappings[$utente->livello] ?? 'Sconosciuto';
+        }
+
+        return view('admin.getUsers', ['utenti' => $utenti]);
     }
 
     // Funzione per vedere i dipendenti (admin)
@@ -116,6 +135,18 @@ class UserController extends Controller
         }
     }
 
+    public function deleteUser(Request $request)
+    {
+        $username = $request->input('username');
+        $user = User::where('username', $username)->first(); //primo risultato possibile
+
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'Utente cancellato con successo!');
+        } else {
+            return redirect()->back()->with('error', 'Utente non trovato.');
+        }
+    }
 
     // Funzione per cancellare un membro dello staff(admin)
     public function deleteStaff(Request $request)
