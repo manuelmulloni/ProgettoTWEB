@@ -15,16 +15,18 @@ use App\Models\AssegnazioniPrestazioni;
 class UserController extends Controller
 {
 
-    public function showEditUser(){
+    public function showEditUser()
+    {
         $user = auth()->user();
         return view('utenti.user_modify', ['user' => $user]);
     }
 
 
-    public function editUser(Request $request){
-        $user = auth()->user();
+    public function editUser(Request $request)
+    {
 
         $request->validate([
+            'username' => ['required', 'string', 'max:20', 'exists:utenti,username'],
             'nome' => ['required', 'string', 'max:20'],
             'cognome' => ['required', 'string', 'max:20'],
             'telefono' => ['required', 'string', 'max:10'],
@@ -32,6 +34,14 @@ class UserController extends Controller
             'profile_picture' => ['image', 'max:4000'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Solo l'admin può modificare i dati di qualsiasi utente
+        if ($request->user()->livello == 4) {
+            $user = User::where('username', $request->username)->first();
+        } else {
+            $user = $request->user();
+        }
+
 
         $user->nome = $request->input('nome');
         $user->cognome = $request->input('cognome');
@@ -55,18 +65,16 @@ class UserController extends Controller
     }
 
     // Funzione per vedere i dipendenti (admin)
-    public function getStaff(Request $request){
+    public function getStaff(Request $request)
+    {
 
         $utenti = User::all()->where('livello', '=', 3);
 
-        foreach ($utenti as $utente){
+        foreach ($utenti as $utente) {
             $utente->prestazioni = AssegnazioniPrestazioni::where('utente_id', $utente->username)->get();
         }
 
         return view('admin.getStaff', ['utenti' => $utenti, 'prestazioni' => Prestazione::all()]);
-
-
-
     }
     // Funzione per creare i membri dello staff (admin)
     public function createStaffMembers(Request $request)
@@ -110,7 +118,8 @@ class UserController extends Controller
 
 
     // Funzione per cancellare un membro dello staff(admin)
-    public function deleteStaff(Request $request){
+    public function deleteStaff(Request $request)
+    {
         $username = $request->input('username');
         $staff = User::where('username', $username)->first(); //primo risultato possibile
 
@@ -121,6 +130,4 @@ class UserController extends Controller
             return response()->json(['message' => 'Staff not found.'], 404);
         }
     }
-
-
 }
