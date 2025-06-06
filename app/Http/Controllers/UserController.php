@@ -69,16 +69,28 @@ class UserController extends Controller
         return redirect()->route('cliente')->with('success', 'Profilo aggiornato con successo!');
     }
 
+    public function updatePermissionLevel(Request $request)
+    {
+        $request->validate([
+            'username' => ['required', 'string', 'max:20', 'exists:utenti,username'],
+            'livello' => ['required', 'integer', 'between:2,4'], // Livelli validi: 2 (Cliente), 3 (Staff), 4 (Amministratore)
+        ]);
+
+        $user = User::where('username', $request->username)->first();
+
+        if ($user) {
+            $user->livello = $request->input('livello');
+            $user->save();
+            return redirect()->back()->with('success', 'Livello di accesso aggiornato con successo!');
+        } else {
+            return redirect()->back()->with('error', 'Utente non trovato.');
+        }
+    }
+
     public function getUsers(Request $request)
     {
         // Recupera tutti gli utenti
         $utenti = User::paginate(10);
-
-        $mappings = [2 => 'Cliente', 3 => 'Staff', 4 => 'Amministratore'];
-
-        foreach ($utenti as $utente) {
-            $utente->livello = $mappings[$utente->livello] ?? 'Sconosciuto';
-        }
 
         return view('admin.getUsers', ['utenti' => $utenti]);
     }

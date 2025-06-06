@@ -15,6 +15,7 @@ Route::get('/admin/getStaff', [UserController::class, 'getStaff'])->name('getSta
 Route::get('/admin/getUsers', [UserController::class, 'getUsers'])->name('getUsers');
 
 Route::delete('/admin/user/delete', [UserController::class, 'deleteUser'])->name('user.delete');
+Route::post('/admin/user/changePermission', [UserController::class, 'updatePermissionLevel'])->name('user.permission.edit');
 
 Route::get('/admin/dipartimenti', [DipartimentoController::class, 'getDipartimenti'])
     ->name('dipartimentiAdmin'); // mostra tutti i dipartimenti dinamicamente
