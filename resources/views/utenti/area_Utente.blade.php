@@ -33,6 +33,4 @@
 
     </div>
 
-
-    @include('layouts.timed_notif')
 @endsection

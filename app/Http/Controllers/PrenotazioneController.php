@@ -6,6 +6,7 @@ use App\Models\Dipartimento;
 use App\Models\Prenotazione;
 use App\Http\Requests\NewPrenotazioneRequest;
 use App\Models\Prestazione;
+use App\Models\Agenda;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -16,6 +17,21 @@ class PrenotazioneController extends Controller
     {
         $prenotazioni = Prenotazione::where('usernamePaziente', Auth::user()->username)->paginate(10);
 
+        Log::debug('Variable: $prenotazioni, value: ' . $prenotazioni);
+        foreach ($prenotazioni as $prenotazione) {
+            Log::debug('Variable: $prenotazione, value: ' . $prenotazione);
+            $agenda = Agenda::where('idPrenotazione', $prenotazione->id)->first();
+
+            Log::debug('Variable: $agenda, value: ' . $agenda);
+            if ($agenda) {
+                Log::debug('Variable: $agenda, value: ' . $agenda);
+                $prenotazione->data = $agenda->data;
+                $prenotazione->orario_inizio = $agenda->orario_inizio;
+                $prenotazione->isUsed = $agenda->data < now(); // Controlla se la prenotazione è già stata utilizzata
+            }
+        }
+
+        Log::debug('Variable: $prenotazioni, value: ' . $prenotazioni);
         return view('utenti.prenotazioni', [
             'prenotazioni' => $prenotazioni,
             'dipartimenti' => Dipartimento::all(),
@@ -48,12 +64,23 @@ class PrenotazioneController extends Controller
 
     public function deletePrenotazione($id)
     {
+        Log::debug('Found prenotazione');
         $prenotazione = Prenotazione::find($id);
+        Log::debug('Found agenda');
+        $agenda = Agenda::where('idPrenotazione', $id)->first();
+        Log::debug('Check if agenda is available');
         if ($prenotazione) {
+            Log::debug('Deleting prenotazione');
+            if (isset($agenda->data) && $agenda->data < now()) {
+                Log::debug('Cannot delete used prenotazione');
+                return redirect()->back()->with('error', 'Cannot delete used prenotazione');
+            }
             $prenotazione->delete();
-            return redirect()->back()->with('success', 'Prenotazione eliminata con successo.');
+            Log::debug('Prenotazione deleted successfully');
+            return redirect()->back()->with('success', 'Prenotazione deleted successfully');
         } else {
-            return redirect()->back()->with('error', 'Prenotazione non trovata.');
+            Log::debug('Prenotazione not found');
+            return redirect()->back()->with('error', 'Prenotazione not found');
         }
     }
 

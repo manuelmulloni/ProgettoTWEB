@@ -11,6 +11,9 @@
                     <tr>
                         <th>Data Esclusa</th>
                         <th>Nome Prestazione</th>
+                        <th>Data Assegnata</th>
+                        <th>Orario Assegnato</th>
+                        <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,6 +21,20 @@
                         <tr>
                             <td>{{ isset($prenotazione->dataEsclusa) ? $prenotazione->dataEsclusa : "Nessuna data esclusa"}}</td>
                             <td>{{ $prenotazione->prestazione->nome }}</td>
+                            @if (isset($prenotazione->data))
+                                <td>{{ $prenotazione->data }}</td>
+                                <td>{{ $prenotazione->orario_inizio }}</td>
+                            @else
+                                <td colspan="2">Non ancora assegnata</td>
+                            @endif
+                            <td>
+                                <form action="{{ route('prenotazione.delete', $prenotazione->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="button-style delete-button" {{ isset($prenotazione->isUsed) && $prenotazione->isUsed ? "disabled" : "" }}>Annulla</button>
+                                </form>
+                            </td>
+                                
                         </tr>
                     @endforeach
                 </tbody>
@@ -51,6 +68,6 @@
             <input type="hidden" name="idPrestazione" id="prestazione-id">
         </form>
     </div>
-@endsection
 
-<script src="{{ asset('assets/js/prenotazioni.js') }}"></script>
+    <script src="{{ asset('assets/js/prenotazioni.js') }}"></script>
+@endsection

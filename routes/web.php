@@ -79,6 +79,7 @@ Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'create
 Route::get('/cliente/prenotazione/prestazione-autocomplete', [PrestazioneController::class, 'autocomplete'])->name('prestazione.autocomplete');
 Route::get('/cliente/prestazioni/{dipartimento}', [PrenotazioneController::class, 'getPrestazioni'])->name('prestazioni.dipartimento');
 Route::post('/cliente/prenotazioni/store', [PrenotazioneController::class, 'store'])->name('prenotazioni.store');
+Route::delete('/cliente/prenotazione/delete/{id}', [PrenotazioneController::class, 'deletePrenotazione'])->name('prenotazione.delete');
 
 
 Route::get('/user/edit', [UserController::class, 'showEditUser'])->name('user.edit');
