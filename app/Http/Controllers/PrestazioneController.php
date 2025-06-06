@@ -44,7 +44,6 @@ class PrestazioneController extends Controller
             'dipartimenti' => Dipartimento::all(),
             'utenti' => DB::table('utenti')->where('livello', 3)->get(),
         ]);
-
     }
 
     public function delete_prestazione($id)
@@ -75,39 +74,39 @@ class PrestazioneController extends Controller
     }
 
     public function show_edit_prestazione($id)
-        {
-          $user = Auth::user();
-            if ($user->livello == 4) {
-                $prestazione = Prestazione::find($id);
-                if ($prestazione) {
-                    return view('admin.prestazione_edit', [ // View non aggiornata
-                        'id' => $id, // Incluso nell'url, ma laravel da errore se non lo passo
-                        'prestazioni' => Prestazione::paginate(10),
-                        'prestazione' => $prestazione,
-                        'dipartimenti' => Dipartimento::all(),
-                        'utenti' => DB::table('utenti')->where('livello', 3)->get(),
-                    ]);
-                } else {
-                    return redirect()->back()->with('error', 'Prestazione non trovata.');
-                }
+    {
+        $user = Auth::user();
+        if ($user->livello == 4) {
+            $prestazione = Prestazione::find($id);
+            if ($prestazione) {
+                return view('admin.prestazione_edit', [ // View non aggiornata
+                    'id' => $id, // Incluso nell'url, ma laravel da errore se non lo passo
+                    'prestazioni' => Prestazione::paginate(10),
+                    'prestazione' => $prestazione,
+                    'dipartimenti' => Dipartimento::all(),
+                    'utenti' => DB::table('utenti')->where('livello', 3)->get(),
+                ]);
+            } else {
+                return redirect()->back()->with('error', 'Prestazione non trovata.');
             }
+        }
     }
 
     public function edit_prestazione($id, NewPrestazioneRequest $request)
     {
         $user = Auth::user();
         if ($user->livello == 4) {
-                Log::debug("Starting edit_prestazione method");
-                Log::debug("Request data: ", $request->all());
-                Log::debug("Prestazione ID: ", array($id));
-                $prestazione = Prestazione::find($id);
-                if ($prestazione) {
-                    $prestazione->fill($request->validated());
-                    $prestazione->save();
-                    return redirect()->route('prestazioni')->with('success', 'Prestazione aggiornata con successo.');
-                } else {
-                    return redirect()->route('prestazioni')->with('error', 'Prestazione non trovata.');
-                }
+            Log::debug("Starting edit_prestazione method");
+            Log::debug("Request data: ", $request->all());
+            Log::debug("Prestazione ID: ", array($id));
+            $prestazione = Prestazione::find($id);
+            if ($prestazione) {
+                $prestazione->fill($request->validated());
+                $prestazione->save();
+                return redirect()->route('prestazioni')->with('success', 'Prestazione aggiornata con successo.');
+            } else {
+                return redirect()->route('prestazioni')->with('error', 'Prestazione non trovata.');
+            }
         }
     }
 
@@ -116,20 +115,29 @@ class PrestazioneController extends Controller
     {
         return $this->belongsTo(Dipartimento::class);
     }
+    
     public function autocomplete(Request $request)
     {
         $query = $request->get('query');
 
-        $results = Prestazione::where('nome', 'LIKE', "%{$query}%")
-            ->orWhereHas('dipartimento', function($q) use ($query) {
-                $q->where('nome', 'LIKE', "%{$query}%");
+        // Cerco se è presente un asterisco come ultimo carattere
+        if (str_ends_with($query, '*')) {
+            // A questo punto devo usare un LIKE con il carattere jolly
+            $search_string = str_replace('*', '%', $query); // Sostituisco l'asterisco con il carattere jolly SQL
+        } else {
+            // Se non è presente un asterisco, uso una ricerca esatta
+            $search_string = $query;
+        }
+
+        $results = Prestazione::where('nome', 'LIKE', $search_string)
+            ->orWhereHas('dipartimento', function ($q) use ($search_string) {
+                $q->where('nome', 'LIKE', $search_string);
             })
             ->select('id', 'nome', 'descrizione', 'prescrizioni', 'medico')
             ->limit(10)
             ->get();
 
         return response()->json($results);
-
     }
 
     public function statsByDip(Request $request)
@@ -145,9 +153,10 @@ class PrestazioneController extends Controller
         ]);
     }
 
-    public function statsByPrestazione(Request $request){
+    public function statsByPrestazione(Request $request)
+    {
         $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
-            ->select('prestazioni.nome',DB::raw('COUNT(*) as total'))
+            ->select('prestazioni.nome', DB::raw('COUNT(*) as total'))
             ->groupBy('prestazioni.nome')
             ->get();
 
@@ -156,7 +165,8 @@ class PrestazioneController extends Controller
         ]);
     }
 
-    public function statsByCliente(Request $request){
+    public function statsByCliente(Request $request)
+    {
         $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
             ->select('prenotazioni.usernamePaziente', DB::raw('COUNT(*) as total'))
             ->groupBy('prenotazioni.usernamePaziente')
