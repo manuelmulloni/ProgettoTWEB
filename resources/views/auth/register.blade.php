@@ -1,88 +1,97 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+@extends('layouts/skelet')
+
+@section('content')
+    <div class="container">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="max-w-md mx-auto bg-white p-6 rounded shadow-md">
         @csrf
 
         <!-- Username -->
-        <div>
-            <x-input-label for="username" :value="__('Username')" />
-            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('username')" class="mt-2" />
+        <div class="container">
+            <label for="username" class="block text-gray-700 font-semibold mb-1">Username</label>
+            <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus autocomplete="username" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('username')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Profile Picture -->
-        <div class="mt-4">
-            <x-input-label for="profile_picture" :value="__('Immagine Profile')" />
-            <input id="profile_picture" class="block mt-1 w-full" type="file" name="profile_picture" accept="image/*" />
-            <small>Massimo 4MB</small>
-            <x-input-error :messages="$errors->get('profile_picture')" class="mt-2" />
+        <div class="container">
+            <label for="profile_picture" class="block text-gray-700 font-semibold mb-1">Immagine Profile</label>
+            <input id="profile_picture" type="file" name="profile_picture" accept="image/*" class="w-full" />
+            <small class="text-gray-500">Massimo 4MB</small>
+            @error('profile_picture')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Nome -->
-        <div class="mt-4">
-            <x-input-label for="nome" :value="__('Nome')" />
-            <x-text-input id="nome" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autocomplete="nome" />
-            <x-input-error :messages="$errors->get('nome')" class="mt-2" />
+        <div class="container">
+            <label for="nome" class="block text-gray-700 font-semibold mb-1">Nome</label>
+            <input id="nome" type="text" name="nome" value="{{ old('nome') }}" required autocomplete="nome" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('nome')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Cognome -->
-        <div class="mt-4">
-            <x-input-label for="cognome" :value="__('Cognome')" />
-            <x-text-input id="cognome" class="block mt-1 w-full" type="text" name="cognome" :value="old('cognome')" required autocomplete="cognome" />
-            <x-input-error :messages="$errors->get('cognome')" class="mt-2" />
+        <div class="container">
+            <label for="cognome" class="block text-gray-700 font-semibold mb-1">Cognome</label>
+            <input id="cognome" type="text" name="cognome" value="{{ old('cognome') }}" required autocomplete="cognome" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('cognome')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Data di Nascita -->
-        <div class="mt-4">
-            <x-input-label for="dataNascita" :value="__('Data di Nascita')" />
-            <x-text-input id="dataNascita" class="block mt-1 w-full" type="date" name="dataNascita" :value="old('dataNascita')" required />
-            <x-input-error :messages="$errors->get('dataNascita')" class="mt-2" />
+        <div class="container">
+            <label for="dataNascita" class="block text-gray-700 font-semibold mb-1">Data di Nascita</label>
+            <input id="dataNascita" type="date" name="dataNascita" value="{{ old('dataNascita') }}" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('dataNascita')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Telefono -->
-        <div class="mt-4">
-            <x-input-label for="telefono" :value="__('Telefono')" />
-            <x-text-input id="telefono" class="block mt-1 w-full" type="tel" name="telefono" :value="old('telefono')" required />
-            <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+        <div class="container">
+            <label for="telefono" class="block text-gray-700 font-semibold mb-1">Telefono</label>
+            <input id="telefono" type="tel" name="telefono" value="{{ old('telefono') }}" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('telefono')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Indirizzo -->
-        <div class="mt-4">
-            <x-input-label for="indirizzo" :value="__('Indirizzo')" />
-            <x-text-input id="indirizzo" class="block mt-1 w-full" type="text" name="indirizzo" :value="old('indirizzo')" required autocomplete="indirizzo" />
-            <x-input-error :messages="$errors->get('indirizzo')" class="mt-2" />
+        <div class="container">
+            <label for="indirizzo" class="block text-gray-700 font-semibold mb-1">Indirizzo</label>
+            <input id="indirizzo" type="text" name="indirizzo" value="{{ old('indirizzo') }}" required autocomplete="indirizzo" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('indirizzo')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="container">
+            <label for="password" class="block text-gray-700 font-semibold mb-1">Password</label>
+            <input id="password" type="password" name="password" required autocomplete="new-password" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('password')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="container">
+            <label for="password_confirmation" class="block text-gray-700 font-semibold mb-1">Confirm Password</label>
+            <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            @error('password_confirmation')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+        <div class="flex items-center justify-between">
+            <a href="{{ route('login') }}" class="text-sm text-indigo-600 hover:text-indigo-900 underline">Already registered?</a>
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded">
+                Register
+            </button>
         </div>
     </form>
-</x-guest-layout>
+@endsection
