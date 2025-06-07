@@ -1,7 +1,11 @@
 <header>
-    <a href="{{ route('primaview') }}" class="logo">Sito Minimal</a> <!-- Logo/Nome sito -->
+    <div>
+        <a href="{{ route('primaview') }}" class="logo">Sito Minimal</a> <!-- Logo/Nome sito -->
+    </div>
 
     <div class ="container">
+        <i class="fa-solid fa-arrow-left notification-close" style="margin-right: 5px" id="historyBack"></i>
+        <i class="fa-solid fa-arrow-right notification-close" style="margin-right: 15px" id="historyForward"></i>
         <a href="{{ route('dipartimenti') }}"> Dipartimenti</a>
         @can('isUser')
             <a href="{{ route('cliente') }}">Area Utente</a>

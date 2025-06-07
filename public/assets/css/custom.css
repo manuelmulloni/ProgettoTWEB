@@ -229,3 +229,8 @@ button a {
     display: flex;
     justify-content: space-between;
 }
+
+.disabled-pointer {
+    pointer-events: none;
+    opacity: 0.5;
+}
