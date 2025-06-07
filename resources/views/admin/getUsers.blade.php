@@ -37,7 +37,7 @@
                                 <form action="{{ route('user.permission.edit') }}" method="POST" style="display:inline;">
                                     @csrf
                                     <input type="hidden" name="username" value="{{ $utente->username }}">
-                                    <select name="livello" class="select-style"
+                                    <select name="livello"
                                         onchange="if (confirm('Sei sicuro di voler modificare il livello di questo utente?')) { this.form.submit(); }">
                                         @foreach ([2, 3, 4] as $livello)
                                             <option value="{{ $livello }}"
@@ -61,15 +61,15 @@
                                 </form>
                             </td>
                             <td>
-                            <div class="flex-center">
-                                <button type="button" class="button-style edit-button" onclick="document.location = '{{ route('user.edit', ['username' => $utente->username]) }}'">Modifica</button>
-                            <form action="{{ route('user.delete') }}" method="POST"
-                                style="display:inline;">
-                                @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="username" value="{{ $utente->username }}">
-                                    <button type="submit" class="button-style delete-button">Elimina</button>
-                                </form>
+                                <div class="flex-center">
+                                    <button type="button" class="button-style edit-button"
+                                        onclick="document.location = '{{ route('user.edit', ['username' => $utente->username]) }}'">Modifica</button>
+                                    <form action="{{ route('user.delete') }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input type="hidden" name="username" value="{{ $utente->username }}">
+                                        <button type="submit" class="button-style delete-button">Elimina</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
