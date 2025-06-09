@@ -145,16 +145,20 @@ class PrestazioneController extends Controller
 
     public function statsByDip(Request $request)
     {
+        $startDate = $request->input('startDate', date('Y-m-01'));
+        $endDate = $request->input('endDate', date('Y-m-t'));
+
         $statistiche = Dipartimento::join('prestazioni', 'prestazioni.idDipartimento', '=', 'dipartimenti.id')
-            ->join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
+            ->join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
+            ->whereBetween('agende.data', [$startDate, $endDate])
             ->select('dipartimenti.nome', DB::raw('COUNT(*) as total'))
             ->groupBy('dipartimenti.nome')
             ->get();
 
         return response()->view('admin.stats.byDipartimento', [
             'statistiche' => $statistiche,
-            'startDate' => date('Y-m-01'),
-            'endDate' => date('Y-m-t'),
+            'startDate' => $startDate,
+            'endDate' => $endDate,
         ]);
     }
 

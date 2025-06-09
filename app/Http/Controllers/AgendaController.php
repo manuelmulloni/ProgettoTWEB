@@ -32,13 +32,20 @@ class AgendaController extends Controller
         // Get the logged-in user
         $user = Auth::user();
 
-        // Get the prestazioni assigned to the logged-in user
-        $prestazioniIds = AssegnazioniPrestazioni::where('utente_id', $user->username)->pluck('prestazione_id');
+        if ($user->livello == 4) {
+            // L'admin ha accesso a tutte le prestazioni
+            $agendaElements = Agenda::where('data', $date)->paginate(10);
+        } else {
+            // Get the prestazioni assigned to the logged-in user
+            $prestazioniIds = AssegnazioniPrestazioni::where('utente_id', $user->username)->pluck('prestazione_id');
 
-        // Filter agenda elements based on prestazioni assigned to the user
-        $agendaElements = Agenda::where('data', $date)
-            ->whereIn('idPrestazione', $prestazioniIds)
-            ->paginate(10);
+            // Filter agenda elements based on prestazioni assigned to the user
+            $agendaElements = Agenda::where('data', $date)
+                ->whereIn('idPrestazione', $prestazioniIds)
+                ->paginate(10);
+        }
+
+
 
         Log::debug("Agenda elements for today: ", $agendaElements->toArray());
 
@@ -102,7 +109,7 @@ class AgendaController extends Controller
             $prenotazioni = Prenotazione::where('idPrestazione', $prestazione)
                 ->where(function ($query) use ($dataAgenda) {
                     $query->where('dataEsclusa', '!=', $dataAgenda)
-                          ->orWhereNull('dataEsclusa');
+                        ->orWhereNull('dataEsclusa');
                 })
                 ->get();
 
@@ -117,7 +124,7 @@ class AgendaController extends Controller
             return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-//metodo staff per aggiungere un appuntamento all'agenda
+    //metodo staff per aggiungere un appuntamento all'agenda
     public function add_appointment_to_agenda(Request $request, $id)
     {
         Log::debug("Starting add_appointment_to_agenda method");
@@ -148,7 +155,7 @@ class AgendaController extends Controller
             return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-// Metodo per visualizzare un elemento specifico dell'agenda
+    // Metodo per visualizzare un elemento specifico dell'agenda
     public function show_agenda_element($id)
     {
         // Trova l'elemento dell'agenda specifico
@@ -160,7 +167,7 @@ class AgendaController extends Controller
             return redirect()->back()->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-//metodo staff per eliminare un elemento dell'agenda
+    //metodo staff per eliminare un elemento dell'agenda
     public function delete_agenda_element($id)
     {
         // Trova l'elemento dell'agenda da eliminare
@@ -188,7 +195,7 @@ class AgendaController extends Controller
             return redirect()->back()->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-//metodo staff per creare un nuovo elemento dell'agenda
+    //metodo staff per creare un nuovo elemento dell'agenda
     public function create_agenda_element(NewAgendaElementRequest $request)
     {
         Log::debug("Starting create_agenda_element method");
