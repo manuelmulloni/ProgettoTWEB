@@ -18,6 +18,7 @@ use App\Http\Requests\NewAgendaElementRequest;
 
 class AgendaController extends Controller
 {
+    //metodo staff
     public function show_agenda(Request $request)
     {
         Log::debug("Starting show_agenda method");
@@ -55,7 +56,7 @@ class AgendaController extends Controller
             ->with('error', $errorMessage);   // Pass error message to the view
     }
 
-
+    //metodo cliente
     public function cancel_appointment($id)
     {
         // Trova l'elemento dell'agenda da cancellare
@@ -81,6 +82,7 @@ class AgendaController extends Controller
         }
     }
 
+    //metodo staff
     public function add_appointment($id)
     {
         // Trova l'elemento dell'agenda da modificare
@@ -98,7 +100,7 @@ class AgendaController extends Controller
             $existingPrenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)->get();
 
             $prenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)
-                ->whereNotIn('dataEsclusione', $existingPrenotazioni->pluck('dataEsclusione'))
+                ->whereNotIn('dataEsclusa', $existingPrenotazioni->pluck('dataEsclusa'))
                 ->get();
 
             Log::debug("Found prenotazioni: ", $prenotazioni->toArray());
@@ -112,7 +114,7 @@ class AgendaController extends Controller
             return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-
+//metodo staff per aggiungere un appuntamento all'agenda
     public function add_appointment_to_agenda(Request $request, $id)
     {
         Log::debug("Starting add_appointment_to_agenda method");
@@ -143,7 +145,7 @@ class AgendaController extends Controller
             return redirect()->route('agenda')->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-
+// Metodo per visualizzare un elemento specifico dell'agenda
     public function show_agenda_element($id)
     {
         // Trova l'elemento dell'agenda specifico
@@ -155,7 +157,7 @@ class AgendaController extends Controller
             return redirect()->back()->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-
+//metodo staff per eliminare un elemento dell'agenda
     public function delete_agenda_element($id)
     {
         // Trova l'elemento dell'agenda da eliminare
@@ -183,7 +185,7 @@ class AgendaController extends Controller
             return redirect()->back()->with('error', 'Elemento dell\'agenda non trovato.');
         }
     }
-
+//metodo staff per creare un nuovo elemento dell'agenda
     public function create_agenda_element(NewAgendaElementRequest $request)
     {
         Log::debug("Starting create_agenda_element method");
