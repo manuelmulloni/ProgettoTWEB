@@ -90,7 +90,7 @@ class UserController extends Controller
     public function getUsers(Request $request)
     {
         // Recupera tutti gli utenti
-        $utenti = User::paginate(10);
+        $utenti = User::where('livello', '!=', 4)->paginate(10); // Esclude gli amministratori
 
         return view('admin.getUsers', ['utenti' => $utenti]);
     }

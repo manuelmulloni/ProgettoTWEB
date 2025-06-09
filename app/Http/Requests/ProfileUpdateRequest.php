@@ -21,7 +21,7 @@ class ProfileUpdateRequest extends FormRequest
             'telefono' => ['required', 'string', 'max:10'],
             'indirizzo' => ['required', 'string', 'max:255'],
             'profile_picture' => ['image', 'max:4000'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', 'min:8'],
         ];
     }
 }

@@ -1,6 +1,6 @@
 <header>
     <div>
-        <a href="{{ route('primaview') }}" class="logo">Sito Minimal</a> <!-- Logo/Nome sito -->
+        <a href="{{ route('primaview') }}" class="logo">Poliambulatorio Salus</a> <!-- Logo/Nome sito -->
     </div>
 
     <div class ="container">
