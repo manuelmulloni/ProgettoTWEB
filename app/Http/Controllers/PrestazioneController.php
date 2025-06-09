@@ -164,7 +164,12 @@ class PrestazioneController extends Controller
 
     public function statsByPrestazione(Request $request)
     {
+        $startDate = $request->input('startDate', date('Y-m-01'));
+        $endDate = $request->input('endDate', date('Y-m-t'));
+
         $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
+            ->join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
+            ->whereBetween('agende.data', [$startDate, $endDate])
             ->select('prestazioni.nome', DB::raw('COUNT(*) as total'))
             ->groupBy('prestazioni.nome')
             ->get();
@@ -176,7 +181,12 @@ class PrestazioneController extends Controller
 
     public function statsByCliente(Request $request)
     {
+        $startDate = $request->input('startDate', date('Y-m-01'));
+        $endDate = $request->input('endDate', date('Y-m-t'));
+
         $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
+            ->join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
+            ->whereBetween('agende.data', [$startDate, $endDate])
             ->select('prenotazioni.usernamePaziente', DB::raw('COUNT(*) as total'))
             ->groupBy('prenotazioni.usernamePaziente')
             ->get();
