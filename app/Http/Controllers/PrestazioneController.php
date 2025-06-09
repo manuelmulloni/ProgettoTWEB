@@ -115,7 +115,7 @@ class PrestazioneController extends Controller
     {
         return $this->belongsTo(Dipartimento::class);
     }
-    
+
     public function autocomplete(Request $request)
     {
         $query = $request->get('query');
@@ -140,6 +140,9 @@ class PrestazioneController extends Controller
         return response()->json($results);
     }
 
+
+
+
     public function statsByDip(Request $request)
     {
         $statistiche = Dipartimento::join('prestazioni', 'prestazioni.idDipartimento', '=', 'dipartimenti.id')
@@ -150,6 +153,8 @@ class PrestazioneController extends Controller
 
         return response()->view('admin.stats.byDipartimento', [
             'statistiche' => $statistiche,
+            'startDate' => date('Y-m-01'),
+            'endDate' => date('Y-m-t'),
         ]);
     }
 
