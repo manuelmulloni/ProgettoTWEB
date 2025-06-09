@@ -97,10 +97,13 @@ class AgendaController extends Controller
             Log::debug("Found agenda element: ", $agenda->toArray());
             Log::debug("Prestazione ID: $prestazione");
 
-            $existingPrenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)->get();
+            $dataAgenda = $agenda->data;
 
-            $prenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)
-                ->whereNotIn('dataEsclusa', $existingPrenotazioni->pluck('dataEsclusa'))
+            $prenotazioni = Prenotazione::where('idPrestazione', $prestazione)
+                ->where(function ($query) use ($dataAgenda) {
+                    $query->where('dataEsclusa', '!=', $dataAgenda)
+                          ->orWhereNull('dataEsclusa');
+                })
                 ->get();
 
             Log::debug("Found prenotazioni: ", $prenotazioni->toArray());
