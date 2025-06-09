@@ -55,14 +55,29 @@ Route::get('ajax/descrizione-dipartimento/{id}', [DipartimentoController::class,
 //Route::get('/prestazioni', [PrestazioneController::class, "show_prestazioni"])->name('prestazioni');
 //questa rotta non serve più, ora è in admin.php
 
-Route::get('/agenda', [AgendaController::class, 'show_agenda'])->name('agenda');
-Route::post('/agenda/new', [AgendaController::class, 'create_agenda_element'])->name('agenda.create');
-Route::delete('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])->name('agenda.delete');
+Route::get('/agenda', [AgendaController::class, 'show_agenda'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda');
 
-Route::get('/agenda/{id}', [AgendaController::class, 'show_agenda_element'])->name('agenda.show');
-Route::delete('/agenda/cancel/{id}', [AgendaController::class, 'cancel_appointment'])->name('agenda.appointment.cancel');
-Route::get('/agenda/new/{id}', [AgendaController::class, 'add_appointment'])->name('agenda.appointment.new');
-Route::post('/agenda/new/{id}', [AgendaController::class, 'add_appointment_to_agenda'])->name('agenda.appointment.new');
+Route::post('/agenda/new', [AgendaController::class, 'create_agenda_element'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda.create');
+Route::delete('/agenda/delete/{id}', [AgendaController::class, 'delete_agenda_element'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda.delete');
+
+Route::get('/agenda/{id}', [AgendaController::class, 'show_agenda_element'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda.show');
+Route::delete('/agenda/cancel/{id}', [AgendaController::class, 'cancel_appointment'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda.appointment.cancel');
+Route::get('/agenda/new/{id}', [AgendaController::class, 'add_appointment'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda.appointment.new');
+Route::post('/agenda/new/{id}', [AgendaController::class, 'add_appointment_to_agenda'])
+    ->middleware('auth', 'isStaff')
+    ->name('agenda.appointment.new');
 
 
 // Routes for the PrestazioneController
