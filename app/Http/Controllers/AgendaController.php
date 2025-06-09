@@ -81,7 +81,7 @@ class AgendaController extends Controller
         }
     }
 
-    public function add_appointment($id)
+        public function add_appointment($id)
     {
         // Trova l'elemento dell'agenda da modificare
         $agenda = Agenda::find($id);
@@ -95,11 +95,24 @@ class AgendaController extends Controller
             Log::debug("Found agenda element: ", $agenda->toArray());
             Log::debug("Prestazione ID: $prestazione");
 
-            $existingPrenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)->get();
+            // --- FIX STARTS HERE ---
 
-            $prenotazioni = Prenotazione::where('idPrestazione', '=', $prestazione)
-                ->whereNotIn('dataEsclusione', $existingPrenotazioni->pluck('dataEsclusione'))
+            // We need the date of the current agenda slot to compare against.
+            // IMPORTANT: This assumes your Agenda model has a 'data' property.
+            // If it's named differently (e.g., 'giorno', 'appointment_date'), change it here.
+            $dataAgenda = $agenda->data;
+
+            // Find all bookings for this service where the exclusion date
+            // is NOT the same as the date of our current agenda slot.
+            // This also implicitly includes bookings where 'dataEsclusione' is NULL.
+            $prenotazioni = Prenotazione::where('idPrestazione', $prestazione)
+                ->where(function ($query) use ($dataAgenda) {
+                    $query->where('dataEsclusa', '!=', $dataAgenda)
+                          ->orWhereNull('dataEsclusa');
+                })
                 ->get();
+
+            // --- FIX ENDS HERE ---
 
             Log::debug("Found prenotazioni: ", $prenotazioni->toArray());
 

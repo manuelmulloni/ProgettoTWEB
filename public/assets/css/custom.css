@@ -32,7 +32,8 @@ button a {
     border-radius: 5px;
     cursor: pointer;
     align-items: center;
-    vertical-align: middle
+    vertical-align: middle;
+    color: white;
         /* font-size: 16px; */
 }
 
