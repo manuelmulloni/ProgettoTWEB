@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\AssegnazioniPrestazioni;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ProfileUpdateRequest;
 
 
 class UserController extends Controller
@@ -23,22 +24,16 @@ class UserController extends Controller
             $user = User::where('username', $username)->first();
         }
         else
+        {
             $user = $request->user();
+        }
         return view('utenti.user_modify', ['user' => $user, 'adminInitiated' => $request->user()->livello == 4]);
     }
 
-    public function editUser(Request $request)
+    public function editUser(ProfileUpdateRequest $request)
     {
 
-        $request->validate([
-            'username' => ['required', 'string', 'max:20', 'exists:utenti,username'],
-            'nome' => ['required', 'string', 'max:20'],
-            'cognome' => ['required', 'string', 'max:20'],
-            'telefono' => ['required', 'string', 'max:10'],
-            'indirizzo' => ['required', 'string', 'max:255'],
-            'profile_picture' => ['image', 'max:4000'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $request->validated();
 
         // Solo l'admin può modificare i dati di qualsiasi utente
         if ($request->user()->livello == 4) {

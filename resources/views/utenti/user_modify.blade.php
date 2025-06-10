@@ -4,7 +4,7 @@
     <div class="container">
         <h1>Modifica Utente</h1>
 
-        {{ html()->modelForm($user, 'POST', route('user.update', $user->username))->class('')->attribute('enctype', 'multipart/form-data')->open() }}
+        {{ html()->modelForm($user, "POST")->route('user.update')->class('')->attribute('enctype', 'multipart/form-data')->open() }}
 
         <div class="form-group" hidden>
             {{ html()->label('Username')->for('username') }}
@@ -51,5 +51,5 @@
         {{ html()->closeModelForm() }}
     </div>
 
-    {!! JsValidator::formRequest('App\Http\Requests\ProfileUpdateRequest') !!}
+
 @endsection
