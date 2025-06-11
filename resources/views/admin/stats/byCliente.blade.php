@@ -21,7 +21,7 @@
             <thead>
             <tr>
                 <th>Cliente</th>
-                <th>Numero di Prenotazioni</th>
+                <th>Numero di Prestazioni erogate</th>
             </tr>
             </thead>
             <tbody>

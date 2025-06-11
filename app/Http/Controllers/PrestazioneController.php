@@ -151,6 +151,7 @@ class PrestazioneController extends Controller
         $statistiche = Dipartimento::join('prestazioni', 'prestazioni.idDipartimento', '=', 'dipartimenti.id')
             ->join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
             ->whereBetween('agende.data', [$startDate, $endDate])
+            ->whereNotNull('idPrenotazione')
             ->select('dipartimenti.nome', DB::raw('COUNT(*) as total'))
             ->groupBy('dipartimenti.nome')
             ->get();
@@ -170,7 +171,8 @@ class PrestazioneController extends Controller
         $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
             ->join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
             ->whereBetween('agende.data', [$startDate, $endDate])
-            ->select('prestazioni.nome', DB::raw('COUNT(*) as total'))
+            ->whereNotNull('agende.idPrenotazione')
+            ->select('prestazioni.nome', DB::raw('COUNT(DISTINCT agende.id) as total'))
             ->groupBy('prestazioni.nome')
             ->get();
 
@@ -187,7 +189,8 @@ class PrestazioneController extends Controller
         $statistiche = Prestazione::join('prenotazioni', 'prestazioni.id', '=', 'prenotazioni.idPrestazione')
             ->join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
             ->whereBetween('agende.data', [$startDate, $endDate])
-            ->select('prenotazioni.usernamePaziente', DB::raw('COUNT(*) as total'))
+            ->whereNotNull('agende.idPrenotazione')
+            ->select('prenotazioni.usernamePaziente', DB::raw('COUNT(DISTINCT agende.id) as total'))
             ->groupBy('prenotazioni.usernamePaziente')
             ->get();
         return response()->view('admin.stats.byCliente', [

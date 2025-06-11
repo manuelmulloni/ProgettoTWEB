@@ -23,7 +23,7 @@
             <thead>
             <tr>
                 <th>Dipartimento</th>
-                <th>Numero di Prenotazioni</th>
+                <th>Numero di prestazioni erogate</th>
 
             </tr>
             </thead>
