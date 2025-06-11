@@ -7,6 +7,7 @@ use App\Models\Dipartimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 use Illuminate\Support\Facades\Log;
 
@@ -18,9 +19,17 @@ class PrestazioneController extends Controller
     public function show_prestazione_element($id)
     {
         $prestazione = Prestazione::find($id);
+        $giorni = Prestazione::join('agende', 'prestazioni.id', '=', 'agende.idPrestazione')
+            ->where('prestazioni.id', $prestazione->id)
+            ->select('agende.data')
+            ->get();
 
+        $giornis = $giorni->map(function ($voce) {
+    return Carbon::parse($voce->data)->locale('it')->isoFormat('dddd');
+});
         if ($prestazione) {
-            return view('areaPrestazioni.prestazione_info')->with('prestazione', $prestazione);
+            return view('areaPrestazioni.prestazione_info')->with(['prestazione'=> $prestazione,
+                    'giorni'=>$giornis->unique()->values()]);
         } else {
             return redirect()->back()->with('error', 'Prestazione non trovata.');
         }

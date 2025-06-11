@@ -29,6 +29,13 @@
                 <small>Medico</small> <br>
                 <strong>{{ $prestazione->medico }}</strong>
             </div>
+            {{-- Grid Item 5: Medico --}}
+            <div class="grid-item">
+                <small>Giorni della settimana</small> <br>
+                @foreach ($giorni as $giorno)
+                <strong>{{ $giorno}}</strong><br>
+                @endforeach
+            </div>
         </div>
 
 
