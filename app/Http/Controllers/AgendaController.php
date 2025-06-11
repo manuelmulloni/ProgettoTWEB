@@ -110,7 +110,7 @@ class AgendaController extends Controller
                 ->where(function ($query) use ($dataAgenda) {
                     $query->where('dataEsclusa', '!=', $dataAgenda)
                         ->orWhereNull('dataEsclusa');
-                })
+                })->orderBy('created_at', 'ASC')
                 ->get();
 
             Log::debug("Found prenotazioni: ", $prenotazioni->toArray());

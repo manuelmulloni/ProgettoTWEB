@@ -9,6 +9,7 @@
                 <tr>
                     <th>Nome</th>
                     <th>Cognome</th>
+                    <th>Richiesta il</th>
                     <th>Azione</th>
                 </tr>
             </thead>
@@ -17,6 +18,7 @@
                     <tr class="agenda-day">
                         <td>{{ $prenotazione->cliente->nome }}</td>
                         <td>{{ $prenotazione->cliente->cognome }}</td>
+                        <td>{{ $prenotazione->created_at->format('d/m/Y') }}</td>
                         <td>
                             <form method="POST" action="{{ route('agenda.appointment.new', ['id' => $agendaElement->id]) }}">
                                 @csrf
