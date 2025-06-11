@@ -81,24 +81,24 @@ Route::post('/agenda/new/{id}', [AgendaController::class, 'add_appointment_to_ag
 
 
 // Routes for the PrestazioneController
-Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_prestazione"])->name('prestazione.edit');
-Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->name('prestazione.edit');
-Route::delete('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->name('prestazione.delete');
-Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->name('prestazione.create');
-Route::get('/prestazioni/show', [PrestazioneController::class, "show_prestazioniCliente"])->name('prestazioni.show');
-Route::get('/prestazione/{id}', [PrestazioneController::class, "show_prestazione_element"])->name('prestazione.info');
+Route::get('/prestazione/edit/{id}', [PrestazioneController::class, "show_edit_prestazione"])->middleware(['auth', 'isCliente'])->name('prestazione.edit');
+Route::post('/prestazione/edit/{id}', [PrestazioneController::class, "edit_prestazione"])->middleware(['auth', 'isCliente'])->name('prestazione.edit');
+Route::delete('/prestazione/delete/{id}', [PrestazioneController::class, "delete_prestazione"])->middleware(['auth', 'isCliente'])->name('prestazione.delete');
+Route::post('/prestazioni/new', [PrestazioneController::class, "create_prestazione"])->middleware(['auth', 'isCliente'])->name('prestazione.create');
+Route::get('/prestazioni/show', [PrestazioneController::class, "show_prestazioniCliente"])->middleware(['auth', 'isCliente'])->name('prestazioni.show');
+Route::get('/prestazione/{id}', [PrestazioneController::class, "show_prestazione_element"])->middleware(['auth', 'isCliente'])->name('prestazione.info');
 
 //Routes for PrenotazioneController
-Route::get('/cliente/prenotazione/show', [PrenotazioneController::class, 'showPrenotazioniCliente'])->name('prenotazione.show');
-Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'createPrenotazione'])->name('prenotazione.create');
-Route::get('/cliente/prenotazione/prestazione-autocomplete', [PrestazioneController::class, 'autocomplete'])->name('prestazione.autocomplete');
-Route::get('/cliente/prestazioni/{dipartimento}', [PrenotazioneController::class, 'getPrestazioni'])->name('prestazioni.dipartimento');
-Route::post('/cliente/prenotazioni/store', [PrenotazioneController::class, 'store'])->name('prenotazioni.store');
-Route::delete('/cliente/prenotazione/delete/{id}', [PrenotazioneController::class, 'deletePrenotazione'])->name('prenotazione.delete');
+Route::get('/cliente/prenotazione/show', [PrenotazioneController::class, 'showPrenotazioniCliente'])->middleware(['auth', 'isCliente'])->name('prenotazione.show');
+Route::post('/cliente/prenotazione/new', [PrenotazioneController::class, 'createPrenotazione'])->middleware(['auth', 'isCliente'])->name('prenotazione.create');
+Route::get('/cliente/prenotazione/prestazione-autocomplete', [PrestazioneController::class, 'autocomplete'])->middleware(['auth', 'isCliente'])->name('prestazione.autocomplete');
+Route::get('/cliente/prestazioni/{dipartimento}', [PrenotazioneController::class, 'getPrestazioni'])->middleware(['auth', 'isCliente'])->name('prestazioni.dipartimento');
+Route::post('/cliente/prenotazioni/store', [PrenotazioneController::class, 'store'])->middleware(['auth', 'isCliente'])->name('prenotazioni.store');
+Route::delete('/cliente/prenotazione/delete/{id}', [PrenotazioneController::class, 'deletePrenotazione'])->middleware(['auth', 'isCliente'])->name('prenotazione.delete');
 
 
-Route::get('/user/edit', [UserController::class, 'showEditUser'])->name('user.edit');
-Route::post('/user/edit', [UserController::class, 'editUser'])->name('user.update');
+Route::get('/user/edit', [UserController::class, 'showEditUser'])->middleware(['auth', 'isCliente'])->name('user.edit');
+Route::post('/user/edit', [UserController::class, 'editUser'])->middleware(['auth', 'isCliente'])->name('user.update');
 
 
 // Routes for the admin area
