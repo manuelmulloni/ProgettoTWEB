@@ -7,20 +7,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 type: "GET",
                 data: { query: query },
                 success: function (data) {
-                    let resultList = $('#result-list');
+                    let resultList = $('#selected-services');
                     resultList.empty();
                     if (data.length > 0) {
                         data.forEach(item => {
-                            resultList.append(`
-                                    <li
-                                        data-id="${item.id}"
-                                        data-medico="${item.medico || ''}"
-                                        data-descrizione="${item.descrizione || ''}"
-                                        data-prescrizione="${item.prescrizione || ''}"
-                                        style="padding:5px; cursor:pointer;">
-                                        ${item.nome}
-                                    </li>
-                                `);
+                            resultList.append( `
+            <p><strong>Nome:</strong> ${item.nome}</p>
+            <p><strong>Medico:</strong> ${item.medico}</p>
+            <p><strong>Descrizione:</strong> ${item.descrizione}</p>
+            <p><strong>Prescrizione:</strong> ${item.prescrizioni}</p>
+            <button type="submit" class="button-style edit-button" style="margin-top: 10px;" onclick="window.location.href='${route('prestazione.info', item.id)}'">Vai alla prenotazione</button>
+                            <br><br>
+    `
+                                    );
                         });
                         resultList.show();
                     } else {
@@ -32,33 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         } else {
-            $('#result-list').hide();
-        }
-    });
-
-    $(document).on('click', '#result-list li', function () {
-        const selectedName = $(this).text();
-        const selectedId = $(this).data('id');
-        const medico = $(this).data('medico');
-        const descrizione = $(this).data('descrizione');
-        const prescrizione = $(this).data('prescrizione');
-
-        $('#search').val(selectedName.trim());
-        $('#result-list').hide();
-
-        $('#service-name').text(selectedName);
-        $('#service-medico').text(medico);
-        $('#service-descrizione').text(descrizione);
-        $('#service-prescrizione').text(prescrizione);
-        $('#prestazione-id').val(selectedId);
-
-        $('#selected-service').show();
-    });
-
-    // Nasconde la lista risultati se clicchi fuori
-    $(document).click(function (event) {
-        if (!$(event.target).closest('#search, #result-list').length) {
-            $('#result-list').hide();
+            $('#selected-services').hide();
         }
     });
 });

@@ -8,7 +8,7 @@
         <div class="two-by-two-grid">
             {{-- Grid Item 1: Nome --}}
             <div class="grid-item">
-                <small>Slot dello</small> <br>
+                <small>Nome</small> <br>
                 <strong>{{ $prestazione->nome }}</strong>
             </div>
 

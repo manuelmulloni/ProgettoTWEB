@@ -45,4 +45,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (dipartimentoSelect.value) {
         caricaPrestazioni(dipartimentoSelect.value);
     }
+    
+    $('#button').on('click', function () {
+    var selectedId = $('#idPrestazione').val();
+
+    if (selectedId) {
+        window.location.href = route('prestazione.info', selectedId);
+    } else {
+        alert('Seleziona un\'opzione dal menu a tendina');
+    }
+    });
 });

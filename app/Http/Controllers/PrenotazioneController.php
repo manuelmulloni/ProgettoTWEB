@@ -57,7 +57,7 @@ class PrenotazioneController extends Controller
             $prenotazione->fill($request->validated());
             $prenotazione->usernamePaziente = $user->username;
             $prenotazione->save();
-            return redirect()->back()->with('success', 'Prenotazione creata con successo.');
+            return redirect()->route('prenotazione.show')->with('success', 'Prenotazione creata con successo.');
         } else {
             return redirect()->back()->with('error', 'Non hai i permessi per creare una prenotazione.');
         }

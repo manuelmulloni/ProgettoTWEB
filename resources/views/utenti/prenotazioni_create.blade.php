@@ -1,22 +1,14 @@
-{{ html()->form('POST', route('prenotazione.create'))->class('form-style')->open() }}
+    <h3 >Nuova Prenotazione</h3>
+    <select name="idDipartimento" id="idDipartimento" class="select_style" required>
+        @foreach ($dipartimenti as $dipartimento)
+            <option value="{{ $dipartimento->id }}">{{ $dipartimento->nome }}</option>
+        @endforeach
+    </select>
 
-<h3 class="form-description">Nuova Prenotazione</h3>
-{{ html()->select('idDipartimento')->class('select_style')->id('idDipartimento')->required()->options($dipartimenti->pluck('nome', 'id')) }}
+    <select name="idPrestazione" id="idPrestazione" class="select_style" required>
+    </select>
 
-{{ html()->select('idPrestazione')->class('select_style')->id('idPrestazione')->required()->options([]) }}
-
-<div class="form-group">
-    {{ html()->label('Data Esclusa')->for('dataEsclusa') }}
-    {{ html()->date('dataEsclusa')->class('form-control')->required() }}
-</div>
-
-<div class="form-group">
-    {{ html()->hidden('usernamePaziente', Auth::user()->username) }}
-</div>
-
-{{ html()->submit('Aggiungi Prenotazione')->class('submit-button button-style') }}
-
-{{ html()->form()->close() }}
+    <button id="button" class="edit-button button-style">Vai alla prenotazione</button>
 
 <script src="{{ asset('assets/js/prenotazioniCreate.js') }}"></script>
 
