@@ -7,6 +7,7 @@
             <h1>Poliambulatorio Salus: La Tua Salute al Centro</h1>
             <p>Un centro medico all'avanguardia dedicato al tuo benessere completo, con un team di specialisti qualificati e tecnologie moderne.</p>
             <a href="{{ route('dipartimenti') }}" class="cta-button">Scopri i Nostri Servizi <i class="fas fa-arrow-right"></i></a>
+            <a href="{{ asset('file/documentazione.pdf') }}" download> 📄Scarica la documentazione </a>
         </div>
     </section>
 
