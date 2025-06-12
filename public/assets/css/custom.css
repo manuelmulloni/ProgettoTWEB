@@ -1,3 +1,295 @@
+
+body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sezione Benvenuti */
+        .hero-section {
+            background-color: #f0f8ff; /* Colore di sfondo leggero */
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Per contenere l'immagine del medico */
+        }
+
+        .hero-content {
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .doctor-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%; /* Copre l'altezza della sezione */
+            width: auto;
+            object-fit: cover;
+            opacity: 0.8; /* Per fonderlo un po' con lo sfondo */
+            z-index: 0;
+        }
+
+        /* Sezione "Perché sceglierci?" e Box Vantaggi */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 50px;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .advantage-box {
+            background-color: #f8fafd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid #3498db; /* Striscia blu come nell'esempio */
+        }
+
+        .advantage-box.main-blue {
+            background-color: #3498db;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .advantage-box.main-blue h3 {
+            color: #fff;
+        }
+
+        .advantage-box.main-blue p {
+            color: #e0e0e0;
+        }
+
+        .advantage-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .advantage-box p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .advantage-box .icon {
+            font-size: 2.5em;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        .advantage-box.main-blue .icon {
+            color: #fff;
+        }
+
+        .learn-more-button {
+            display: inline-block;
+            background-color: #2980b9;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .learn-more-button:hover {
+            background-color: #2471a3;
+        }
+
+        /* Sezione "Il Nostro Poliambulatorio" */
+        .our-clinic-section {
+            padding: 60px 0;
+            background-color: #f0f8ff; /* Sfondo simile alla prima sezione */
+            text-align: center;
+        }
+
+        .our-clinic-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .clinic-image {
+            flex: 1;
+            min-width: 400px; /* Larghezza minima per l'immagine */
+            max-width: 50%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .clinic-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .clinic-info {
+            flex: 1;
+            min-width: 400px; /* Larghezza minima per il testo */
+            text-align: left;
+            padding: 20px;
+        }
+
+        .clinic-info h2 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .clinic-info p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .info-item .icon {
+            font-size: 2em;
+            color: #3498db;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .info-item .text h3 {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .info-item .text p {
+            font-size: 0.95em;
+            color: #666;
+            margin: 0;
+        }
+
+        /* Icone generiche (per esempio, Font Awesome Free - non incluse, ma mostrano l'idea) */
+        /* Puoi sostituire questi div con icone da librerie come Font Awesome */
+        .icon-placeholder {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        /* Media Queries per la Responsività */
+        @media (max-width: 992px) {
+            .hero-section h1 {
+                font-size: 2.8em;
+            }
+
+            .doctor-image {
+                opacity: 0.4;
+                height: 80%;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .clinic-content {
+                flex-direction: column;
+            }
+
+            .clinic-image, .clinic-info {
+                max-width: 100%;
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+            }
+
+            .hero-section h1 {
+                font-size: 2.2em;
+            }
+
+            .hero-section p {
+                font-size: 1em;
+            }
+
+            .why-choose-us, .our-clinic-section {
+                padding: 40px 0;
+            }
+
+            .why-choose-us h2, .clinic-info h2 {
+                font-size: 2em;
+            }
+
+            .advantage-box {
+                padding: 25px;
+            }
+
+            .advantage-box h3 {
+                font-size: 1.3em;
+            }
+
+            .clinic-info {
+                padding: 10px;
+            }
+        }
+        .clinic-image-wrapper img {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: var(--border-radius); 
+}
+
 .content {
     padding: 30px;
     background-color: #f9f9f9;

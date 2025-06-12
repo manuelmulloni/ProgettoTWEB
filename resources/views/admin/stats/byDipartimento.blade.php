@@ -14,7 +14,7 @@
                     <input type="date" id="endDate" name="endDate" value="{{ request('endDate') }}" class="form-control">
                 </div>
                 <div class="col-md-4 align-self-end">
-                    <button type="submit" class="btn btn-primary">Filtra</button>
+                    <button type="submit" class="button-style submit-button">Filtra</button>
                 </div>
             </div>
         </form>
